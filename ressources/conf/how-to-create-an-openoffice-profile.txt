@@ -1,0 +1,16 @@
+How to create an OpenOffice Profile
+===================================
+
+JODConverter can create a new profile, but if you want to set openoffice-Preferences or just save that overhead, this is how you can create a profile folder. (JODConverter will actually only use copies of it, so it won't get modified.)
+
+1. Go to the commandline and type:
+
+   soffice -env:UserInstallation=[profile dir here]
+
+   (You may need to go to the OpenOffice-Directory first.)
+2. Now Openoffice starts within this profile, creating it if it didn't exist yet.
+3. Change any preferences you like.
+4. Close the window.
+
+Now go to CrawlerConfiguration.xml and tell the JavaThumbnailer where to look for a such profile (scroll down to crawlerPlugin > section:externalHelpers > param:openOfficeProfile )
+

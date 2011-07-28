@@ -1,0 +1,9 @@
+pdfbox
+> fontbox
+> apache logging
+
+aperture
+> rdf2go
+> slf4j
+
+log4j

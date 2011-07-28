@@ -1,0 +1,20 @@
+# Rename this file to build.properties in order to use it.
+
+# The current Version
+version.prefix=0.1
+
+# Is the version a preview version (an inofficial realease)
+is-preview=true
+
+# Should be compiled with the debug flag?
+debug=false
+
+# The location of the Java API
+java-api-location=http://java.sun.com/javase/6/docs/api/
+
+# The location of the Java Standard Edition 6 
+java.dir=C:/Programme/Java/jdk1.6.0_12
+
+# If package-plugin: where the regain installation is located
+# We need to have access to its build.xml in order to build their classes (linkage)
+regain-location=C:/Programme/Regain
