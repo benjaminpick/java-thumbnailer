@@ -4,7 +4,7 @@ Thumbnailer
 This is a Java Plugin for creating Thumbnails of files during the crawling process of regain.<br>
 (Regain is a Lucene-based desktop search engine.)
 
-*Status* : Alpha (Creation of Thumbnails working)<br>
+*Status* : Beta (Functional)<br>
 *Licence* : GNU GPL 2.1 or later
 
 Roadmap
