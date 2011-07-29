@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="plugin/src"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1-for-pdfbox.jar"/>
+	<classpathentry kind="lib" path="lib/fontbox-1.5.0-for-pdfbox.jar"/>
+	<classpathentry kind="lib" path="lib/pdfbox-1.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/ScratchApplet.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/commons-cli-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/jodconverter-core-3.0-beta-3-svn.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/json-20080701.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/juh-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/jurt-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/ridl-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/unoil-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/aperture-core-1.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/rdf2go.api-4.6.2-for-aperture.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-api-1.3.0-for-aperture.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-jdk14-1.3.0-for-aperture.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-simple-1.3.0-for-aperture.jar"/>
+	<classpathentry kind="lib" path="lib/ant/junit.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/regain"/>
+	<classpathentry kind="lib" path="/regain/build/classes"/>
+	<classpathentry kind="lib" path="/regain/lib/lucene-analyzers-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/regain/lib/lucene-core-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/regain/lib/lucene-highlighter-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/regain/lib/lucene-memory-3.1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
