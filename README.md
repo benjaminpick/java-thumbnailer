@@ -15,11 +15,8 @@ Roadmap
 * Integration into regain (as a Plugin) *(DONE 29.07.2011)*
 * Packaging in .jars / dynamic loading of .jars *(DONE 29.07.2011)*
 * Seperation from regain lib-wise (so that it can be used as stand-alone/library) *(DONE 28.07.2011)*
-
 * Show Thumbnails in results if available
   * Create Thumbnail-Tag
-
-(Should be done by Sept 2011).
 
 
 Supported Fileformats
@@ -63,4 +60,4 @@ TODO
 Author
 ------
 
-This is a project of the university of Siegen for the benefit of [come_IN Computerclubs](http://come-in.wineme.fb5.uni-siegen.de/index.php?id=en). But of course, if you have patches etc. go ahead!
+This is a project of the university of Siegen for the benefit of [come_IN Computerclubs](http://www.computerclub-comein.de). But of course, if you have patches etc. go ahead!
