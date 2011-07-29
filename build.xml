@@ -309,7 +309,7 @@
     <fileset id="classes" dir="build/classes">
       <exclude name="de/uni_siegen/wineme/come_in/thumbnailer/plugin/ThumbnailerPlugin*"/>
     </fileset>
-    <jar jarfile="build/${programname.file}-standalone--${version.file}.jar"
+    <jar jarfile="build/${programname.file}-standalone-${version.file}.jar"
          compress="false"
          index="true">
       <manifest>

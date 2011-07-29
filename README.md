@@ -50,7 +50,6 @@ TODO
 ### Test: 
 
 * MacOS hasn't been tested yet
-* Test on Win again
 * MIME Tests aren't correctly working yet
 
 ### Nice-to-have:

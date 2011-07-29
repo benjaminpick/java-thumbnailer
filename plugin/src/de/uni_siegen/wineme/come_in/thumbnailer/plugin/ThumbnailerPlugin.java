@@ -92,21 +92,33 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 		
 	public void init(PreparatorConfig config) throws RegainException {
 		Map<String, String> thumbnailConfig = config.getSectionWithName("thumbnailing");
+		if (thumbnailConfig != null)
+			paramThumbnailFolder = thumbnailConfig.get("thumbnailFolder");
 		
-		paramThumbnailFolder = thumbnailConfig.get("thumbnailFolder");
 		if (paramThumbnailFolder == null || paramThumbnailFolder.isEmpty())
 		{
 			mLog.warn("Thumbnail folder is not given; using default value (thumbs/)");
 			paramThumbnailFolder = "thumbs/";
 		}
 		
-		try {
-			paramThumbnailWidth = Integer.parseInt(thumbnailConfig.get("imageWidth"));
-			paramThumbnailHeight = Integer.parseInt(thumbnailConfig.get("imageHeight"));
-		} catch (NumberFormatException e) {
-			mLog.warn("Could not parse desired thumbnail height/width (are these really integers?); using default values (160x120)", e);
+		if (thumbnailConfig != null)
+		{
+			try {
+				paramThumbnailWidth = Integer.parseInt(thumbnailConfig.get("imageWidth"));
+				paramThumbnailHeight = Integer.parseInt(thumbnailConfig.get("imageHeight"));
+			} catch (NumberFormatException e) {
+				mLog.warn("Could not parse desired thumbnail height/width (are these really integers?); using default values (160x120)", e);
+			}
+		}
+		if (paramThumbnailHeight <= 0)
+		{
+			mLog.warn("Invalid value for thumbnail height (" + paramThumbnailHeight + "): taking default 160x120");
 			paramThumbnailWidth = 160;
-			paramThumbnailHeight = 120;
+			paramThumbnailHeight = 120;				
+		} else if (paramThumbnailWidth <= 0) {
+			mLog.warn("Invalid value for thumbnail width (" + paramThumbnailWidth + "): taking default 160x120");
+			paramThumbnailWidth = 160;
+			paramThumbnailHeight = 120;				
 		}
 		
 		Map<String, String> externalConfig = config.getSectionWithName("externalHelpers");
