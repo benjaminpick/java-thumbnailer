@@ -11,11 +11,6 @@
 	<classpathentry kind="lib" path="lib/jodconverter3/commons-cli-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/jodconverter3/commons-io-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/jodconverter3/jodconverter-core-3.0-beta-3-svn.jar"/>
-	<classpathentry kind="lib" path="lib/jodconverter3/json-20080701.jar"/>
-	<classpathentry kind="lib" path="lib/jodconverter3/juh-3.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/jodconverter3/jurt-3.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/jodconverter3/ridl-3.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/jodconverter3/unoil-3.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/aperture-core-1.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/rdf2go.api-4.6.2-for-aperture.jar"/>

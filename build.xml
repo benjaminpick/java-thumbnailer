@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
- | regain/Thumbnailer - A file search engine providing plenty of formats (Plugin)
+ | JavaThumbnailer - A pluggable Java Thumbnail Generator Library
  | Copyright (C) 2011 Come_IN Computerclubs (University of Siegen)
  |
  | This library is free software; you can redistribute it and/or
@@ -58,7 +58,7 @@
     <pathelement location="plugin/src"/>
   </path>
 
-  <path id="classpath">
+  <path id="classpath" cache="true">
     <pathelement location="build/classes"/>
     <fileset dir="lib">
       <include name="*.jar"/>
@@ -67,11 +67,11 @@
       <include name="*.jar"/>
     </fileset>
   </path>
-  <path id="classpath-regain">
+  <path id="classpath-regain" cache="true">
   	<pathelement location="${regain-location}/build/classes"/>
   	<pathelement location="${regain-location}/build/included-lib-classes/common"/>
   </path>
-  <path id="classpath-shared">
+  <path id="classpath-shared" cache="true">
     <fileset dir="lib/shared-with-regain">
       <include name="*.jar"/>
     </fileset>
@@ -313,7 +313,7 @@
     <fileset id="classes" dir="build/classes">
       <exclude name="de/uni_siegen/wineme/come_in/thumbnailer/plugin/ThumbnailerPlugin*"/>
     </fileset>
-    <jar jarfile="build/${programname.file}-standalone.jar"
+    <jar jarfile="build/${programname.file}-standalone--${version.file}.jar"
          compress="false"
          index="true">
       <manifest>
@@ -337,7 +337,7 @@
     </fileset>
     <fileset id="classes" dir="build/classes">
     </fileset>
-    <jar jarfile="build/${programname.file}-plugin.jar"
+    <jar jarfile="build/${programname.file}-plugin-${version.file}.jar"
          compress="false"
          index="true">
       <manifest>
@@ -359,7 +359,7 @@
    | (ANT_HOME/lib is on my machine "/usr/share/ant/lib")
    +-->
   <target name="test" depends="make-test">
-    <junit haltonfailure="false" fork="true" filtertrace="on"> <!-- showoutput="true" -->
+    <junit haltonfailure="false" fork="true" filtertrace="on" showoutput="true">
       <classpath>
         <path refid="classpath"/>
         <fileset dir="lib">
@@ -370,9 +370,7 @@
       <formatter type="plain" usefile="false"/>
       <batchtest>
         <fileset dir="test/src">
-	  <include name="de/**/*Test.java" />
-          <!-- <include name="**/*Test.java"/> -->
-          <exclude name="net/sf/regain/test/PreparatorTest.java"/>
+	  	  <include name="de/**/*Test.java" />
         </fileset>
       </batchtest>
     </junit>
