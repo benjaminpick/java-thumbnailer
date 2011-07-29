@@ -148,19 +148,19 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 		}
 
 		try {
-			thumbnailer.registerThumbnailer(new NativeImageThumbnailer(), 0);
+			thumbnailer.registerThumbnailer(new NativeImageThumbnailer());
 	
-			thumbnailer.registerThumbnailer(new OpenOfficeThumbnailer(), 0);
-			thumbnailer.registerThumbnailer(new PDFBoxThumbnailer(), 0);
+			thumbnailer.registerThumbnailer(new OpenOfficeThumbnailer());
+			thumbnailer.registerThumbnailer(new PDFBoxThumbnailer());
 			try {
-				thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile), 0);
-				thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile ), 0);
-				thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile), 0);
+				thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile));
+				thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile ));
+				thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile));
 			} catch (IOException e) {
 				mLog.error("Could not initialize JODConverter:", e);
 			}
 	
-			thumbnailer.registerThumbnailer(new ScratchThumbnailer(), 0);
+			thumbnailer.registerThumbnailer(new ScratchThumbnailer());
 		} catch (RuntimeException e) {
 			mLog.error("Not all thumbnailers could be registered:", e);
 		}

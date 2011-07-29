@@ -46,7 +46,7 @@ public class Profiler {
 	  private static Logger mLog = Logger.getLogger(Profiler.class);
 
 	  /** Eine Liste mit allen erzeugten Profilern. */
-	  private static ArrayList mProfilerList;
+	  private static ArrayList<Profiler> mProfilerList;
 
 	  /** Der Name. */
   private String mName;
@@ -146,7 +146,7 @@ public class Profiler {
    */
   private static synchronized void registerProfiler(Profiler profiler) {
     if (mProfilerList == null) {
-      mProfilerList = new ArrayList();
+      mProfilerList = new ArrayList<Profiler>();
     }
 
     mProfilerList.add(profiler);
@@ -357,9 +357,7 @@ public class Profiler {
     
     StringBuffer buffer = new StringBuffer();
 
-    for (Iterator iter = mProfilerList.iterator(); iter.hasNext();) {
-      Profiler profiler = (Profiler) iter.next();
-
+    for (Profiler profiler : mProfilerList) {
       if (profiler.wasUsed()) {
         buffer.append(profiler);
         buffer.append(RegainToolkit.getLineSeparator());

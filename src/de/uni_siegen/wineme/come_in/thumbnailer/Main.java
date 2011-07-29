@@ -22,7 +22,6 @@
 package de.uni_siegen.wineme.come_in.thumbnailer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -91,20 +90,20 @@ public class Main {
 			ThumbnailerManager thumbnailer) {
 
 		if (classExists("de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.NativeImageThumbnailer"))
-			thumbnailer.registerThumbnailer(new NativeImageThumbnailer(), 0);
+			thumbnailer.registerThumbnailer(new NativeImageThumbnailer());
 
-		thumbnailer.registerThumbnailer(new OpenOfficeThumbnailer(), 0);
-		thumbnailer.registerThumbnailer(new PDFBoxThumbnailer(), 0);
+		thumbnailer.registerThumbnailer(new OpenOfficeThumbnailer());
+		thumbnailer.registerThumbnailer(new PDFBoxThumbnailer());
 		
 		try {
-			thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer(), 0);
-			thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer(), 0);
-			thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer(), 0);
+			thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer());
+			thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer());
+			thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer());
 		} catch (IOException e) {
 			mLog.error("Could not initialize JODConverter:", e);
 		}
 
-		thumbnailer.registerThumbnailer(new ScratchThumbnailer(), 0);
+		thumbnailer.registerThumbnailer(new ScratchThumbnailer());
 	}
 	
 	protected static void initLogging() throws IOException

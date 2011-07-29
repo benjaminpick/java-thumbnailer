@@ -32,21 +32,21 @@ public class ThumbnailerFileTestDummy extends MyTestCase {
 		thumbnailer = new ThumbnailerManager();
 		thumbnailer.setThumbnailFolder("thumbs/");
 		
-		thumbnailer.registerThumbnailer(new NativeImageThumbnailer(), 0);
+		thumbnailer.registerThumbnailer(new NativeImageThumbnailer());
 
 
-		thumbnailer.registerThumbnailer(new OpenOfficeThumbnailer(), 0);
-		thumbnailer.registerThumbnailer(new PDFBoxThumbnailer(), 0);
+		thumbnailer.registerThumbnailer(new OpenOfficeThumbnailer());
+		thumbnailer.registerThumbnailer(new PDFBoxThumbnailer());
 		
 		try {
-			thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer(), 0);
-			thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer(), 0);
-			thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer(), 0);
+			thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer());
+			thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer());
+			thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer());
 		} catch (IOException e) {
 			mLog.error("Could not initialize JODConverter:", e);
 		}
 
-		thumbnailer.registerThumbnailer(new ScratchThumbnailer(), 0);
+		thumbnailer.registerThumbnailer(new ScratchThumbnailer());
 
 	}
 	

@@ -184,11 +184,14 @@ public class ThumbnailerManager implements Thumbnailer {
 	
 	/**
 	 * Add a Thumbnailer-Class to the list of available Thumbnailers
+	 * Note that the order you add Thumbnailers may make a difference:
+	 * First added Thumbnailers are tried first, if one fails, the next 
+	 * (that claims to be able to treat such a document) is tried.
+	 * (Thumbnailers that claim to treat all MIME Types are tried last, though.)
 	 * 
-	 * @param thumbnailer
-	 * @param priority
+	 * @param thumbnailer	Thumbnailer to add.
 	 */
-	public void registerThumbnailer(Thumbnailer thumbnailer, int priority)
+	public void registerThumbnailer(Thumbnailer thumbnailer)
 	{
 		String[] acceptMIME = thumbnailer.getAcceptedMIMETypes();
 		if (acceptMIME == null)
