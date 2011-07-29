@@ -11,13 +11,10 @@ Roadmap
 -------
 
 * Creation of Thumbnails *(DONE 14.06.2011)*
-* Add capability for Crawling Plugins to regain (see [forum](http://forum.murfman.de/de/viewtopic.php?f=13&t=1151)) *(ALMOST DONE)*
-  * Document in Wiki!
-  * Config via XML (DONE)
-  * Patch upstream
-* Integration into regain (as a Plugin) *(ALMOST DONE)*
-* Packaging in .jars / dynamic loading of .jars (DONE)
-* Seperation from regain lib-wise (so that it can be used as stand-alone/library) *(ALMOST DONE)*
+* Add capability for Crawling Plugins to regain *(DONE 29.07.2011)*
+* Integration into regain (as a Plugin) *(DONE 29.07.2011)*
+* Packaging in .jars / dynamic loading of .jars *(DONE 29.07.2011)*
+* Seperation from regain lib-wise (so that it can be used as stand-alone/library) *(DONE 28.07.2011)*
 
 * Show Thumbnails in results if available
   * Create Thumbnail-Tag
@@ -42,18 +39,13 @@ TODO
 ### Thumbnailer:
 * Migrate to JODConverter 3beta (reduce hassle of start/stop/document timeout) (DONE)
   * remove log4j info messages
-  * Bug: Win: Soffice Process cannot be started (check)
-  * soffice hogs cpu 100% once used (only Linux?) (seems ok now)
   * Upgrade to 3beta4 when it appears
-  * Find a way to let him fail if he can't convert the file (sb -> png ??)
+  * Find a way to let him fail if he can't convert the file (sb is a binary format and really shouldn't be treated as plain text.)
 * PDFBox: Library Conflict with regain. (We need to include this in the plugin, but it is included in a maybe-loaded preparator as well.)
-  * That means that both should be updated at the same time!
+  * That means that both should be updated at the same time! (1.6.0 is already out.)
 * Check that all temporary files are deleted during thumbnailing process
 
 ### Bugs:
-
-* Image sometimes may need more time (after resize).
-  * Never had an exception. I'll leave it in there, though.
 
 ### Test: 
 
@@ -65,6 +57,7 @@ TODO
 
 * .tiff-Support (via ImageMagick?)
 * IFilterThumbnailer for Windows
+* JMF / ffmpeg for video thumbnailing
 * Run optipng on all pngs (via cron)
 * Better performance for PDFBox
 
