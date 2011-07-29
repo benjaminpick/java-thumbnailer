@@ -28,10 +28,7 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import net.sf.regain.RegainToolkit;
 
 import org.apache.log4j.Logger;
 
@@ -50,8 +47,7 @@ public class Profiler {
 
 	  /** Der Name. */
   private String mName;
-  /** Der Einheit, die gemessen wird. */
-  private String mUnit;
+
   /** Die kummulierte Gesamtzeit. */
   private long mTotalTime;
   /** Die kummulierte Datenmenge. */
@@ -73,7 +69,7 @@ public class Profiler {
   public static Profiler getInstance()
   {
 	  if (instance == null)
-		  instance = new Profiler("bla", "a");
+		  instance = new Profiler("bla");
 	  return instance;
   }
   
@@ -83,12 +79,9 @@ public class Profiler {
    *
    * @param name Der Name des Verarbeitungsschrittes, der mit diesem Profiler
    *        gemessen werden sollen.
-   * @param unit Die Bezeichnung der Dinge, die der Verarbeitungsschritt
-   *        verarbeitet, z.B. <code>documents</code>.
    */
-  public Profiler(String name, String unit) {
+  public Profiler(String name) {
     mName = name;
-    mUnit = unit;
 
     registerProfiler(this);
   }
@@ -308,31 +301,6 @@ public class Profiler {
     return buffer.toString(); */
   }
 
-
-  /**
-   * F�gt bei einem StringBuffer eine Beschriftung hinzu. Dabei werden so viele
-   * Leerzeichen angeh�ngt, dass alle Beschriftungen auf selber H�he enden.
-   *
-   * @param buffer Der StringBuffer bei dem die Beschriftung hinzugef�gt werden
-   *        soll.
-   * @param label Die Beschriftung, die hinzugef�gt werden soll.
-   * @param minLabelLength Die minimale L�nge der Beschriftung. (Der Rest wird
-   *        mit Leerzeichen aufgef�llt).
-   */
-  private void appendLabel(StringBuffer buffer, String label,
-    int minLabelLength)
-  {
-    buffer.append("  ");
-    buffer.append(label);
-    buffer.append(": ");
-
-    int spaceCount = minLabelLength - label.length();
-    for (int i = 0; i < spaceCount; i++) {
-      buffer.append(' ');
-    }
-  }
-
-
   /**
    * Gibt zurück, ob dieser Profiler genutzt wurde. Das ist der Fall, wenn
    * mindestens eine Messung durchgef�hrt wurde.
@@ -360,7 +328,7 @@ public class Profiler {
     for (Profiler profiler : mProfilerList) {
       if (profiler.wasUsed()) {
         buffer.append(profiler);
-        buffer.append(RegainToolkit.getLineSeparator());
+        buffer.append("\n");
       }
     }
 

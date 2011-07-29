@@ -1,7 +1,6 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
 import java.io.File;
-import java.io.IOException;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -97,12 +97,12 @@ public class ThumbnailerManager implements Thumbnailer {
 		
 		mimeTypeDetector = new MimeTypeDetector();
 	}
-
+/* currently not used
 	private static String generate_hash(String str)
 	{
 		return StringUtil.transpose_string(StringUtil.md5(str));
 	}
-
+*/
 	/**
 	 * Calculate a thumbnail filename (via hashing).
 	 * 

@@ -22,7 +22,7 @@ public class ThumbnailerManagerTest extends MyTestCase {
 	{
 		thumbnailer.setImageSize(100, 200, 0);
 		Thumbnailer newThumbnailer = new OpenOfficeThumbnailer();
-		thumbnailer.registerThumbnailer(newThumbnailer, 0);
+		thumbnailer.registerThumbnailer(newThumbnailer);
 		
 		assertEquals("Width is not correct!", 100, thumbnailer.getCurrentImageWidth());
 		assertEquals("Width is not correct!", 100, newThumbnailer.getCurrentImageWidth());
