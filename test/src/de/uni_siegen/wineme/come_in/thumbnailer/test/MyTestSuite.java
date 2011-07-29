@@ -6,7 +6,7 @@ import junit.framework.TestSuite;
 
 public class MyTestSuite extends TestSuite {
 
-	protected static final String MY_DIR = "plugin"+ File.separatorChar;
+	protected static final String MY_DIR = "."+ File.separatorChar;
 	public static final String TESTFILES_DIR = MY_DIR+"test" + File.separatorChar + "testfiles" + File.separatorChar;
 
 	
