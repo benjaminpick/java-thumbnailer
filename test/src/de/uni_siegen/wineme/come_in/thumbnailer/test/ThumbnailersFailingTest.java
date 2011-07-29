@@ -39,7 +39,7 @@ public class ThumbnailersFailingTest extends MyTestCase {
 		} catch (ThumbnailerException e) {
 			return; // OK
 		}
-		fail("No Fail-Exception was thrown.");
+		fail("No Fail-Exception was thrown, but the input file is invalid for this thumbnailer.");
 	}
 	
 	public void tearDown()

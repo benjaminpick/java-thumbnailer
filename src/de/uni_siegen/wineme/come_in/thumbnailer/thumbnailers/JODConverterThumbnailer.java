@@ -231,6 +231,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 				newExt = getStandardOfficeExtension();
 			else
 				newExt = mimeTypeDetector.getStandardExtensionForMimeType(mimeType);
+			
 			input2 = File.createTempFile("jodinput", "." + newExt);
 			mLog.debug("input temp file: " + input2.getAbsolutePath());
 			

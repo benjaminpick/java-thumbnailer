@@ -3,4 +3,6 @@ thumbs
 bin
 log
 /build.properties
+junitvmwatcher*
+*.log
 

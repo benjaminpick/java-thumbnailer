@@ -30,49 +30,53 @@ public class MimeDetectionTest extends MyTestCase {
 	
 	public void testOpenOfficeFiles()
 	{
-		assertMime("application/zip", "test2-odp.pps");
+		assertMime("application/vnd.sun.xml.impress", "test2-odp.pps");
 	}
 	
-	public void testOpenOfficeFiles3()
+	public void testOpenOfficeFiles2()
 	{
-		assertMime("application/zip", "test2-ods.xls");
+		assertMime("application/vnd.sun.xml.calc", "test2-ods.xls");
 	}
 
-	public void testOpenOfficeFiles5()
+	public void testOpenOfficeFiles3()
 	{
 		assertMime("application/vnd.sun.xml.writer", "test2-odt.sxw");
 	}
 
-	public void testOffice2007Files1()
+	public void testOffice2007Files()
 	{
-		assertMime("image/png", "test2-docx.doc");
+		assertMime("application/vnd.openxmlformats-officedocument.wordprocessingml", "test2-docx.doc");
+	}
+
+	public void testOffice2007Files2()
+	{
+		assertMime("application/vnd.openxmlformats-officedocument.presentationml", "test2-pptx.ppt");
+	}
+
+	public void testOffice2007Files3()
+	{
+		assertMime("application/vnd.oasis.opendocument.spreadsh", "test2-xlsx.ods");
+	}
+
+	public void testOfficeFiles()
+	{
+		assertMime("application/vnd.ms-powerpoint", "test2-ppt.odp");
 	}
 
 	public void testOfficeFiles2()
 	{
-		assertMime("image/png", "test2-ppt.odp");
+		assertMime("application/vnd.ms-word", "test2-doc.ott");
 	}
 
 	public void testOfficeFiles3()
 	{
-		assertMime("image/png", "test2-doc.ott");
-	}
-
-	public void testOffice2007Files4()
-	{
-		assertMime("image/png", "test2-pptx.ppt");
-	}
-	public void testOfficeFiles5()
-	{
-		assertMime("image/png", "test2-xls.odp");
-	}
-	public void testOffice2007Files6()
-	{
-		assertMime("application/vnd.oasis.opendocument.spreadsh", "test2-xlsx.ods");
+		assertMime("application/vnd.ms-excel", "test2-xls.odp");
 	}
 	
 	public void testScratch()
 	{
+		assertEquals("Standard extension of scratch was wrongly returned", "sb", mimeType.getStandardExtensionForMimeType("application/x-mit-scratch"));
+		assertTrue("doesExtensionMatchMimeType of Scratch didn't return true", mimeType.doesExtensionMatchMimeType("sb", "application/x-mit-scratch"));
 		assertMime("application/x-mit-scratch", "test2-sb.sbx");
 	}
 	

@@ -63,8 +63,9 @@ public class MyTestCase extends TestCase {
 		assertEquals("Picture has not the right height (expected: " + expectedFormat + ", actual: " + realFormat + ")", expectedHeight, realHeight);
 	}
 	
-	public void testBla()
+	public void testDummy()
 	{
+		// Somehow this test needs to be present so that JUnit detects the tests in sub-classes.
 		assertTrue(true);
 	}
 }
