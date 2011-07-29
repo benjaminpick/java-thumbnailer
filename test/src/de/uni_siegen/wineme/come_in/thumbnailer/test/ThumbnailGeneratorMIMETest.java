@@ -3,7 +3,7 @@ package de.uni_siegen.wineme.come_in.thumbnailer.test;
 import java.io.File;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
-import de.uni_siegen.wineme.come_in.thumbnailer.util.MimeTypeDetector;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

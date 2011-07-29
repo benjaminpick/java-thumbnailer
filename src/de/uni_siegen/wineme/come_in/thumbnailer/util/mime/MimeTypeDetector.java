@@ -91,7 +91,7 @@ public class MimeTypeDetector {
 			// so rewrite the URL for the correct mimetype detection
 			mimeType = mimeTypeIdentifier.identify(bytes, null, new URIImpl("zip:mime:" + file_url));
 		}
-		if (mimeType.length() == 0)
+		if (mimeType != null && mimeType.length() == 0)
 			mimeType = null;
 		
 		for (MimeTypeIdentifier identifier : extraIdentifiers)
@@ -118,7 +118,6 @@ public class MimeTypeDetector {
 	protected List<String> getExtensions(String mimeType) {
 		// TODO: cache result?
 		List<String> extensions = mimeTypeIdentifier.getExtensionsFor(mimeType);
-		mLog.info(extensions.size());
 		
 		for (MimeTypeIdentifier identifier : extraIdentifiers)
 		{

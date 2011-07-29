@@ -2,7 +2,7 @@ package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
 import java.io.File;
 
-import de.uni_siegen.wineme.come_in.thumbnailer.util.MimeTypeDetector;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
 public class MimeDetectionTest extends MyTestCase {
 	private MimeTypeDetector mimeType;

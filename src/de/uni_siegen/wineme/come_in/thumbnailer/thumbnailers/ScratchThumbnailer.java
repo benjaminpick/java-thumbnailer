@@ -30,6 +30,7 @@ import java.util.Hashtable;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.ResizeImage;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.ScratchFileIdentifier;
 
 import edu.mit.scratch.*;
 
@@ -79,5 +80,18 @@ public class ScratchThumbnailer extends AbstractThumbnailer {
 		} finally {
 			IOUtil.quietlyClose(in);
 		}
+	}
+	
+	/**
+	 * Get a list of all MIME Types that this Thumbnailer is ready to process.
+	 * You should override this method in order to give hints when which Thumbnailer is most appropriate.
+	 * If you do not override this method, the Thumbnailer will be called in any case - awaiting a ThumbnailException if
+	 * this thumbnailer cannot treat such a file.
+	 * 
+	 * @return List of MIME Types. If null, all Files may be passed to this Thumbnailer.
+	 */	
+	public String[] getAcceptedMIMETypes()
+	{
+		return new String[]{ScratchFileIdentifier.SCRATCH_MIME_TYPE};
 	}
 }

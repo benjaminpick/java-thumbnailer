@@ -22,16 +22,20 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.util.mime;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 
+/**
+ * Add detection of Scratch files.
+ * A MIME Type didn't exist, so I invented "application/x-mit-scratch".
+ */
 public class ScratchFileIdentifier implements MimeTypeIdentifier {
-
 	public static final String SCRATCH_MIME_TYPE = "application/x-mit-scratch";
 	public static final String SCRATCH_EXTENSION = "sb";
-	private static final String MAGIC_SCRATCH_HEADER = "SCRATCHV0";
+	private static final String MAGIC_SCRATCH_HEADER = "ScratchV0";
 	
 	@Override
 	public String identify(String mimeType, byte[] bytes, File file) {
@@ -39,25 +43,37 @@ public class ScratchFileIdentifier implements MimeTypeIdentifier {
 		{
 			if (FilenameUtils.getExtension(file.getName()) == SCRATCH_EXTENSION)
 				return SCRATCH_MIME_TYPE;
-			String header = new String(bytes);
-			if (header.startsWith(MAGIC_SCRATCH_HEADER))
+
+			if (startWith(bytes, MAGIC_SCRATCH_HEADER))
 				return SCRATCH_MIME_TYPE;
 		}
 		
 		return mimeType;
 	}
 
+	private boolean startWith(byte[] haystick, String needle) {
+		try {
+			byte[] b_needle = needle.getBytes("US-ASCII");
+
+			for (int i = 0; i < b_needle.length; i++)
+			{
+				if (haystick[i] != b_needle[i])
+					return false;
+			}
+			return true;
+		} catch (UnsupportedEncodingException e) {
+			return false;
+		}
+	}
+
 	@Override
 	public List<String> getExtensionsFor(String mimeType) {
-		System.out.println("test");
 		if (SCRATCH_MIME_TYPE.equals(mimeType))
 		{
-			System.out.println("test2");
 			List<String> ext = new ArrayList<String>();
 			ext.add(SCRATCH_EXTENSION);
 			return ext;
 		}
 		return null; // I don't know
 	}
-
 }

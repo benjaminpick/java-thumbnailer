@@ -33,7 +33,7 @@ import org.artofsolving.jodconverter.office.OfficeException;
 import org.artofsolving.jodconverter.office.OfficeManager;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
-import de.uni_siegen.wineme.come_in.thumbnailer.util.MimeTypeDetector;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.Platform;
 
 /**

@@ -67,7 +67,6 @@ TODO
 * IFilterThumbnailer for Windows
 * Run optipng on all pngs (via cron)
 * Better performance for PDFBox
-* MIME-Detection of Scratch Files (customize mimetypes.xml? or test in MimeTypeDetector?) (let's call it: application/x-mit-scratch)
 
 Author
 ------

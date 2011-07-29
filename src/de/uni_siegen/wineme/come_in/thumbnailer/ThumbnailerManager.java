@@ -31,8 +31,8 @@ import org.apache.log4j.Logger;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.Thumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashtable;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
-import de.uni_siegen.wineme.come_in.thumbnailer.util.MimeTypeDetector;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.StringUtil;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
 /**
  * This class manages all available Thumbnailers.
