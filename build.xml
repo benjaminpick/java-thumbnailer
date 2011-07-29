@@ -205,21 +205,15 @@
              windowtitle="${doc.title}"
              header="${doc.header}"
              bottom="${doc.bottom}"
-             stylesheetfile="txt/stylesheet.css"
+             stylesheetfile="ressources/stylesheet.css"
              access="private"
              charset="UTF-8"
              failonerror="true">
              <!-- additionalparam="-breakiterator" -->
       <link offline="true"
             href="${java-api-location}"
-            packagelistLoc="txt/dummy-jdk-api-doc"/>
+            packagelistLoc="ressources/dummy-jdk-api-doc"/>
     </javadoc>
-    <mkdir dir="build/doc/tlddoc"/>
-    <java fork="true" jar="lib/ant/tlddoc.jar"
-          failonerror="true">
-      <arg line="-d build/doc/tlddoc"/>
-      <arg value="web/server/regain-search.tld"/>
-    </java>
   </target>
 
 
