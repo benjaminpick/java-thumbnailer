@@ -55,7 +55,12 @@ public class MimeDetectionTest extends MyTestCase {
 
 	public void testOffice2007Files3()
 	{
-		assertMime("application/vnd.oasis.opendocument.spreadsh", "test2-xlsx.ods");
+		assertMime("application/vnd.openxmlformats-officedocument.spreadsheetml", "test2-xlsx.ods");
+	}
+
+	public void testOffice2007Files4()
+	{
+		assertMime("application/vnd.openxmlformats-officedocument.spreadsheetml", "test2-xlsx.ppt");
 	}
 
 	public void testOfficeFiles()
@@ -84,6 +89,6 @@ public class MimeDetectionTest extends MyTestCase {
 	{
 		String mime = mimeType.getMimeType(new File(parent, filename));
 		if (!expectedMime.equalsIgnoreCase(mime))
-			throw new AssertionError("File " + filename + ": Mime is not equal: expected \"" + expectedMime + "\", but was \"" + mime + "\".");
+			fail("File " + filename + ": Mime is not equal: expected \"" + expectedMime + "\", but was \"" + mime + "\".");
 	}
 }

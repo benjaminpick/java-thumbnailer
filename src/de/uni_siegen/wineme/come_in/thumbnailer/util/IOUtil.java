@@ -2,6 +2,7 @@ package de.uni_siegen.wineme.come_in.thumbnailer.util;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.zip.ZipFile;
 
 public class IOUtil {
 	/**
@@ -15,6 +16,18 @@ public class IOUtil {
 		{
 			if (stream != null)
 				stream.close();
+		}
+		catch (IOException e)
+		{
+			// Ignore
+		}
+	}
+
+	public static void quietlyClose(ZipFile zipFile) {
+		try
+		{
+			if (zipFile != null)
+				zipFile.close();
 		}
 		catch (IOException e)
 		{

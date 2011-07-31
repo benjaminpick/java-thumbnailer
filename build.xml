@@ -112,6 +112,7 @@
     <echo message="  package-plugin       Packages the lib as regain plugin." />
     <echo message="                       (including depencies except those that exist in regain)"/>
     <echo message="  all                  Creates all."/>
+    <echo message="  public               Public release."/>
   </target>
 
 
@@ -139,6 +140,13 @@
     <delete dir="build/classes"/>
   </target>
 
+  <!--
+   | Deletes all generated directories (Without public and the deployed stuff).
+   +-->
+  <target name="clean-all" depends="clean">
+    <delete dir="build/included-lib-classes"/>
+    <delete dir="build/doc"/>
+  </target>
 
   <!--
    | Deletes all generated directories (Without public and the deployed stuff).
@@ -379,4 +387,10 @@
   <target name="all" depends="package, package-plugin">
   </target>
 
+  <!--
+   | Build release.
+   | (Todo: throw warning when ${is-preview}==false
+   +-->
+   <target name="public" depends="clean-all, package, package-plugin">
+   </target>
 </project>

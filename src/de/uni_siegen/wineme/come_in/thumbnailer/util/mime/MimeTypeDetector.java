@@ -57,6 +57,7 @@ public class MimeTypeDetector {
 		
 		// Hardcode for now ...
 		extraIdentifiers.add(new ScratchFileIdentifier());
+		extraIdentifiers.add(new Office2007FileIdentifier());
 	}
 	
 	/**

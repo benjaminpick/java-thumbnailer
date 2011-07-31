@@ -21,11 +21,13 @@
 
 package de.uni_siegen.wineme.come_in.thumbnailer.util;
 
+import java.util.AbstractMap;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -186,8 +188,9 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
-		throw new UnsupportedOperationException("Operation currently not supported");
-		// size += 
+		for (Entry<? extends K, ? extends V> entry : m.entrySet()) {
+			put(entry.getKey(), entry.getValue());
+		}
 	}
 
 	@Override
@@ -218,16 +221,23 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<K, V>> entrySet() {
-		throw new UnsupportedOperationException("Operation currently not supported");
+	// Not sure whether this will when 2 identical (equal) entries are added: same key & same value
+	public Set<Map.Entry<K, V>> entrySet() {
+		Set<Map.Entry<K, V>> entries = new HashSet<Map.Entry<K, V>>();
+		for (K key : hashtable.keySet())
+		{
+			Deque<V> values = hashtable.get(key);
+			for (V value : values)
+			entries.add(new AbstractMap.SimpleEntry<K,V>(key, value));
+		}
+		return entries;
 	}	
 	
 	public String toString()
 	{
 		StringBuffer str = new StringBuffer(200);
 		
-		Set<K> keys = hashtable.keySet();
-		for (K key : keys)
+		for (K key : hashtable.keySet())
 		{
 			str.append(key).append(":\n");
 			

@@ -60,6 +60,7 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 	/** Fieldname prefix that is used within the Lucene index */
 	public static final String THUMBNAILER_INDEX_PREFIX = "thumbnailer_";
 
+	/** Fieldnames and -values */
 	public static final String LUCENE_FIELD_NAME_STATUS = THUMBNAILER_INDEX_PREFIX + "status";
 	public static final String LUCENE_FIELD_VALUE_STATUS_OK = "ok";
 	public static final String LUCENE_FIELD_VALUE_STATUS_NO_THUMBNAILER_FOUND = "no thumbnailer found";
@@ -83,6 +84,9 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 	 */
 	private boolean thumbnailGenerationDeactivated = false;
 
+	/**
+	 * Parameters that were found in the XML Configuration
+	 */
 	private int paramThumbnailWidth;
 	private int paramThumbnailHeight;
 	private String paramThumbnailFolder;
@@ -90,6 +94,8 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 
 	private String paramOpenOfficeProfile;
 		
+	
+	@Override
 	public void init(PreparatorConfig config) throws RegainException {
 		Map<String, String> thumbnailConfig = config.getSectionWithName("thumbnailing");
 		if (thumbnailConfig != null)

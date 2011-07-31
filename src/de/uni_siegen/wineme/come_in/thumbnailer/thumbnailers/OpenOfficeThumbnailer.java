@@ -53,11 +53,11 @@ public class OpenOfficeThumbnailer extends AbstractThumbnailer {
 			throw new ThumbnailerException("This is not a zipped file. Is this really an OpenOffice-File?", e);
 		}
 		
-		ZipEntry entry = zipFile.getEntry("Thumbnails/thumbnail.png");
-		if (entry == null)
-			throw new ThumbnailerException("Zip file does not contain 'Thumbnails/thumbnail.png' . Is this really an OpenOffice-File?");
-			
 		try {
+			ZipEntry entry = zipFile.getEntry("Thumbnails/thumbnail.png");
+			if (entry == null)
+				throw new ThumbnailerException("Zip file does not contain 'Thumbnails/thumbnail.png' . Is this really an OpenOffice-File?");
+			
 			in = new BufferedInputStream(zipFile.getInputStream(entry));				
 
 			ResizeImage resizer = new ResizeImage(thumbWidth, thumbHeight);
@@ -68,6 +68,7 @@ public class OpenOfficeThumbnailer extends AbstractThumbnailer {
 		}
 		finally {
 			IOUtil.quietlyClose(in);
+			IOUtil.quietlyClose(zipFile);
 		}
 	}
 	

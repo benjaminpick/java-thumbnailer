@@ -36,7 +36,8 @@ public class JODPowerpointConverterThumbnailer extends JODConverterThumbnailer {
 	{
 		return new String[]{
 				"application/vnd.ms-powerpoint",
-				"application/vnd.openxmlformats-officedocument.presentationml", /* .presentation" */
+				"application/vnd.openxmlformats-officedocument.presentationml",
+				"application/vnd.openxmlformats-officedocument.presentationml.presentation",
 				"application/vnd.ms-office", // ppt?
 				"application/zip" // pptx?
 
