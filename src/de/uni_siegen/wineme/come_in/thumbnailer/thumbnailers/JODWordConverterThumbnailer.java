@@ -5,6 +5,8 @@ import java.io.IOException;
 
 /**
  * Dummy class for converting Text documents into Openoffice-Textfiles.
+ * 
+ * Tika could be used to detect ms-word-files, but quite a heavy library. Maybe it would be useful as a preperator as well?
  * @see JODConverterThumbnailer
  */
 public class JODWordConverterThumbnailer extends JODConverterThumbnailer {
@@ -39,7 +41,7 @@ public class JODWordConverterThumbnailer extends JODConverterThumbnailer {
 /*				"application/msword", */
 				"application/vnd.ms-word",
 				"application/vnd.openxmlformats-officedocument.wordprocessingml",
-/*				"application/vnd.openxmlformats-officedocument.wordprocessingml.document", */
+				"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 				"application/wordperfect",
 				"application/vnd.ms-office", // doc?
 				"application/zip" // docx?

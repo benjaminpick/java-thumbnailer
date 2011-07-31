@@ -35,6 +35,7 @@ public class JODExcelConverterThumbnailer extends JODConverterThumbnailer {
 		return new String[]{
 				"application/vnd.ms-excel",
 				"application/vnd.openxmlformats-officedocument.spreadsheetml",
+				"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 				"application/vnd.ms-office", // xls?
 				"application/zip" // xlsx?
 		};
