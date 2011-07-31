@@ -22,8 +22,11 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.util.mime;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,11 +51,11 @@ public class Office2007FileIdentifier implements MimeTypeIdentifier {
 		if (mimeType.equals("application/zip"))
 		{
 			ZipFile zipFile = null;
-			
+			ZipEntry entry = null;
 			try {
 				 zipFile = new ZipFile(file);
-
-				 ZipEntry entry = zipFile.getEntry("word/document.xml");
+			 
+				 entry = zipFile.getEntry("word/document.xml");
 				 if (entry != null)
 					 return "application/vnd.openxmlformats-officedocument.wordprocessingml";
 				 
@@ -64,6 +67,9 @@ public class Office2007FileIdentifier implements MimeTypeIdentifier {
 				 if (entry != null)
 					 return "application/vnd.openxmlformats-officedocument.spreadsheetml";
 				 
+				 entry = zipFile.getEntry("mimetype");
+				 if (entry != null)
+					 return detectOpenOfficeMimeType(zipFile.getInputStream(entry));
 			} catch (ZipException e) {
 				return mimeType; // Zip file damaged or whatever. Silently give up. 
 			} catch (IOException e) {
@@ -74,6 +80,17 @@ public class Office2007FileIdentifier implements MimeTypeIdentifier {
 		}
 		
 		return mimeType;
+
+	}
+	
+	private String detectOpenOfficeMimeType(InputStream inputStream) throws IOException
+	{
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+			return in.readLine();
+		} finally {
+			IOUtil.quietlyClose(inputStream);
+		}
 	}
 
 	@Override

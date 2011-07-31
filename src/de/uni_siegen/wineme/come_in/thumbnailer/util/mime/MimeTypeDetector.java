@@ -95,6 +95,7 @@ public class MimeTypeDetector {
 		if (mimeType != null && mimeType.length() == 0)
 			mimeType = null;
 		
+		// Identifiers may re-write MIME.
 		for (MimeTypeIdentifier identifier : extraIdentifiers)
 			mimeType = identifier.identify(mimeType, bytes, file);
 		

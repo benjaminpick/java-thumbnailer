@@ -30,17 +30,22 @@ public class MimeDetectionTest extends MyTestCase {
 	
 	public void testOpenOfficeFiles()
 	{
-		assertMime("application/vnd.sun.xml.impress", "test2-odp.pps");
+		assertMime("application/vnd.oasis.opendocument.presentation", "test2-odp.pps");
 	}
 	
 	public void testOpenOfficeFiles2()
 	{
-		assertMime("application/vnd.sun.xml.calc", "test2-ods.xls");
+		assertMime("application/vnd.oasis.opendocument.spreadsheet", "test2-ods.xls");
 	}
 
 	public void testOpenOfficeFiles3()
 	{
 		assertMime("application/vnd.sun.xml.writer", "test2-odt.sxw");
+	}
+
+	public void testOpenOfficeFiles4()
+	{
+		assertMime("application/vnd.oasis.opendocument.text", "test2-odt.doc");
 	}
 
 	public void testOffice2007Files()

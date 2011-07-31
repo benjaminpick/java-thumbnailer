@@ -106,6 +106,7 @@
 
     <echo message="  make-test            Compiles the test source code."/>
     <echo message="  test                 Does the JUnit tests."/>
+    <echo message="  test-overview        Does the JUnit tests and give a quick overview."/>
 
     <echo message="  package              Packages the thumbnailer lib as standalone library." />
     <echo message="                       (including dependencies)"/>
@@ -141,19 +142,12 @@
   </target>
 
   <!--
-   | Deletes all generated directories (Without public and the deployed stuff).
+   | Deletes all generated directories.
    +-->
   <target name="clean-all" depends="clean">
     <delete dir="build/included-lib-classes"/>
     <delete dir="build/doc"/>
-  </target>
-
-  <!--
-   | Deletes all generated directories (Without public and the deployed stuff).
-   +-->
-  <target name="clean-all" depends="clean">
-    <delete dir="build/included-lib-classes"/>
-    <delete dir="build/doc"/>
+    <delete dir="build/tests"/>
   </target>
 
   <!--
@@ -380,6 +374,36 @@
       </batchtest>
     </junit>
   </target>
+  
+  <!--
+   | Does the JUnit tests and show an overview.
+   | Number of failed tests are logged to build/tests.
+   |
+   | If this target does not work, copy the file "junit.jar" from the directory
+   | "lib/ant" in your ANT_HOME/lib directory.
+   | (ANT_HOME/lib is on my machine "/usr/share/ant/lib")
+   +-->  
+  <target name="test-overview" depends="make-test">
+  	<delete dir="build/tests"/>
+  	<mkdir dir="build/tests" />
+    <junit haltonfailure="false" fork="true" filtertrace="on" > <!-- showoutput="true" -->
+      <classpath>
+        <path refid="classpath"/>
+        <path refid="classpath-shared"/>
+        <fileset dir="lib">
+          <include name="*.jar"/>
+          <include name="ant/*.jar"/>
+        </fileset>
+      </classpath>
+      <formatter type="brief" usefile="true"/>
+      <batchtest todir="build/tests">
+        <fileset dir="test/src">
+	  	  <include name="de/**/*Test.java" />
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+    
 
   <!--
    | Creates all.
@@ -389,8 +413,8 @@
 
   <!--
    | Build release.
-   | (Todo: throw warning when ${is-preview}==false
+   | (Todo: throw warning when ${is-preview}==false)
    +-->
-   <target name="public" depends="clean-all, package, package-plugin">
+   <target name="public" depends="clean-all, test-overview, package, package-plugin">
    </target>
 </project>
