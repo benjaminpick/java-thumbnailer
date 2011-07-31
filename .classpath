@@ -24,5 +24,9 @@
 	<classpathentry kind="lib" path="/regain/lib/lucene-core-3.1.0.jar"/>
 	<classpathentry kind="lib" path="/regain/lib/lucene-highlighter-3.1.0.jar"/>
 	<classpathentry kind="lib" path="/regain/lib/lucene-memory-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/regain-svn/lib/lucene-analyzers-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/regain-svn/lib/lucene-core-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/regain-svn/lib/lucene-highlighter-3.1.0.jar"/>
+	<classpathentry kind="lib" path="/regain-svn/lib/lucene-memory-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
