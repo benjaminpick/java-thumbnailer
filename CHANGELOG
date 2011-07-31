@@ -1,13 +1,17 @@
 + Add Feature
 * Bugfix
+# Enhance Feature
 
 0.2
 ---
-()
+(2011)
 
-+ Test for Office2007-Files
++ MIME-Test: Office2007-Files & OpenOffice files
+# Upgrade PDFBox 1.5.0 -> 1.6.0
 
 Failing tests:
+- 
+- 
 
 
 
