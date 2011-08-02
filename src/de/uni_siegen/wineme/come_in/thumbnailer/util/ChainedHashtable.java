@@ -40,7 +40,8 @@ import java.util.Set;
  * (Helper Class)
  * 
  * Contract:
- * <li>It is possible to put several identical key-value pairs (i.e. where key and value is equal)
+ * <li>It is impossible to put several identical key-value pairs (i.e. where key and value is equal)
+ * (TODO Or throw unsupportedOperationException for entries, and do an iterator() instead?)
  * 
  * @param <K>	Key
  * @param <V>	Value
