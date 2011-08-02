@@ -8,23 +8,42 @@ public class MimeDetectionTest extends MyTestCase {
 	private MimeTypeDetector mimeType;
 	private File parent;
 
+	public MimeDetectionTest()
+	{
+		new MimeTypeDetector(); // Initialize beforehand
+	}
+	
 	public void setUp()
 	{
 		mimeType = new MimeTypeDetector();
 		parent = new File(MyTestSuite.TESTFILES_DIR + "wrong_extension");
 	}
 	
+	public void testGetExtensionFor()
+	{
+		assertEquals("odt", mimeType.getStandardExtensionForMimeType("application/vnd.oasis.opendocument.text"));
+		assertTrue(mimeType.doesExtensionMatchMimeType("odt", "application/vnd.oasis.opendocument.text"));
+	}
+	
 	public void testImageFiles()
 	{
-		// Images
-		assertMime("image/jpeg", "test2-jpg.bmp");
 		assertMime("image/png", "test2-png.jpg");
+	}
+	public void testImageFiles2()
+	{
+		assertMime("image/jpeg", "test2-jpg.bmp");
+	}
+	public void testImageFiles3()
+	{
 		assertMime("image/bmp", "test2-bmp.png");
 	}
 	public void testTextFiles()
 	{
-		// Text
 		assertMime("text/rtf", "test2-rtf.pdf");
+	}
+	
+	public void testTextFiles2()
+	{
 		assertMime("application/pdf", "test2-pdf.ps");
 	}
 	
