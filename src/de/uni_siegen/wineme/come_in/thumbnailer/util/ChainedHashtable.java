@@ -50,7 +50,7 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	private int listSize;
 	
 	Hashtable<K, Deque<V>> hashtable;
-	int size = 0;
+	int size;
 	
 	public ChainedHashtable()
 	{
@@ -63,6 +63,8 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	public ChainedHashtable(int hashtableSize, int chainSize) {
 		hashtable = new Hashtable<K, Deque<V>>(hashtableSize);
 		listSize = chainSize;
+		
+		size = 0;
 	}
 
 	@Override
@@ -88,8 +90,9 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 		Enumeration<Deque<V>> elements = hashtable.elements();
 		
 		Deque<V> list = null;
-		for (list = elements.nextElement() ; elements.hasMoreElements() ; list = elements.nextElement())
-		{
+		while (elements.hasMoreElements())
+		{	
+			list = elements.nextElement();
 			if (list.contains(value))
 				return true;
 		}
@@ -185,6 +188,23 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 			return element;
 		}
 	}
+	
+	public boolean remove(K key, V value)
+	{
+		Deque<V> list = hashtable.get(key);
+		
+		if (list == null)
+			return false;
+		
+		boolean removed = list.remove(value);
+		if (removed)
+		{
+			if (list.isEmpty())
+				hashtable.remove(key);
+			size--;
+		}
+		return removed;
+	}
 
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
@@ -214,8 +234,11 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 		Enumeration<Deque<V>> elements = hashtable.elements();
 		
 		Deque<V> list = null;
-		for (list = elements.nextElement() ; elements.hasMoreElements() ; list = elements.nextElement())
+		while (elements.hasMoreElements())
+		{	
+			list = elements.nextElement();
 			newList.addAll(list);
+		}
 
 		return newList;
 	}
