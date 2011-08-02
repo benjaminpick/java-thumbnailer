@@ -1,10 +1,13 @@
-package de.uni_siegen.wineme.come_in.thumbnailer.test;
+package de.uni_siegen.wineme.come_in.thumbnailer.test.slow;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+
+import de.uni_siegen.wineme.come_in.thumbnailer.test.MyTestSuite;
+import de.uni_siegen.wineme.come_in.thumbnailer.test.ThumbnailerFileTestDummy;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
