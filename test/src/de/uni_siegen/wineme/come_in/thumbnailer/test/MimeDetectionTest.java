@@ -40,7 +40,7 @@ public class MimeDetectionTest extends MyTestCase {
 
 	public void testOpenOfficeFiles3()
 	{
-		assertMime("application/vnd.sun.xml.writer", "test2-odt.sxw");
+		assertMime("application/vnd.oasis.opendocument.text", "test2-odt.sxw");
 	}
 
 	public void testOpenOfficeFiles4()
