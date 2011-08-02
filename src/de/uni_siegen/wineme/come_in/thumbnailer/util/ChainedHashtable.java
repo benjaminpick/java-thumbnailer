@@ -39,6 +39,9 @@ import java.util.Set;
  * Hashtable that can contain several entries per key.
  * (Helper Class)
  * 
+ * Contract:
+ * <li>It is possible to put several identical key-value pairs (i.e. where key and value is equal)
+ * 
  * @param <K>	Key
  * @param <V>	Value
  */
@@ -65,6 +68,12 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 		listSize = chainSize;
 		
 		size = 0;
+	}
+	
+	public ChainedHashtable(Map<? extends K, ? extends V> map)
+	{
+		this();
+		putAll(map);
 	}
 
 	@Override
@@ -149,10 +158,14 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	@Override
 	/**
 	 * Add this Value at the end of this key.
-	 * @return As the value is never replaced, this will always return null.
+	 * If an identical key-value pair already exist (i.e. key and value "equals"),
+	 * then it is replaced by the new one.
+	 * 
+	 * @return Return null or (new!) value if being replaced.
 	 */
 	public V put(K key, V value) {
 		boolean success;
+		V ret = null;
 		
 		Deque<V> list = hashtable.get(key);
 		if (list == null)
@@ -162,12 +175,20 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 			hashtable.put(key, list);
 		}
 		else
+		{
+			if (list.contains(value))
+			{
+				list.remove(value);
+				ret = value;
+				size--;
+			}
 			success = list.offerLast(value);
+		}
 		
 		if (success)
 			size++;
 		
-		return null;
+		return ret;
 	}
 
 	@Override
@@ -207,8 +228,8 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	public void putAll(Map<? extends K, ? extends V> m) {
-		for (Entry<? extends K, ? extends V> entry : m.entrySet()) {
+	public void putAll(Map<? extends K, ? extends V> map) {
+		for (Entry<? extends K, ? extends V> entry : map.entrySet()) {
 			put(entry.getKey(), entry.getValue());
 		}
 	}
@@ -244,7 +265,7 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	// Not sure whether this will when 2 identical (equal) entries are added: same key & same value
+	// TODO "The set is backed by the map, so changes to the map are reflected in the set, and vice-versa."
 	public Set<Map.Entry<K, V>> entrySet() {
 		Set<Map.Entry<K, V>> entries = new HashSet<Map.Entry<K, V>>();
 		for (K key : hashtable.keySet())

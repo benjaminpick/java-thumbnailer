@@ -1,5 +1,7 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
+import java.util.Collection;
+
 import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashtable;
 import junit.framework.TestCase;
 
@@ -63,13 +65,28 @@ public class ChainedHashtableTest extends TestCase {
 		assertSize(1, 1, data);
 	}
 	
+	
 	public void testIdenticalEntries()
 	{
 		data.put(1, "one");
-		data.put(1, "one");
+		assertEquals("one", data.put(1, "one"));
 		data.put(2, "one");
 		data.put(1, "two");
-		assertSize(4, 2, data);		
+		assertSize(3, 2, data);		
+	}
+	
+	public void testBacking()
+	{
+		// "The set is backed by the map, so changes to the map are reflected in the set, and vice-versa."
+		data.put(1, "one");
+		data.put(2, "two");
+		assertSize(2, 2, data);
+		
+		Collection<String> collection = data.values();
+		collection.remove("one");
+		assertSize(1, 1, data);
+		data.remove(2, "two");
+		assertEquals("Hashmap changed, but collection didn't", 0, collection.size());
 	}
 	
 	public void testOrder()
