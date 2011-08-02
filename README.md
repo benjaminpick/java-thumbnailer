@@ -40,7 +40,6 @@ TODO
   * Find a way to let him fail if he can't convert the file (sb is a binary format and really shouldn't be treated as plain text.)
 * PDFBox: Library Conflict with regain. (We need to include this in the plugin, but it is included in a maybe-loaded preparator as well.)
   * That means that both should be updated at the same time! (1.6.0 is already out.)
-* Check that all temporary files are deleted during thumbnailing process
 
 ### Bugs:
 

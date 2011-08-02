@@ -28,7 +28,7 @@ public class ThumbnailersFailingTest extends MyTestCase {
 		
 		File output = null;
 		try {
-			output = File.createTempFile("tmp", ".png");
+			output = File.createTempFile("test-tmp", ".png");
 		} catch (IOException e1) {
 			fail("Could not create Temp file");
 		}
@@ -37,9 +37,10 @@ public class ThumbnailersFailingTest extends MyTestCase {
 		try {
 			currentThumbnailer.generateThumbnail(input, output);
 		} catch (ThumbnailerException e) {
+			output.delete();
 			return; // OK
-		}
-		fail("No Fail-Exception was thrown, but the input file is invalid for this thumbnailer.");
+		} 
+		fail("No Fail-Exception was thrown, but the input file is invalid for this thumbnailer. Output: " + output.getAbsolutePath());
 	}
 	
 	public void tearDown()

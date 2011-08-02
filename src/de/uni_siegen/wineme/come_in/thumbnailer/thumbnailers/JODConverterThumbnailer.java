@@ -188,25 +188,37 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 			ThumbnailerException {
 		if (officeManager == null)
 			connect();
-		
-		File outputTmp = createTempfile("jodtemp");
 
-		// Naughty hack to circumvent invalid URLs under windows (C:\\ ...)
-		if (Platform.isWindows())
-			input = new File(input.getAbsolutePath().replace("\\\\", "\\"));
-		
+		File outputTmp = null;
 		try {
-			officeConverter.convert(input, outputTmp);
-		} catch (OfficeException e) {
-			throw new ThumbnailerException("Could not convert into OpenOffice-File", e);
-		}
-		if (outputTmp.length() == 0)
-			throw new ThumbnailerException("Could not convert into OpenOffice-File ...");
+			outputTmp = createTempfile("jodtemp");
 
-		ooo_thumbnailer.generateThumbnail(outputTmp, output);
-		
-		if(!outputTmp.delete())
-			outputTmp.deleteOnExit();		
+			// Naughty hack to circumvent invalid URLs under windows (C:\\ ...)
+			if (Platform.isWindows())
+				input = new File(input.getAbsolutePath().replace("\\\\", "\\"));
+
+			try {
+				officeConverter.convert(input, outputTmp);
+			} catch (OfficeException e) {
+				throw new ThumbnailerException("Could not convert into OpenOffice-File", e);
+			}
+			if (outputTmp.length() == 0)
+			{
+				throw new ThumbnailerException("Could not convert into OpenOffice-File ...");
+			}
+
+			ooo_thumbnailer.generateThumbnail(outputTmp, output);
+		} finally {
+			// Delete output Temp file
+			if (outputTmp != null)
+			{
+				if(!outputTmp.delete())
+				{
+					if (outputTmp.exists())
+						outputTmp.deleteOnExit();
+				}
+			}
+		}
 	}
 
 	/**
@@ -238,12 +250,14 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 			FileUtils.copyFile(input, input2);
 		}
 
-		generateThumbnail(input2, output);
-		
-		if (!input2.equals(input))
-		{
-			if(!input2.delete())
-				input2.deleteOnExit();
+		try {
+			generateThumbnail(input2, output);
+		} finally {
+			if (!input2.equals(input))
+			{
+				if(!input2.delete())
+					input2.deleteOnExit();
+			}
 		}
 	}
 	

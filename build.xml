@@ -110,6 +110,7 @@
     <echo message="  make-test            Compiles the test source code."/>
     <echo message="  test                 Does the JUnit tests."/>
     <echo message="  test-overview        Does the JUnit tests and give a quick overview."/>
+    <echo message="  test-generate-history Generates a test history from existing Unit-reports."/>
 
     <echo message="  package              Packages the thumbnailer lib as standalone library." />
     <echo message="                       (including dependencies)"/>
@@ -382,6 +383,7 @@
   <!--
    | Does the JUnit tests and show an overview.
    | Number of failed tests are logged to build/tests.
+   | These can be used to generate a nice report with test-generate-history
    |
    | If this target does not work, copy the file "junit.jar" from the directory
    | "lib/ant" in your ANT_HOME/lib directory.

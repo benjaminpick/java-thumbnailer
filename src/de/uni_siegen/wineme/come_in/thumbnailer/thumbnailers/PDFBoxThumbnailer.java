@@ -37,7 +37,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.util.ResizeImage;
 /**
  * Renders the first page of a PDF file into a thumbnail.
  * 
- * Performance note: This usually takes about 3 seconds per file. 
+ * Performance note: This takes about 2-3 seconds per file. 
  * (TODO : Try to override PDPage.convertToImage - this is where the heavy lifting takes place)
  * 
  * Depends on:
