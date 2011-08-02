@@ -2,17 +2,18 @@
 * Bugfix
 # Enhance Feature
 
-0.2
----
-(2011)
+v0.2
+----
+(2. August 2011)
 
-+ MIME-Test: Office2007-Files & OpenOffice files
++ MIME-Test: Office2007-Files & OpenOffice files are detected via Zip/XML
 # Upgrade PDFBox 1.5.0 -> 1.6.0
+* JODConverter didn't delete his temporary files if conversion failed
 
 Failing tests:
-- 
-- 
-
+- ChainedHashtable: testBacking              (not important, as currently not used)
+- MimeDetectionTest: testOfficeFiles{1,2,3}  (meaning only that conversion takes longer than necessary) 
+- ThumbnailersFailingTest: testFailingJOD    (JOD may falsely claim having succeeded when converting a binary file)
 
 
 v0.1

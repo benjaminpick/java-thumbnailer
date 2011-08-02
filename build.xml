@@ -447,6 +447,6 @@
    | Build release.
    | (Todo: throw warning when ${is-preview}==false)
    +-->
-   <target name="public" depends="clean-all, test-overview, package, package-plugin">
+   <target name="public" depends="clean-all, prepare, make, test-overview, package, package-plugin">
    </target>
 </project>
