@@ -25,12 +25,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.ontoware.rdf2go.model.node.impl.URIImpl;
 import org.semanticdesktop.aperture.mime.identifier.magic.MagicMimeTypeIdentifier;
 import org.semanticdesktop.aperture.mime.identifier.magic.MagicMimeTypeIdentifierFactory;
+
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 
@@ -48,6 +52,9 @@ public class MimeTypeDetector {
 	
 	private static Logger mLog = Logger.getLogger(MimeTypeDetector.class);
 
+	/**
+	 * Create a MimeType Detector and init it.
+	 */
 	public MimeTypeDetector()
 	{
 		MagicMimeTypeIdentifierFactory mimeTypeFactory = new MagicMimeTypeIdentifierFactory();
@@ -86,12 +93,15 @@ public class MimeTypeDetector {
 		String file_url = file.toURI().toASCIIString();
 		String mimeType = mimeTypeIdentifier.identify(bytes, file.getPath(), new URIImpl(file_url)) ;
 
+		/* I don't see any effect of this
 		if (mimeType != null && mimeType.equalsIgnoreCase("application/zip")) {
 			mLog.info("Is a zip-file. Try second round-detection ...");
 			// some new files like MS Office documents are zip files
 			// so rewrite the URL for the correct mimetype detection
 			mimeType = mimeTypeIdentifier.identify(bytes, null, new URIImpl("zip:mime:" + file_url));
 		}
+		*/
+		
 		if (mimeType != null && mimeType.length() == 0)
 			mimeType = null;
 		
@@ -103,6 +113,13 @@ public class MimeTypeDetector {
 		return mimeType;
 	}
 	
+	/**
+	 * Return the standard extension of a specific MIME-Type.
+	 * What are these files "normally" called?
+	 * 
+	 * @param mimeType	MIME-Type, e.g. "text/plain"
+	 * @return	Extension, e.g. "txt"
+	 */
 	public String getStandardExtensionForMimeType(String mimeType)
 	{
 		List<String> extensions = getExtensions(mimeType);
@@ -117,9 +134,13 @@ public class MimeTypeDetector {
 		}
 	}
 
+	Map<String, List<String>> extensionsCache = new HashMap<String, List<String>>(); 
 	protected List<String> getExtensions(String mimeType) {
-		// TODO: cache result?
-		List<String> extensions = mimeTypeIdentifier.getExtensionsFor(mimeType);
+		List<String> extensions = extensionsCache.get(mimeType);
+		if (extensions != null)
+			return extensions;
+		
+		extensions = mimeTypeIdentifier.getExtensionsFor(mimeType);
 		
 		for (MimeTypeIdentifier identifier : extraIdentifiers)
 		{
@@ -128,9 +149,17 @@ public class MimeTypeDetector {
 			
 			extensions = identifier.getExtensionsFor(mimeType);
 		}
+		
+		extensionsCache.put(mimeType, extensions);
 		return extensions;
 	}
 	
+	/**
+	 * Test if an given extension can contain a File of MIME-Type
+	 * @param extension	Filename extension (e.g. "txt")
+	 * @param mimeType	MIME-Type		   (e.g. "text/plain")
+	 * @return	True if compatible.
+	 */
 	public boolean doesExtensionMatchMimeType(String extension, String mimeType)
 	{
 		List<String> extensions = getExtensions(mimeType); 

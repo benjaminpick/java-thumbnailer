@@ -25,7 +25,7 @@ public class ThumbnailImageStrangeFilesTest extends MyTestSuite
 		TestSuite ts = new TestSuite("ThumbnailStrangeFilenames");
 		
 		File path = new File (TESTFILES_DIR);
-		File tmpDir = File.createTempFile("strange_files", "");
+		File tmpDir = File.createTempFile("test-strange_files", "");
 		File[] testfiles = path.listFiles();
 
 		tmpDir.delete();

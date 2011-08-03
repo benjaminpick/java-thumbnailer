@@ -34,7 +34,7 @@ import java.util.zip.ZipFile;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 
 /**
- * Add detection of Office2007 files.
+ * Add detection of Office2007 files (and OpenOffice files).
  * Magic numbers don't help here, only introspection of the zip.
  */
 public class Office2007FileIdentifier implements MimeTypeIdentifier {
