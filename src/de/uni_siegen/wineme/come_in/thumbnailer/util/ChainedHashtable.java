@@ -27,11 +27,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.Set;
 
@@ -40,13 +40,13 @@ import java.util.Set;
  * (Helper Class)
  * 
  * Contract:
- * <li>It is impossible to put several identical key-value pairs (i.e. where key and value is equal)
- * (TODO Or throw unsupportedOperationException for entries, and do an iterator() instead?)
+ * <li>It is possible to put several identical key-value pairs (i.e. where key and value is equal)
+ * <li>entrySet is not supported. Instead, it can be iterated over all entries.
  * 
  * @param <K>	Key
  * @param <V>	Value
  */
-public class ChainedHashtable<K, V> implements Map<K, V> {
+public class ChainedHashtable<K, V> implements Map<K, V>, Iterable<Map.Entry<K, V>> {
 
 	private static final int DEFAULT_HASHTABLE_SIZE = 20;
 
@@ -74,7 +74,21 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	public ChainedHashtable(Map<? extends K, ? extends V> map)
 	{
 		this();
-		putAll(map);
+		
+		if (map instanceof ChainedHashtable)
+		{
+			// Copy-constructor
+			ChainedHashtable<? extends K, ? extends V> hashtable = (ChainedHashtable<? extends K, ? extends V>) map;
+			for (K key : hashtable.keySet())
+			{
+				for (V value: hashtable.getList(key))
+				{
+					put(key, value);
+				}
+			}
+		}
+		else
+			putAll(map);
 	}
 
 	@Override
@@ -139,7 +153,7 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 				public Iterator<V> iterator() {
 					return new Iterator<V>() {
 						public boolean hasNext() { return false; }
-						public V next() { return null; }
+						public V next() { throw new NoSuchElementException("Empty"); }
 						public void remove() { }
 					};
 				}
@@ -155,18 +169,49 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 			};
 		}
 	}
+	
+	protected Deque<V> getList(Object key)
+	{
+		return hashtable.get(key);
+	}
+	
+	/**
+	 * Iterate over all elements in the table.
+	 * Note that this currently copies them into a collection,
+	 * so concurrent modification will not be taken into account
+	 * (there will be no ConcurrentModificationException, either).
+	 */
+	@Override
+	public Iterator<Map.Entry<K, V>> iterator() {
+		if (size == 0)
+		{
+			return new Iterator<Map.Entry<K, V>>() {
+				public boolean hasNext() { return false; }
+				public Map.Entry<K, V> next() { throw new NoSuchElementException("Empty"); }
+				public void remove() { }
+			};
+		} 
+		else
+		{
+			Collection<Map.Entry<K, V>> entries = new ArrayList<Map.Entry<K, V>>();
+			for (K key : hashtable.keySet())
+			{
+				Deque<V> values = hashtable.get(key);
+				for (V value : values)
+					entries.add(new AbstractMap.SimpleEntry<K,V>(key, value));
+			}
+			return entries.iterator();
+		}
+	}
 
 	@Override
 	/**
 	 * Add this Value at the end of this key.
-	 * If an identical key-value pair already exist (i.e. key and value "equals"),
-	 * then it is replaced by the new one.
 	 * 
-	 * @return Return null or (new!) value if being replaced.
+	 * @return As the value is never replaced, this will always return null.
 	 */
 	public V put(K key, V value) {
 		boolean success;
-		V ret = null;
 		
 		Deque<V> list = hashtable.get(key);
 		if (list == null)
@@ -177,19 +222,13 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 		}
 		else
 		{
-			if (list.contains(value))
-			{
-				list.remove(value);
-				ret = value;
-				size--;
-			}
 			success = list.offerLast(value);
 		}
 		
 		if (success)
 			size++;
 		
-		return ret;
+		return null;
 	}
 
 	@Override
@@ -247,6 +286,7 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	}
 
 	@Override
+	// TODO "The set is backed by the map, so changes to the map are reflected in the set, and vice-versa."
 	public Collection<V> values() {
 		List<V> newList = new ArrayList<V>();
 		
@@ -266,16 +306,8 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	// TODO "The set is backed by the map, so changes to the map are reflected in the set, and vice-versa."
 	public Set<Map.Entry<K, V>> entrySet() {
-		Set<Map.Entry<K, V>> entries = new HashSet<Map.Entry<K, V>>();
-		for (K key : hashtable.keySet())
-		{
-			Deque<V> values = hashtable.get(key);
-			for (V value : values)
-			entries.add(new AbstractMap.SimpleEntry<K,V>(key, value));
-		}
-		return entries;
+		throw new UnsupportedOperationException("entrySet is not implemented, as identical entries are allowed (conflict with Set contract). Instead, use .iterator() to iterate through all entries.");
 	}	
 	
 	public String toString()
@@ -294,4 +326,6 @@ public class ChainedHashtable<K, V> implements Map<K, V> {
 		
 		return str.toString();
 	}
+
+	
 }
