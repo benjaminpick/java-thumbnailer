@@ -63,7 +63,7 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 	/** Fieldnames and -values */
 	public static final String LUCENE_FIELD_NAME_STATUS = THUMBNAILER_INDEX_PREFIX + "status";
 	public static final String LUCENE_FIELD_VALUE_STATUS_OK = "ok";
-	public static final String LUCENE_FIELD_VALUE_STATUS_NO_THUMBNAILER_FOUND = "no thumbnailer found";
+	public static final String LUCENE_FIELD_VALUE_STATUS_NO_THUMBNAILER_FOUND = "nothumbnailerfound";
 	public static final String LUCENE_FIELD_VALUE_STATUS_FAILED = "failed";
 
 	public static final String LUCENE_FIELD_NAME_FILE_LOCATION = THUMBNAILER_INDEX_PREFIX + "filelocation";

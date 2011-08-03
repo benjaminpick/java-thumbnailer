@@ -4,7 +4,7 @@ Thumbnailer
 This is a Java Plugin for creating Thumbnails of files during the crawling process of regain.<br>
 (Regain is a Lucene-based desktop search engine.)
 
-*Status* : Beta (Functional)<br>
+*Current Version* : 0.2 (Beta)<br>
 *Licence* : GNU GPL 2.1 or later
 
 Roadmap
@@ -39,14 +39,14 @@ TODO
   * remove log4j info messages
   * Find a way to let him fail if he can't convert the file (sb is a binary format and really shouldn't be treated as plain text.)
 * PDFBox: Library Conflict with regain. (We need to include this in the plugin, but it is included in a maybe-loaded preparator as well.)
-  * That means that both should be updated at the same time! (1.6.0 is already out.)
+  * That means that both should be updated at the same time!
 
 ### Bugs:
 
 ### Test: 
 
 * MacOS hasn't been tested yet
-* MIME Tests aren't correctly working yet
+* MIME Tests aren't correctly working yet (MS Office files are hard to distinguish. Maybe Tika? POI?)
 
 ### Nice-to-have:
 
