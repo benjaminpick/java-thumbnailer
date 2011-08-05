@@ -29,10 +29,10 @@ import java.util.zip.DataFormatException;
 import org.apache.log4j.Logger;
 import org.apache.lucene.document.CompressionTools;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Fieldable;
 import org.apache.lucene.index.IndexReader;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.FileDoesNotExistException;
+import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerConstants;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerManager;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODExcelConverterThumbnailer;
@@ -56,18 +56,8 @@ import net.sf.regain.crawler.plugin.AbstractCrawlerPlugin;
  * In order to save ressources, the Thumbnail Library remains loaded only until the end of the crawling process.
  * @author Benjamin
  */
-public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
-	/** Fieldname prefix that is used within the Lucene index */
-	public static final String THUMBNAILER_INDEX_PREFIX = "thumbnailer_";
-
-	/** Fieldnames and -values */
-	public static final String LUCENE_FIELD_NAME_STATUS = THUMBNAILER_INDEX_PREFIX + "status";
-	public static final String LUCENE_FIELD_VALUE_STATUS_OK = "ok";
-	public static final String LUCENE_FIELD_VALUE_STATUS_NO_THUMBNAILER_FOUND = "nothumbnailerfound";
-	public static final String LUCENE_FIELD_VALUE_STATUS_FAILED = "failed";
-
-	public static final String LUCENE_FIELD_NAME_FILE_LOCATION = THUMBNAILER_INDEX_PREFIX + "filelocation";
-	
+public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements ThumbnailerLuceneConstants, ThumbnailerConstants
+{
 	/**
 	 * Logger instance
 	 */
@@ -113,18 +103,18 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 				paramThumbnailWidth = Integer.parseInt(thumbnailConfig.get("imageWidth"));
 				paramThumbnailHeight = Integer.parseInt(thumbnailConfig.get("imageHeight"));
 			} catch (NumberFormatException e) {
-				mLog.warn("Could not parse desired thumbnail height/width (are these really integers?); using default values (160x120)", e);
+				mLog.warn("Could not parse desired thumbnail height/width (are these really integers?); using default values (" + THUMBNAIL_DEFAULT_WIDTH + "x" + THUMBNAIL_DEFAULT_WIDTH +")", e);
 			}
 		}
 		if (paramThumbnailHeight <= 0)
 		{
-			mLog.warn("Invalid value for thumbnail height (" + paramThumbnailHeight + "): taking default 160x120");
-			paramThumbnailWidth = 160;
-			paramThumbnailHeight = 120;				
+			mLog.warn("Invalid value for thumbnail height (" + paramThumbnailHeight + "): taking default " + THUMBNAIL_DEFAULT_WIDTH + "x" + THUMBNAIL_DEFAULT_WIDTH);
+			paramThumbnailWidth = THUMBNAIL_DEFAULT_WIDTH;
+			paramThumbnailHeight = THUMBNAIL_DEFAULT_HEIGHT;				
 		} else if (paramThumbnailWidth <= 0) {
-			mLog.warn("Invalid value for thumbnail width (" + paramThumbnailWidth + "): taking default 160x120");
-			paramThumbnailWidth = 160;
-			paramThumbnailHeight = 120;				
+			mLog.warn("Invalid value for thumbnail width (" + paramThumbnailWidth + "): taking default " + THUMBNAIL_DEFAULT_WIDTH + "x" + THUMBNAIL_DEFAULT_WIDTH);
+			paramThumbnailWidth = THUMBNAIL_DEFAULT_WIDTH;
+			paramThumbnailHeight = THUMBNAIL_DEFAULT_HEIGHT;				
 		}
 		
 		Map<String, String> externalConfig = config.getSectionWithName("externalHelpers");
@@ -230,10 +220,10 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin {
 	protected String getLuceneField(Document doc, String fieldname) {
 		String location;
 		try {
-			Fieldable field = doc.getFieldable(fieldname);
-			if (field == null)
+			byte[] compressedData = doc.getBinaryValue(fieldname);
+			if (compressedData == null)
 				return null;
-			location = CompressionTools.decompressString(field.getBinaryValue());
+			location = CompressionTools.decompressString(compressedData);
 			// uncompressed:
 			// location = field.stringValue();
 		} catch (DataFormatException e) {

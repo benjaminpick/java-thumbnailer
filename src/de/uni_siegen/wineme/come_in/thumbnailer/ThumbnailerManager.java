@@ -47,7 +47,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
  * 
 
  */
-public class ThumbnailerManager implements Thumbnailer {
+public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 
 	private static final int DEFAULT_NB_MIME_TYPES = 40;
 	private static final int DEFAULT_NB_THUMBNAILERS_PER_MIME = 5;
@@ -55,8 +55,8 @@ public class ThumbnailerManager implements Thumbnailer {
 	/** MIME Type for "all MIME" within thumbnailers Hash */
 	private static final String ALL_MIME_WILDCARD = "*/*";
 	
-	private int thumbWidth = 160;
-	private int thumbHeight = 120;
+	private int thumbWidth;
+	private int thumbHeight;
 	private int thumbOptions = 0;
 	
 	/** Folder under which new thumbnails should be filed */
@@ -96,6 +96,9 @@ public class ThumbnailerManager implements Thumbnailer {
 		allThumbnailers = new LinkedList<Thumbnailer>();
 		
 		mimeTypeDetector = new MimeTypeDetector();
+		
+		thumbHeight = THUMBNAIL_DEFAULT_HEIGHT;
+		thumbWidth = THUMBNAIL_DEFAULT_WIDTH;
 	}
 /* currently not used
 	private static String generate_hash(String str)

@@ -24,6 +24,7 @@ package de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers;
 import java.io.File;
 import java.io.IOException;
 
+import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerConstants;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 
 /**
@@ -35,13 +36,19 @@ import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
  * 
  * @author Benjamin
  */
-public abstract class AbstractThumbnailer implements Thumbnailer {
+public abstract class AbstractThumbnailer implements Thumbnailer, ThumbnailerConstants {
 
 	protected int thumbHeight;
 	protected int thumbWidth;
-	protected int imageResizeOptions;
+	protected int imageResizeOptions = 0;
 	
 	protected boolean closed = false;
+	
+	public AbstractThumbnailer()
+	{
+		thumbHeight = THUMBNAIL_DEFAULT_HEIGHT; 
+		thumbWidth  = THUMBNAIL_DEFAULT_WIDTH; 
+	}
 	
 	@Override
 	public void setImageSize(int thumbWidth, int thumbHeight, int imageResizeOptions) {

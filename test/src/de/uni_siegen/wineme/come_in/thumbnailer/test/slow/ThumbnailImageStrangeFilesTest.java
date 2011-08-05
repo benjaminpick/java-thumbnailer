@@ -56,7 +56,6 @@ public class ThumbnailImageStrangeFilesTest extends MyTestSuite
 			final File f = input;
 			TestCase t = new ThumbnailerFileTestDummy("strange_names_" + getDisplayname(input)) {
 				public void runTest() throws Exception {
-					//setImageSize(160, 120, 0);
 					create_thumbnail(f);
 				}
 			};
