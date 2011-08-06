@@ -117,6 +117,8 @@ public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 	{
 		if (thumbnailFolder == null)
 			throw new RuntimeException("chooseThumbnailFilename cannot be run before a first call to setThumbnailFolder()");
+		if (input == null)
+			throw new NullPointerException("Input file may not be null");
 		
 		String hash = ""; //"_" + generate_hash(input.getAbsolutePath());
 		String prefix = input.getName().replace('.', '_');

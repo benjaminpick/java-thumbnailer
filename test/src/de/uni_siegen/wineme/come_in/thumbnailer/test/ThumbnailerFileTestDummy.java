@@ -1,7 +1,12 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
+import static org.junit.Assert.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.junit.Before;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.FileDoesNotExistException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
@@ -16,19 +21,28 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.PDFBoxThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
 
 public class ThumbnailerFileTestDummy extends MyTestCase {
+	protected File inputFile;
+
+	public ThumbnailerFileTestDummy(File inputFile) {
+		super();
+		this.inputFile = inputFile;
+	}
 	
 	ThumbnailerManager thumbnailer;
 	
 	public ThumbnailerFileTestDummy(String name)
 	{
+		this();
+	}
+
+	public ThumbnailerFileTestDummy() {
 		super();
-		this.setName(name);
 		JODConverterThumbnailer.connect();
 	}
 
+	@Before
 	public void setUp() throws Exception
 	{
-		super.setUp();
 		thumbnailer = new ThumbnailerManager();
 		thumbnailer.setThumbnailFolder("thumbs/");
 		
@@ -70,4 +84,31 @@ public class ThumbnailerFileTestDummy extends MyTestCase {
 	{
 		thumbnailer.setImageSize(height, width, opt);
 	}
+	
+	
+	public static Collection<Object[]> getFileList(String path) {
+		return getFileList(new File(path));
+	}
+
+	public static Collection<Object[]> getFileList(File path) {
+		Collection<Object[]> files = new ArrayList<Object[]>();
+		
+		File[] testfiles = path.listFiles();
+		
+		for(File input : testfiles)
+		{
+			if (input.isDirectory())
+				continue;
+			
+			files.add(new Object[] {getDisplayName(input), input});
+		}
+		return files;
+	}
+	
+	public static String getDisplayName(File inputFile)
+	{
+		return inputFile.getName().replaceAll("[^a-zA-Z0-9]", "_");
+	}
+	
+
 }

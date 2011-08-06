@@ -79,6 +79,12 @@
       <include name="*.jar"/>
     </fileset>
   </path>
+  <path id="junit" cache="true">
+    <fileset dir="lib/ant">
+      <include name="junit-4*.jar"/>
+    </fileset>
+  </path>
+  
 
   <path id="docpath">
     <path refid="sourcepath"/>
@@ -294,9 +300,7 @@
       <classpath>
         <path refid="classpath"/>
         <path refid="classpath-shared"/>
-        <fileset dir="lib/ant">
-          <include name="junit.jar"/>
-        </fileset>
+        <path refid="junit"/>
       </classpath>
     </javac>
   </target>
@@ -365,11 +369,7 @@
       <classpath>
         <path refid="classpath"/>
         <path refid="classpath-shared"/>
-        <fileset dir="lib">
-          <include name="*.jar"/>
-          <include name="ant/*.jar"/>
-          <exclude name="ant/unitth.jar" />
-        </fileset>
+        <path refid="junit"/>
       </classpath>
       <formatter type="plain" usefile="false"/>
       <batchtest>
@@ -396,11 +396,7 @@
       <classpath>
         <path refid="classpath"/>
         <path refid="classpath-shared"/>
-        <fileset dir="lib">
-          <include name="*.jar"/>
-          <include name="ant/*.jar"/>
-          <exclude name="ant/unitth.jar" />
-        </fileset>
+        <path refid="junit"/>
       </classpath>
       <formatter type="xml" usefile="true"/>
       <batchtest todir="${test.reports}">

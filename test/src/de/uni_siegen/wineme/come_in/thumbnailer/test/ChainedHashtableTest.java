@@ -4,18 +4,23 @@ import java.util.Collection;
 import java.util.Map;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashtable;
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-public class ChainedHashtableTest extends TestCase {
+public class ChainedHashtableTest {
 
 	private ChainedHashtable<Integer, String> data;
 
-	public void setUp()
+    @Before
+    public void setUp()
 	{
 		data = new ChainedHashtable<Integer, String>();
 	}
 	
-	public void testContains()
+    @Test
+    public void testContains()
 	{
 		data.put(1, "one");
 		data.put(2, "two");
@@ -28,7 +33,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertTrue(data.containsKey(2));		
 	}
 	
-	public void testRemoveSimple()
+    @Test
+    public void testRemoveSimple()
 	{
 		data.put(2, "two");
 		data.put(1, "one");
@@ -39,7 +45,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertSize(0, 0, data);
 	}
 
-	public void testRemove()
+    @Test
+    public void testRemove()
 	{
 		data.put(1, "one");
 		data.put(2, "two");
@@ -63,7 +70,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertTrue("isEmpty", data.isEmpty());
 	}
 	
-	public void testRemoveValue()
+    @Test
+    public void testRemoveValue()
 	{
 		data.put(1, "one");
 		data.put(2, "two");
@@ -77,7 +85,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertSize(1, 1, data);
 	}
 	
-	public void testEntrySetUnsupport()
+    @Test
+    public void testEntrySetUnsupport()
 	{
 		try {
 			data.entrySet();
@@ -87,7 +96,8 @@ public class ChainedHashtableTest extends TestCase {
 		}
 	}
 	
-	public void testIdenticalEntries()
+    @Test
+    public void testIdenticalEntries()
 	{
 		data.put(1, "one");
 		data.put(1, "one");
@@ -104,7 +114,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertEquals("Pair 1-one was not found 2 times", 2, identEntries);
 	}
 	
-	public void testCopyConstruct()
+    @Test
+    public void testCopyConstruct()
 	{
 		data.put(1, "one");
 		data.put(2, "two");
@@ -112,7 +123,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertSize(3,2, new ChainedHashtable<Integer, String>(data));
 	}
 	
-	public void testBackingValues()
+    @Test
+    public void testBackingValues()
 	{
 		// "The set is backed by the map, so changes to the map are reflected in the set, and vice-versa."
 		data.put(1, "one");
@@ -128,7 +140,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertEquals("Hashmap changed, but collection(values()) didn't", 0, collection.size());
 	}
 	
-	public void testBackingKeys()
+    @Test
+    public void testBackingKeys()
 	{
 		// "The set is backed by the map, so changes to the map are reflected in the set, and vice-versa."
 		data.put(1, "one");
@@ -145,7 +158,8 @@ public class ChainedHashtableTest extends TestCase {
 	}
 
 	@SuppressWarnings("unused") 
-	public void testBackingIterableKey()
+    @Test
+    public void testBackingIterableKey()
 	{
 		data.put(1, "one");
 		data.put(2, "two");
@@ -159,7 +173,8 @@ public class ChainedHashtableTest extends TestCase {
 		assertEquals("Hashmap changed, but getIterable didn't", 2, i);
 	}
 	
-	public void testOrder()
+    @Test
+    public void testOrder()
 	{
 		data.put(2, "two");
 		data.put(1, "one");

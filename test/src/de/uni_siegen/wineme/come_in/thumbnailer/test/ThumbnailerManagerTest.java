@@ -6,19 +6,24 @@ import java.io.IOException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerManager;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.OpenOfficeThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.Thumbnailer;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class ThumbnailerManagerTest extends MyTestCase {
 	
 	ThumbnailerManager thumbnailer;
 
-	public void setUp() throws Exception
+    @Before
+    public void setUp() throws Exception
 	{
-		super.setUp();
 		thumbnailer = new ThumbnailerManager();
-		thumbnailer.setThumbnailFolder(MyTestSuite.TESTFILES_DIR);
+		thumbnailer.setThumbnailFolder(TESTFILES_DIR);
 	}
 
-	public void testSetImageSize()
+    @Test
+    public void testSetImageSize()
 	{
 		thumbnailer.setImageSize(100, 200, 0);
 		Thumbnailer newThumbnailer = new OpenOfficeThumbnailer();
@@ -33,7 +38,8 @@ public class ThumbnailerManagerTest extends MyTestCase {
 		assertEquals("Width is not correct!", 140, newThumbnailer.getCurrentImageWidth());
 	}
 
-	public void testThumbnailerChooseThumbnailNameExists()
+    @Test
+    public void testThumbnailerChooseThumbnailNameExists()
 	{
 		File first = thumbnailer.chooseThumbnailFilename(new File("abc.png"), true);
 		try {

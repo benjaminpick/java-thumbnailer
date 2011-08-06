@@ -1,34 +1,33 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
 import java.io.File;
+import java.util.Collection;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized.Parameters;
 
-// Foreach Filename in TestFileDirectory : try to create a thumbnail. assertNoException.
-public class ThumbnailImageFormatTest extends MyTestSuite
+import uk.ac.lkl.common.util.testing.LabelledParameterized;
+
+@RunWith(LabelledParameterized.class)
+public class ThumbnailImageFormatTest extends ThumbnailerFileTestDummy
 {
-	public static Test suite()
+	public ThumbnailImageFormatTest(String name, File input)
 	{
-		TestSuite ts = new TestSuite("ThumbnailGeneratorBasic");
-		
-		File path = new File (TESTFILES_DIR + "format/");
+		super(input);
+	}
+	
+	@Test
+	public void generateThumbnail() throws Exception
+	{
+		create_thumbnail(inputFile);
+	}
 
-		File[] testfiles = path.listFiles();
-		
-		for(File input : testfiles)
-		{
-			final File f = input;
-
-			TestCase t = new ThumbnailerFileTestDummy("format_" + getDisplayname(input)) {
-				public void runTest() throws Exception {
-					create_thumbnail(f);
-				}
-			};
-			ts.addTest(t);
-		}
-		
-		return ts;
+	@Parameters
+	public static Collection<Object[]> listFiles()
+	{
+		return getFileList(TESTFILES_DIR + "format");
 	}
 }

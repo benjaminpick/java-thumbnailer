@@ -47,7 +47,10 @@ public class IOUtil {
 	public static String getRelativeFilename(String sBase, String sTarget) {
 		if (sTarget.startsWith(sBase) && sTarget.length() > sBase.length() + 1)
 		{
-			return sTarget.substring(sBase.length() + 1);
+			if (sBase.endsWith("/") || sBase.endsWith("\\"))
+				return sTarget.substring(sBase.length());
+			else
+				return sTarget.substring(sBase.length() + 1);
 		}
 		else
 			return sTarget; // Leave absolute

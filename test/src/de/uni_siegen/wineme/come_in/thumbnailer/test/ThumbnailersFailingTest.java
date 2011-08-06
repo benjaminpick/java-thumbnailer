@@ -11,6 +11,11 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.PDFBoxThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.Thumbnailer;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 /**
  * Failures due to a file type mismatch
  * must emit a ThumbnailerException
@@ -43,7 +48,8 @@ public class ThumbnailersFailingTest extends MyTestCase {
 		fail("No Fail-Exception was thrown, but the input file is invalid for this thumbnailer. Output: " + output.getAbsolutePath());
 	}
 	
-	public void tearDown()
+    @After
+    public void tearDown()
 	{
 		try {
 			if (currentThumbnailer != null)
@@ -53,44 +59,49 @@ public class ThumbnailersFailingTest extends MyTestCase {
 		}
 	}
 	
-	public void testFailingScratch() throws Throwable
+    @Test
+    public void testFailingScratch() throws Throwable
 	{
 		currentThumbnailer = new ScratchThumbnailer();
-		File input = new File(MyTestSuite.TESTFILES_DIR + "test.txt");
+		File input = new File(TESTFILES_DIR + "test.txt");
 		
 		assert_fail_generation(input);
 	}
 	
-	public void testFailingJOD() throws IOException
+    @Test
+    public void testFailingJOD() throws IOException
 	{
 		currentThumbnailer = new JODWordConverterThumbnailer();
-		File input = new File(MyTestSuite.TESTFILES_DIR + "test.sb");
+		File input = new File(TESTFILES_DIR + "test.sb");
 		
 		assert_fail_generation(input);
 	}
 
-	public void testFailingOOo() throws IOException
+    @Test
+    public void testFailingOOo() throws IOException
 	{
 		currentThumbnailer = new OpenOfficeThumbnailer();
 
-		File input = new File(MyTestSuite.TESTFILES_DIR + "test.jpg");
+		File input = new File(TESTFILES_DIR + "test.jpg");
 		assert_fail_generation(input);
-		input = new File(MyTestSuite.TESTFILES_DIR + "do_not_work_yet" + File.separatorChar + "test.zip");
+		input = new File(TESTFILES_DIR + "do_not_work_yet" + File.separatorChar + "test.zip");
 		assert_fail_generation(input);
 	}
 
-	public void testFailingPDFBox() throws IOException
+    @Test
+    public void testFailingPDFBox() throws IOException
 	{
 		currentThumbnailer = new PDFBoxThumbnailer();
-		File input = new File(MyTestSuite.TESTFILES_DIR + "test.jpg");
+		File input = new File(TESTFILES_DIR + "test.jpg");
 		
 		assert_fail_generation(input);
 	}
 
-	public void testFailingNativeImage() throws IOException
+    @Test
+    public void testFailingNativeImage() throws IOException
 	{
 		currentThumbnailer = new NativeImageThumbnailer();
-		File input = new File(MyTestSuite.TESTFILES_DIR + "test.doc");
+		File input = new File(TESTFILES_DIR + "test.doc");
 		
 		assert_fail_generation(input);
 	}

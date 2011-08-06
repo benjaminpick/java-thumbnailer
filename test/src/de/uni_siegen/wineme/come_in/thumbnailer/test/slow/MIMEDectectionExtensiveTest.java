@@ -3,26 +3,54 @@ package de.uni_siegen.wineme.come_in.thumbnailer.test.slow;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import de.uni_siegen.wineme.come_in.thumbnailer.test.MyTestSuite;
+import de.uni_siegen.wineme.come_in.thumbnailer.test.TestConfiguration;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized.Parameters;
+
+import uk.ac.lkl.common.util.testing.LabelledParameterized;
+import static org.junit.Assert.*;
 
 // Foreach Filename in TestFileDirectory : combine extensions.
-public class MIMEDectectionExtensiveTest extends MyTestSuite
+@RunWith(LabelledParameterized.class)
+public class MIMEDectectionExtensiveTest implements TestConfiguration
 {
-	// Foreach strange filename: rename the file in the test dir. 
-	private static final char DS = File.separatorChar;
+	private MimeTypeDetector mimeType;
+	private File file;
+	private String expectedMime;
 
-	public static Test suite() throws IOException
+	public MIMEDectectionExtensiveTest(String name, String expectedMime, File file)
 	{
-		TestSuite ts = new TestSuite("MIMEDectectionExtensive");
+		this.file = file;
+		this.expectedMime = expectedMime;
+	}
+	
+	@Before
+	public void setUp() throws Exception
+	{
+		mimeType = new MimeTypeDetector();
+	}
+	
+	@Test
+	public void testMime()
+	{
+		String mime = mimeType.getMimeType(file);
+		if (!expectedMime.equalsIgnoreCase(mime))
+			fail("File " + file.getName() + ": Mime is not equal: expected \"" + expectedMime + "\", but was \"" + mime + "\".");
+	}
+	
+	@Parameters
+	public static Collection<Object[]> suite() throws Exception
+	{
 		MimeTypeDetector mimeType = new MimeTypeDetector();
 		
 		File path = new File (TESTFILES_DIR);
@@ -41,6 +69,7 @@ public class MIMEDectectionExtensiveTest extends MyTestSuite
 			extensions.add(FilenameUtils.getExtension(input.getName()));
 		}
 		
+		Collection<Object[]> param = new ArrayList<Object[]>();
 		for (File input : testfiles)
 		{
 			if (input.isDirectory() || input.isHidden())
@@ -55,23 +84,17 @@ public class MIMEDectectionExtensiveTest extends MyTestSuite
 				if (otherExt.equals(myExt))
 					continue;
 				
-				final File output = new File(tmpDir.getAbsolutePath() + DS + myName + "- " + myExt + "." + otherExt);
+				File output = new File(tmpDir.getAbsolutePath() + File.separator + myName + "- " + myExt + "." + otherExt);
 				try {
 					FileUtils.copyFile(input, output);
 					
-					TestCase t = new MimeDetectionTestDummy("test_mime_" + myExt + "_" + otherExt) {
-						public void runTest() throws Exception {
-							assertMime(myMime, output);
-						}
-					};
-					ts.addTest(t);
-					
+					param.add(new Object[]{ "test_mime_" + myExt + "_" + otherExt, myMime, output});
 				} catch (IOException e) {
 					System.err.println("Warning: Filename " + output.getName() + " is could not be written.");
 				}
 			}
 		}
 		
-		return ts;
+		return param;
 	}
 }

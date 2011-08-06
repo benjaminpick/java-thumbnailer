@@ -2,28 +2,44 @@ package de.uni_siegen.wineme.come_in.thumbnailer.test.slow;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import de.uni_siegen.wineme.come_in.thumbnailer.test.MyTestSuite;
+import de.uni_siegen.wineme.come_in.thumbnailer.test.TestConfiguration;
 import de.uni_siegen.wineme.come_in.thumbnailer.test.ThumbnailerFileTestDummy;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized.Parameters;
+
+import uk.ac.lkl.common.util.testing.LabelledParameterized;
+import static org.junit.Assert.*;
 
 // Foreach Filename in TestFileDirectory : try to create a thumbnail. assertNoException.
-public class ThumbnailImageStrangeFilesTest extends MyTestSuite
+@RunWith(LabelledParameterized.class)
+public class ThumbnailImageStrangeFilesTest extends ThumbnailerFileTestDummy implements TestConfiguration
 {
+	public ThumbnailImageStrangeFilesTest(String name, File input)
+	{
+		super(input);
+	}
+	
+	@Test
+	public void generateThumbnail() throws Exception
+	{
+		create_thumbnail(inputFile);
+	}
+	
 	// Foreach strange filename: rename the file in the test dir. 
 	final static String STRANGE_FILENAMES[] = new String[] { "test space", "test%prozent", "test\nenter", "testäßumlaut", "....." };
-	private static final char DS = File.separatorChar;
 
-	public static Test suite() throws IOException
+	@Parameters
+	public static Collection<Object[]> suite() throws Exception
 	{
-		TestSuite ts = new TestSuite("ThumbnailStrangeFilenames");
-		
 		File path = new File (TESTFILES_DIR);
 		File tmpDir = File.createTempFile("test-strange_files", "");
 		File[] testfiles = path.listFiles();
@@ -37,7 +53,7 @@ public class ThumbnailImageStrangeFilesTest extends MyTestSuite
 			
 			for(String name : STRANGE_FILENAMES)
 			{
-				File output = new File(tmpDir.getAbsolutePath() + DS + name + "." + FilenameUtils.getExtension(input.getName()));
+				File output = new File(tmpDir.getAbsolutePath() + File.separator + name + "." + FilenameUtils.getExtension(input.getName()));
 				try {
 					FileUtils.copyFile(input, output);
 				} catch (IOException e) {
@@ -46,22 +62,7 @@ public class ThumbnailImageStrangeFilesTest extends MyTestSuite
 				}
 			}
 		}
-
-		testfiles = tmpDir.listFiles();
-		for(File input : testfiles)
-		{
-			if (input.isDirectory())
-				continue;
-			
-			final File f = input;
-			TestCase t = new ThumbnailerFileTestDummy("strange_names_" + getDisplayname(input)) {
-				public void runTest() throws Exception {
-					create_thumbnail(f);
-				}
-			};
-			ts.addTest(t);
-		}
 		
-		return ts;
+		return getFileList(tmpDir);
 	}
 }

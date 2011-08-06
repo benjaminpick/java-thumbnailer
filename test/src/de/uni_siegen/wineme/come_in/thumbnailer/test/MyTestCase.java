@@ -1,6 +1,9 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 import java.awt.Image;
 import java.io.File;
@@ -10,9 +13,10 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-public class MyTestCase extends TestCase {
+public class MyTestCase implements TestConfiguration {
 
 	protected static Logger mLog = Logger.getLogger(MyTestCase.class);
+
 
 	private static final String LOG4J_CONFIG_FILE = "test/log4j.properties";
 	static
@@ -35,7 +39,7 @@ public class MyTestCase extends TestCase {
 		assertFileExists("", file);
 	}
 	
-	public void assertFileExists(String msg, File file)
+	public static void assertFileExists(String msg, File file)
 	{
 		if (!msg.isEmpty())
 			msg += ": ";
@@ -44,15 +48,16 @@ public class MyTestCase extends TestCase {
 		assertTrue(msg + "File " + file.getAbsolutePath() + " does not exist", file.exists());
 	}
 	
-	public void assertPictureFormat(File file, int width, int height) throws IOException
+	public static void assertPictureFormat(File file, int width, int height) throws IOException
 	{
 		assertFileExists("Picture file does not exist", file);
+		
 		Image image = ImageIO.read(file);
 		assertNotNull("Picture " + file.getAbsolutePath() + " could not be decoded by ImageIO", image);
 		assertPictureFormat(image, width, height);
 	}
 	
-	public void assertPictureFormat(Image img, int expectedWidth, int expectedHeight)
+	public static void assertPictureFormat(Image img, int expectedWidth, int expectedHeight)
 	{
 		assertNotNull("Picture is null", img);
 		int realWidth = img.getWidth(null);

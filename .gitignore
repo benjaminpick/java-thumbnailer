@@ -6,4 +6,5 @@ log
 junitvmwatcher*
 *.log
 test/reports
+/.settings
 

@@ -3,6 +3,7 @@
 	<name>java-thumbnailer</name>
 	<comment></comment>
 	<projects>
+		<project>regain-svn</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
