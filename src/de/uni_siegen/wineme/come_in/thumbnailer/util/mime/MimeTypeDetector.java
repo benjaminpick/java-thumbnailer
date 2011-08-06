@@ -34,8 +34,6 @@ import org.ontoware.rdf2go.model.node.impl.URIImpl;
 import org.semanticdesktop.aperture.mime.identifier.magic.MagicMimeTypeIdentifier;
 import org.semanticdesktop.aperture.mime.identifier.magic.MagicMimeTypeIdentifierFactory;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 
 /**
@@ -140,7 +138,7 @@ public class MimeTypeDetector {
 		if (extensions != null)
 			return extensions;
 		
-		extensions = mimeTypeIdentifier.getExtensionsFor(mimeType);
+		extensions = (List<String>) mimeTypeIdentifier.getExtensionsFor(mimeType);
 		
 		for (MimeTypeIdentifier identifier : extraIdentifiers)
 		{

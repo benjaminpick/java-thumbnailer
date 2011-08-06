@@ -8,7 +8,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.test.MyTestSuite;
-import de.uni_siegen.wineme.come_in.thumbnailer.test.ThumbnailerFileTestDummy;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
 import junit.framework.Test;

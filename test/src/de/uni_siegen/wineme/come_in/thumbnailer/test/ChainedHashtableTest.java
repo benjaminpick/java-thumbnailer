@@ -1,7 +1,6 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashtable;
