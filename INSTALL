@@ -1,0 +1,8 @@
+
+
+Regain-Plugin
+
+search.jsp:
+		    <div style="border: 1px dotted black; float:left; margin:2px 10px 2px 0; ">
+		      <search:thumbnailer_img width="160" height="120"/>
+		    </div>
