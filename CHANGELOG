@@ -6,6 +6,7 @@ v0.3
 ----
 ()
 
+* Make Lucene Value "filelocation" relative to thumnailFolder
 * Changed Lucene Value "no thumbnailer found" to "nothumbnailerfound" (to avoid tokenizing)
 
 v0.2

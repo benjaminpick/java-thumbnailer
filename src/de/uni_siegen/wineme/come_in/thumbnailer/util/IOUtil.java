@@ -1,6 +1,7 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.util;
 
 import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
 import java.util.zip.ZipFile;
 
@@ -33,5 +34,22 @@ public class IOUtil {
 		{
 			// Ignore
 		}
+	}
+	
+	// More difficult than I thought. See http://www.java2s.com/Code/Java/File-Input-Output/Getrelativepath.htm and http://stackoverflow.com/questions/204784/how-to-construct-a-relative-path-in-java-from-two-absolute-paths-or-urls
+	/**
+	 * Simplistic version: return the substring after the base
+	 */
+	public static String getRelativeFilename(File base, File target) {
+		return getRelativeFilename(base.getAbsolutePath(), target.getAbsolutePath());
+	}
+
+	public static String getRelativeFilename(String sBase, String sTarget) {
+		if (sTarget.startsWith(sBase) && sTarget.length() > sBase.length() + 1)
+		{
+			return sTarget.substring(sBase.length() + 1);
+		}
+		else
+			return sTarget; // Leave absolute
 	}
 }

@@ -42,6 +42,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.NativeImageThumbnai
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.OpenOfficeThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.PDFBoxThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 
 import net.sf.regain.RegainException;
 import net.sf.regain.crawler.Crawler;
@@ -79,7 +80,7 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	 */
 	private int paramThumbnailWidth;
 	private int paramThumbnailHeight;
-	private String paramThumbnailFolder;
+	private File paramThumbnailFolder;
 	private String paramOpenOfficeHome;
 
 	private String paramOpenOfficeProfile;
@@ -88,14 +89,17 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	@Override
 	public void init(PreparatorConfig config) throws RegainException {
 		Map<String, String> thumbnailConfig = config.getSectionWithName("thumbnailing");
-		if (thumbnailConfig != null)
-			paramThumbnailFolder = thumbnailConfig.get("thumbnailFolder");
 		
-		if (paramThumbnailFolder == null || paramThumbnailFolder.isEmpty())
+		String paramThumbnailFolderStr = null;
+		if (thumbnailConfig != null)
+			paramThumbnailFolderStr = thumbnailConfig.get("thumbnailFolder");
+		
+		if (paramThumbnailFolderStr == null || paramThumbnailFolderStr.isEmpty())
 		{
 			mLog.warn("Thumbnail folder is not given; using default value (thumbs/)");
-			paramThumbnailFolder = "thumbs/";
+			paramThumbnailFolderStr = "thumbs/";
 		}
+		paramThumbnailFolder = new File(paramThumbnailFolderStr);
 		
 		if (thumbnailConfig != null)
 		{
@@ -258,7 +262,8 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 			try {
 				thumbnailer.generateThumbnail(input, output);
 
-				thumbnailLocation = output.getAbsolutePath();
+				thumbnailLocation = IOUtil.getRelativeFilename(paramThumbnailFolder, output);
+				mLog.info("Generated Thumbnail at " + thumbnailLocation);
 				thumbnailerStatus = LUCENE_FIELD_VALUE_STATUS_OK;
 			} catch (IOException e) {
 				mLog.error("File could not be thumbnailed: ", e);
@@ -273,6 +278,8 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 		preparator.addAdditionalField(LUCENE_FIELD_NAME_STATUS, thumbnailerStatus);
 		preparator.addAdditionalField(LUCENE_FIELD_NAME_FILE_LOCATION, thumbnailLocation);
 	}
+
+
 
 
 
