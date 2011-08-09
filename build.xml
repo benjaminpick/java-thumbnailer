@@ -343,7 +343,10 @@
     </fileset>
     <fileset id="classes" dir="build/classes">
     </fileset>
-    <jar jarfile="build/${programname.file}-plugin-${version.file}.jar"
+    <property name="pluginname.file" value="${programname.file}-crawlerplugin-${version.file}.jar"/>
+    <property name="pluginname-taglib.file" value="${programname.file}-plugin-taglib-${version.file}.jar"/>
+    
+    <jar jarfile="build/${pluginname.file}"
          compress="false"
          index="true">
       <manifest>
@@ -354,6 +357,29 @@
       <fileset refid="classes"/>
       <fileset refid="ressources" />
     </jar>
+    
+    <echo message="Creating regain jar taglib ..." />
+    <jar jarfile="build/${pluginname-taglib.file}"
+         compress="false"
+         index="true">
+     <fileset dir="build/classes">
+       <include name="de/uni_siegen/wineme/come_in/thumbnailer/plugin/**" />
+     </fileset>
+    </jar>
+    
+    <zip destfile="build/${programname.file}-plugin-${version.file}.zip" whenempty="fail">
+      <zipfileset prefix="${programname.file}" dir="build" includes="${pluginname.file}" />
+      <zipfileset fullpath="${programname.file}/web/taglib/thumbnailer.jar" dir="build" includes="${pluginname-taglib.file}"  />
+      <zipfileset prefix="${programname.file}/web" dir="web">
+        <exclude name="**/_*" />
+      </zipfileset>
+      <zipfileset prefix="${programname.file}" dir=".">
+        <include name="CHANGELOG" />
+        <include name="INSTALL" />
+        <include name="README.md" />
+        <include name="LICENSE.TXT" />
+      </zipfileset>
+    </zip>
   </target>
   
 

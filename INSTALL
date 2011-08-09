@@ -1,8 +1,81 @@
+This document is intended to help you getting started.
+The most recent instructions can be found at https://github.com/benjamin4ruby/java-thumbnailer/wiki/Installation
 
+---
 
-Regain-Plugin
+Installation
+============
 
-search.jsp:
-		    <div style="border: 1px dotted black; float:left; margin:2px 10px 2px 0; ">
-		      <search:thumbnailer_img width="160" height="120"/>
-		    </div>
+There are two versions of JavaThumbnailer:
+
+* If you want to include this as a library to your own project, or use it from command-line only, you should take the **Standalone Version**.
+* For integration into the regain Desktop search, take the **Regain Plugin Version**.
+
+## Standalone Version
+
+1. Get the recent version of JavaThumbnailer at the [Download Page](https://github.com/benjamin4ruby/java-thumbnailer/archives/master) (or [build it from source](Building from Source).)
+2. To run it via the commandline: `java -jar javathumbnailer-standalone.jar input.doc [output.png]`
+3. To use it in your own project, include this `.jar` in your classpath. For an example of usage (and configuration), see the code in [Main.java](https://github.com/benjamin4ruby/java-thumbnailer/blob/master/src/de/uni_siegen/wineme/come_in/thumbnailer/Main.java).
+
+## Regain Plugin Version
+
+1. Get the recent version of JavaThumbnailer at the [Download Page](https://github.com/benjamin4ruby/java-thumbnailer/archives/master) (or [build it from source](Building from Source).)
+
+### Crawler Plugin
+2. Save javathumbnailer-crawlerplugin-${version}.jar it into the `/plugins/`-Folder of regain.
+3. Edit `CrawlerConfiguration.xml` to suit your needs. Here are the default values:
+
+	    <!-- 
+	     | Create Thumbnails of the indexed documents during the thumbnailing process.
+	     | These Thumbnails can be used in the search results.
+	     +-->
+	  	<crawlerPlugin enabled="true">
+	  	  <class>de.uni_siegen.wineme.come_in.thumbnailer.plugin.ThumbnailerPlugin</class>
+	  	  <config>
+	  	    <section name="thumbnailing">
+	  	  	  <!-- Folder where the created thumbnails should be stored.
+	  	  	       If you change this folder and there already are thumbnails indexed, only new thumbnails will go there. -->
+	   	      <param name="thumbnailFolder">thumbs/</param>
+	  	    
+	  	      <!-- Desired Image dimensions of the thumbnail. -->
+	  	      <param name="imageWidth">160</param>
+	  	      <param name="imageHeight">120</param>
+	  	    </section>
+	  	    <section name="externalHelpers">
+		  	  <!-- Where is OpenOffice installed? If not available, try to auto-detect folders --> 
+	  	  	  <!-- <param name="openOfficeHome">file://c:/Programme/OpenOffice.org 3</param> -->
+	  	  	  
+	  	  	  <!-- Where is the profile to use? If not available, a temporary profile is created (at each crawling process start) -->
+	  	  	  <!-- <param name="openOfficeProfile">plugins/ressources/ooo-template-dir</param> -->
+	  	    </section>
+	  	  </config>
+	  	</crawlerPlugin>
+
+### Search
+
+4. Extract `web/` to your web/-Folder (Server: deployed folder). It contains:
+  * `search_example.jsp` : Modified version of `regain/web/common/search.jsp` . If you didn't modify it, you can overwrite the regain version of `search.jsp`
+  * `img/image_missing.png` : Example of an image that is shown instead of the thumbnail when thumbnail generation failed
+  * `taglib/regain-thumbnailer.tld` : Tag declarations. Used only by the server version.
+  * `taglib/thumbnailer.jar`: Tag implementations. Used by server & desktop version.
+
+#### Desktop Search
+*(If you don't use the desktop search, you can skip this section.)*
+
+5. Add the thumbnailer-Tag in `DesktopConfiguration.xml`:
+
+		<!-- Register namespaces for Simple Server -->
+		<simple_register_namespace>
+		  <!-- Default namespaces: search, config, status -->
+		  <namespace name="search">net.sf.regain.search.sharedlib</namespace>
+		  <namespace name="config">net.sf.regain.ui.desktop.config.sharedlib</namespace>
+		  <namespace name="status">net.sf.regain.ui.desktop.status.sharedlib</namespace>
+		  
+		  <!-- For thumbnailer Plugin -->
+		  <namespace name="thumbnailer">de.uni_siegen.wineme.come_in.thumbnailer.sharedlib</namespace>
+		</simple_register_namespace>
+  
+#### Server Search
+*(If you don't use the tomcat server search, you can skip this section.)*
+
+6. Copy thumbnailer.jar into the deployed application folder `WEB-INF/lib`.

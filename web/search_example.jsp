@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" errorPage="errorpage.jsp"%>
 <%@taglib uri="regain-search.tld" prefix="search" %>
-<%@taglib uri="regain-thumbnailer.tld" prefix="thumbnailer" %>
+<%@taglib uri="taglib/regain-thumbnailer.tld" prefix="thumbnailer" %>
 
 <html>
   <head>
@@ -52,7 +52,7 @@
       <search:list msgNoResults="<tr><td colspan='2'>{msg:noResultsFound}<br/><br/></td></tr>">
         <tr><td colspan="2">
 		    <div style="border: 1px dotted black; float:left; margin:2px 10px 2px 0; ">
-		      <search:thumbnailer_img width="160" height="120"/>
+		      <thumbnailer:img width="160" height="120" missing="img/image_missing.png"/>
 		    </div>
 	        <search:hit_typeicon imgpath="img/ext"/> <search:hit_link/>
 	        <span class="hitDetails">

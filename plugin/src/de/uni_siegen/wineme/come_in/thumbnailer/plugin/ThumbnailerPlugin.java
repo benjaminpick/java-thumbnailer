@@ -201,7 +201,7 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 		
 		if (location != null && !location.isEmpty())
 		{
-			File thumbnail = new File(location);
+			File thumbnail = new File(paramThumbnailFolder, location);
 			if (thumbnail.exists())
 			{
 				mLog.info("Deleting thumbnail " + thumbnail.getName() + "...");

@@ -23,5 +23,6 @@
 	<classpathentry kind="lib" path="lib/pdfbox-1.6.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/regain-svn"/>
 	<classpathentry kind="lib" path="lib/ant/junit-4.8.2.jar"/>
+	<classpathentry kind="lib" path="/regain-svn/lib/jsp-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

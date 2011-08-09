@@ -204,7 +204,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 			}
 			if (outputTmp.length() == 0)
 			{
-				throw new ThumbnailerException("Could not convert into OpenOffice-File ...");
+				throw new ThumbnailerException("Could not convert into OpenOffice-File (file was empty)...");
 			}
 
 			ooo_thumbnailer.generateThumbnail(outputTmp, output);

@@ -15,8 +15,7 @@ Roadmap
 * Integration into regain (as a Plugin) *(DONE 29.07.2011)*
 * Packaging in .jars / dynamic loading of .jars *(DONE 29.07.2011)*
 * Seperation from regain lib-wise (so that it can be used as stand-alone/library) *(DONE 28.07.2011)*
-* Show Thumbnails in results if available
-  * Create Thumbnail-Tag
+* Show Thumbnails in results if available *(DONE 09.08.2011)*
 
 
 Supported Fileformats

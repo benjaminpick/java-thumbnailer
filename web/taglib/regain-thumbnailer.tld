@@ -14,8 +14,8 @@
     <info>
       Shows generated Thumbnail
     </info>
-    <name>thumbnailer_img</name>
-    <tagclass>net.sf.regain.ui.server.taglib.thumbnailer.ImgTag</tagclass>
+    <name>img</name>
+    <tagclass>de.uni_siegen.wineme.come_in.thumbnailer.plugin.sharedlib.ImgTag</tagclass>
     <bodycontent>empty</bodycontent>
 	<attribute>
       <description>
@@ -29,6 +29,14 @@
         Height in Pixel of the Thumbnail Image (default: 120)
       </description>
       <name>height</name>
+      <required>false</required>
+    </attribute>
+	<attribute>
+      <description>
+        Filename of "Image Missing"-image. If not set, no Img-Tag is
+        created in case that the thumgnail image does not exist.
+      </description>
+      <name>missing</name>
       <required>false</required>
     </attribute>
   </tag>

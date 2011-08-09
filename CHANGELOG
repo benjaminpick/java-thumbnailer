@@ -8,6 +8,7 @@ v0.3
 
 * Make Lucene Value "filelocation" relative to thumnailFolder
 * Changed Lucene Value "no thumbnailer found" to "nothumbnailerfound" (to avoid tokenizing)
+* Add <thumbnailer:img/> to taglib
 
 v0.2
 ----
