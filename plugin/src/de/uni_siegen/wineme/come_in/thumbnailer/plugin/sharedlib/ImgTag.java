@@ -35,6 +35,9 @@ import net.sf.regain.util.sharedtag.PageResponse;
 
 import org.apache.lucene.document.Document;
 
+import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerConstants;
+import de.uni_siegen.wineme.come_in.thumbnailer.plugin.ThumbnailerLuceneConstants;
+
 /**
  * Generates the value of an index field of the current hit's document.
  * <p>
@@ -45,7 +48,7 @@ import org.apache.lucene.document.Document;
  *
  * @author Til Schneider, www.murfman.de
  */
-public class ImgTag extends AbstractHitTag {
+public class ImgTag extends AbstractHitTag implements ThumbnailerLuceneConstants, ThumbnailerConstants {
 
   /**
    * Generates the tag.
@@ -61,21 +64,21 @@ public class ImgTag extends AbstractHitTag {
           throws RegainException {
     //SearchResults results = SearchToolkit.getSearchResults(request);
 
-    int width = getParameterAsInt("width", 160);
+    int width = getParameterAsInt("width", THUMBNAIL_DEFAULT_WIDTH);
     if (width < 0)
-      width = 160;
+      width = THUMBNAIL_DEFAULT_WIDTH;
     
-    int height = getParameterAsInt("height", 120);
+    int height = getParameterAsInt("height", THUMBNAIL_DEFAULT_HEIGHT);
     if (height < 0)
-      height = 120;
+      height = THUMBNAIL_DEFAULT_HEIGHT;
     
     String size = "width=\"" + width + "\" height=\"" + height + "\"";
 
-    String status = SearchToolkit.getCompressedFieldValue(hit, "thumbnailer_status");
+    String status = SearchToolkit.getCompressedFieldValue(hit, LUCENE_FIELD_NAME_STATUS);
     
     String location = null;
-    if ("ok".equals(status))
-      location = SearchToolkit.getCompressedFieldValue(hit, "thumbnailer_filelocation");
+    if (LUCENE_FIELD_VALUE_STATUS_OK.equals(status))
+      location = SearchToolkit.getCompressedFieldValue(hit, LUCENE_FIELD_NAME_FILE_LOCATION);
     
     // New For Thumbnail Tag
     if (location != null) {

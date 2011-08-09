@@ -15,7 +15,7 @@
       Shows generated Thumbnail
     </info>
     <name>img</name>
-    <tagclass>de.uni_siegen.wineme.come_in.thumbnailer.plugin.sharedlib.ImgTag</tagclass>
+    <tagclass>de.uni_siegen.wineme.come_in.thumbnailer.plugin.server.taglib.ImgTag</tagclass>
     <bodycontent>empty</bodycontent>
 	<attribute>
       <description>

@@ -365,6 +365,9 @@
      <fileset dir="build/classes">
        <include name="de/uni_siegen/wineme/come_in/thumbnailer/plugin/**" />
      </fileset>
+     <fileset dir="build/classes">
+       <include name="de/uni_siegen/wineme/come_in/thumbnailer/ThumbnailerConstants.class" />
+     </fileset>
     </jar>
     
     <zip destfile="build/${programname.file}-plugin-${version.file}.zip" whenempty="fail">
