@@ -1,7 +1,7 @@
 # Rename this file to build.properties in order to use it.
 
 # The current Version
-version.prefix=0.2
+version.prefix=0.4
 
 # Is the version a preview version (an inofficial realease)
 is-preview=true
