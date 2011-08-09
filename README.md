@@ -41,6 +41,7 @@ TODO
   * That means that both should be updated at the same time!
 
 ### Bugs:
+* Remove hardcoding: The thumbnail-Folder must be reachable at the server under /thumbs/ currently. 
 
 ### Test: 
 
