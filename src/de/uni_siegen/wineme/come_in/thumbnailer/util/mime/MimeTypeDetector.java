@@ -59,18 +59,27 @@ public class MimeTypeDetector {
 		mimeTypeIdentifier = (MagicMimeTypeIdentifier) mimeTypeFactory.get();
 		
 		extraIdentifiers = new ArrayList<MimeTypeIdentifier>();
-		
-		// Hardcode for now ...
-		extraIdentifiers.add(new ScratchFileIdentifier());
-		extraIdentifiers.add(new Office2007FileIdentifier());
+		addMimeTypeIdentifier(new ScratchFileIdentifier());
+		addMimeTypeIdentifier(new Office2007FileIdentifier());
+	}
+
+	/**
+	 * Add a new MimeTypeIdentifier to this Detector.
+	 * MimeTypeIdentifier may override the decision of the detector.
+	 * The order the identifiers are added will also be the order they will be executed
+	 * (i.e., the last identifiers may override all others.)
+	 * 
+	 * @param identifier	a new MimeTypeIdentifier
+	 */
+	public void addMimeTypeIdentifier(MimeTypeIdentifier identifier)
+	{
+		extraIdentifiers.add(identifier);
 	}
 	
 	/**
 	 * Detect MIME-Type for this file.
 	 * 
-	 * @TODO: Add detection of Scratch files
-	 * 
-	 * @param file	
+	 * @param file	File to analyse
 	 * @return	String of MIME-Type, or null if no detection was possible (or unknown MIME Type)
 	 */
 	public String getMimeType(File file)
@@ -120,7 +129,7 @@ public class MimeTypeDetector {
 	 */
 	public String getStandardExtensionForMimeType(String mimeType)
 	{
-		List<String> extensions = getExtensions(mimeType);
+		List<String> extensions = getExtensionsCached(mimeType);
 		
 		if (extensions == null)
 			return null;
@@ -133,7 +142,8 @@ public class MimeTypeDetector {
 	}
 
 	Map<String, List<String>> extensionsCache = new HashMap<String, List<String>>(); 
-	protected List<String> getExtensions(String mimeType) {
+	
+	protected List<String> getExtensionsCached(String mimeType) {
 		List<String> extensions = extensionsCache.get(mimeType);
 		if (extensions != null)
 			return extensions;
@@ -160,9 +170,11 @@ public class MimeTypeDetector {
 	 */
 	public boolean doesExtensionMatchMimeType(String extension, String mimeType)
 	{
-		List<String> extensions = getExtensions(mimeType); 
+		List<String> extensions = getExtensionsCached(mimeType); 
+		
 		if (extensions == null)
 			return false;
+	
 		return extensions.contains(extension);
 	}
 }

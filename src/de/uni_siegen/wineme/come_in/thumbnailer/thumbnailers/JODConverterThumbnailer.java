@@ -123,7 +123,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	 */
 	public static void connect(boolean forceReconnect)
 	{
-		if (!forceReconnect && officeManager != null)
+		if (!forceReconnect && isConnected())
 			return;
 		
 		DefaultOfficeManagerConfiguration config = new DefaultOfficeManagerConfiguration()
@@ -143,11 +143,19 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 		else
 			mLog.info("Creating temporary profile folder...");
 			
-		
 		officeManager = config.buildOfficeManager();
 		officeManager.start();
 		
 		officeConverter = new OfficeDocumentConverter(officeManager);
+	}
+	
+	/**
+	 * Check if a connection to OpenOffice is established.
+	 * @return	True if connected.
+	 */
+	public static boolean isConnected()
+	{
+		return officeManager != null && officeManager.isRunning();
 	}
 
 	/**
@@ -177,16 +185,17 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	
 	
 	/**
-	 * erzeugt ein Thumbnail zu den Dateiformaten txt, doc und rtf
+	 * Generates a thumbnail of Office files.
 	 * 
-	 * @param input Datei, zu der ein Thumbnail erzeugt werden soll
-	 * @param output Dateiname des zu generierenden Thumbnails
-	 * @throws IOException 
+	 * @param input		Input file that should be processed
+	 * @param output	File in which should be written
+	 * @throws IOException			If file cannot be read/written
+	 * @throws ThumbnailerException If the thumbnailing process failed.
 	 */
 	@Override
-	public void generateThumbnail(File input, File output) throws IOException,
-			ThumbnailerException {
-		if (officeManager == null)
+	public void generateThumbnail(File input, File output) throws IOException, ThumbnailerException {
+		// Lazy connect
+		if (!isConnected())
 			connect();
 
 		File outputTmp = null;
