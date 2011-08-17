@@ -18,8 +18,9 @@
  *
  * Contact: Come_IN-Team <come_in-team@listserv.uni-siegen.de>
  */
-
 package de.uni_siegen.wineme.come_in.thumbnailer.util;
+
+
 
 import java.util.AbstractMap;
 import java.util.ArrayDeque;
@@ -170,9 +171,12 @@ public class ChainedHashtable<K, V> implements Map<K, V>, Iterable<Map.Entry<K, 
 		}
 	}
 	
-	protected Deque<V> getList(Object key)
+	public Deque<V> getList(Object key)
 	{
-		return hashtable.get(key);
+	  Deque<V> list = hashtable.get(key);
+		if (list == null)
+		  list = new ArrayDeque<V>();
+		return list;
 	}
 	
 	/**

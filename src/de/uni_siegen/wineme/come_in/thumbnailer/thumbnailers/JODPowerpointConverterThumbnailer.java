@@ -31,7 +31,6 @@ import java.io.IOException;
 public class JODPowerpointConverterThumbnailer extends JODConverterThumbnailer {
 
 	public JODPowerpointConverterThumbnailer() throws IOException { super(); }
-	public JODPowerpointConverterThumbnailer(String openOfficeHomeFolder, String paramOpenOfficeProfile) throws IOException { super(openOfficeHomeFolder, paramOpenOfficeProfile); }
 
 	protected File createTempfile(String prefix) throws IOException {
 		return File.createTempFile(prefix, ".odp");

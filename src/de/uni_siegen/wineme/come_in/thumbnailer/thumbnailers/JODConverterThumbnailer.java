@@ -94,19 +94,21 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	 */
 	private static final long JOD_DOCUMENT_TIMEOUT = 12000;
 	
-	public JODConverterThumbnailer(String openOfficeHomeFolder, String paramOpenOfficeProfile) throws IOException
+	public static void setOpenOfficeHomeFolder(String openOfficeHomeFolder)
 	{
 		JODConverterThumbnailer.openOfficeHomeFolder = openOfficeHomeFolder;
+	}
+
+	public static void setOpenOfficeProfileFolder(String paramOpenOfficeProfile)
+	{
 		if (paramOpenOfficeProfile != null)
 			JODConverterThumbnailer.openOfficeTemplateProfileDir = new File(paramOpenOfficeProfile);
-		
-		ooo_thumbnailer = new OpenOfficeThumbnailer();
-		mimeTypeDetector = new MimeTypeDetector();
 	}
 	
-	public JODConverterThumbnailer() throws IOException
+	public JODConverterThumbnailer()
 	{
-		this(null, null);
+		ooo_thumbnailer = new OpenOfficeThumbnailer();
+		mimeTypeDetector = new MimeTypeDetector();
 	}
 	
 	protected static File openOfficeTemplateProfileDir = null;

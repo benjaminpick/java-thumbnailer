@@ -35,6 +35,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.FileDoesNotExistException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerConstants;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerManager;
+import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODExcelConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODPowerpointConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODWordConverterThumbnailer;
@@ -133,6 +134,9 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 			
 			paramOpenOfficeProfile = externalConfig.get("openOfficeProfile");
 		}
+		
+		JODConverterThumbnailer.setOpenOfficeHomeFolder(paramOpenOfficeHome);
+		JODConverterThumbnailer.setOpenOfficeProfileFolder(paramOpenOfficeProfile);
 	}
 	
 	/**
@@ -165,9 +169,9 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 			thumbnailer.registerThumbnailer(new OpenOfficeThumbnailer());
 			thumbnailer.registerThumbnailer(new PDFBoxThumbnailer());
 			try {
-				thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile));
-				thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile ));
-				thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer(paramOpenOfficeHome, paramOpenOfficeProfile));
+				thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer());
+				thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer());
+				thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer());
 			} catch (IOException e) {
 				mLog.error("Could not initialize JODConverter:", e);
 			}

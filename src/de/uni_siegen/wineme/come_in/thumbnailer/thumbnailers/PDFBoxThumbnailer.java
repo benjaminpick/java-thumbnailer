@@ -64,7 +64,9 @@ public class PDFBoxThumbnailer extends AbstractThumbnailer {
 			BufferedImage tmpImage = writeImageFirstPage(document, BufferedImage.TYPE_INT_RGB, thumbWidth);
 
 			if (output.exists())
+			try {
 				output.delete();
+			} catch(SecurityException e) {}
 
 			ResizeImage resizer = new ResizeImage(thumbWidth, thumbHeight);
 			resizer.resizeMethod = ResizeImage.NO_RESIZE_ONLY_CROP;

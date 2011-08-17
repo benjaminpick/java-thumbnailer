@@ -31,7 +31,6 @@ import java.io.IOException;
 public class JODExcelConverterThumbnailer extends JODConverterThumbnailer {
 
 	public JODExcelConverterThumbnailer() throws IOException { super(); }
-	public JODExcelConverterThumbnailer(String openOfficeHomeFolder, String paramOpenOfficeProfile) throws IOException { super(openOfficeHomeFolder, paramOpenOfficeProfile); }
 
 	protected File createTempfile(String prefix) throws IOException {
 		return File.createTempFile(prefix, ".ods");
