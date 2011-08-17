@@ -7,4 +7,5 @@ junitvmwatcher*
 *.log
 test/reports
 /.settings
+/.fbprefs
 
