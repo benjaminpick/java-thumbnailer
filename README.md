@@ -42,7 +42,6 @@ TODO
 
 ### Bugs:
 * Remove hardcoding: The thumbnail-Folder must be reachable at the server under /thumbs/ currently. 
-* (Picky) JODconverter: officeHome is static, but initiazid in constructor. Connect() may be called to early.
 
 ### Test: 
 
