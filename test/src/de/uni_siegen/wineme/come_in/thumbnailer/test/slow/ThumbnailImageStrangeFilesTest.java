@@ -10,14 +10,11 @@ import org.apache.commons.io.FilenameUtils;
 import de.uni_siegen.wineme.come_in.thumbnailer.test.TestConfiguration;
 import de.uni_siegen.wineme.come_in.thumbnailer.test.ThumbnailerFileTestDummy;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 
 import uk.ac.lkl.common.util.testing.LabelledParameterized;
-import static org.junit.Assert.*;
 
 // Foreach Filename in TestFileDirectory : try to create a thumbnail. assertNoException.
 @RunWith(LabelledParameterized.class)

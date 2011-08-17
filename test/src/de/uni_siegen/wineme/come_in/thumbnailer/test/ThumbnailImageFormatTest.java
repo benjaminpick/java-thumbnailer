@@ -3,8 +3,6 @@ package de.uni_siegen.wineme.come_in.thumbnailer.test;
 import java.io.File;
 import java.util.Collection;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.io.File;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 

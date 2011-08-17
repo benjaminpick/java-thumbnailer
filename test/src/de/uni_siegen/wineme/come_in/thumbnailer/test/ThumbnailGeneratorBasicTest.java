@@ -1,20 +1,14 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import uk.ac.lkl.common.util.testing.LabelledParameterized;
-
-import de.uni_siegen.wineme.come_in.thumbnailer.FileDoesNotExistException;
-import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
-import static org.junit.Assert.*;
 
 @RunWith(LabelledParameterized.class)
 public class ThumbnailGeneratorBasicTest extends ThumbnailerFileTestDummy

@@ -12,7 +12,6 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.Thumbnailer;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

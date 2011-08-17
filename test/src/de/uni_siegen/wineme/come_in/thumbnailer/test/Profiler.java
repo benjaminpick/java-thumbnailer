@@ -65,7 +65,7 @@ public class Profiler {
   private List<String> interim;
 
 
-  private static Profiler instance;
+  private static volatile Profiler instance = null;
   public static Profiler getInstance()
   {
 	  if (instance == null)
@@ -208,12 +208,13 @@ public class Profiler {
    */
   public String toString() {
 	  
-	String interimStat = "";
+	StringBuilder interimStat = new StringBuilder(100);
+	interimStat.append("Total: " + mTotalTime + "\n");
 	for (String str : interim)
 	{
-		interimStat += str + "\n";
+		interimStat.append(str).append("\n");
 	}
-	return "Total: " + mTotalTime + "\n" + interimStat;
+	return interimStat.toString();
 	  /*
     // Get a current snap shot
     long totalTime = mTotalTime;

@@ -37,6 +37,8 @@ import net.sf.regain.util.sharedtag.taglib.SharedTagWrapperTag;
  */
 public class ImgTag extends SharedTagWrapperTag {
 
+	private static final long serialVersionUID = 9145558444625323945L;
+
   /**
    * Creates a new instance of MsgTag.
    */

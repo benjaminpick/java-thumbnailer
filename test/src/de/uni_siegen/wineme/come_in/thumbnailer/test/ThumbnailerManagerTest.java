@@ -6,7 +6,6 @@ import java.io.IOException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerManager;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.OpenOfficeThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.Thumbnailer;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

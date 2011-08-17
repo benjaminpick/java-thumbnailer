@@ -1,8 +1,5 @@
 package de.uni_siegen.wineme.come_in.thumbnailer.test;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.awt.Image;

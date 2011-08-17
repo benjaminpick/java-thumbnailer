@@ -11,7 +11,6 @@ import org.apache.commons.io.FilenameUtils;
 import de.uni_siegen.wineme.come_in.thumbnailer.test.TestConfiguration;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
