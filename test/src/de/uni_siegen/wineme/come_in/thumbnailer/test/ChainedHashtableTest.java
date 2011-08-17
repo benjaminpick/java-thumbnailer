@@ -3,19 +3,19 @@ package de.uni_siegen.wineme.come_in.thumbnailer.test;
 import java.util.Collection;
 import java.util.Map;
 
-import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashtable;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashMap;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ChainedHashtableTest {
 
-	private ChainedHashtable<Integer, String> data;
+	private ChainedHashMap<Integer, String> data;
 
     @Before
     public void setUp()
 	{
-		data = new ChainedHashtable<Integer, String>();
+		data = new ChainedHashMap<Integer, String>();
 	}
 	
     @Test
@@ -119,7 +119,7 @@ public class ChainedHashtableTest {
 		data.put(1, "one");
 		data.put(2, "two");
 		data.put(2, "zwei");
-		assertSize(3,2, new ChainedHashtable<Integer, String>(data));
+		assertSize(3,2, new ChainedHashMap<Integer, String>(data));
 	}
 	
     @Test
@@ -181,7 +181,7 @@ public class ChainedHashtableTest {
 		assertEquals("two", data.get(2));
 	}
 	
-	private void assertSize(int size, int keySize, ChainedHashtable<Integer, String> hashy)
+	private void assertSize(int size, int keySize, ChainedHashMap<Integer, String> hashy)
 	{
 		assertEquals("Size is not correct.\n" + hashy, size, hashy.size());
 		assertEquals("Size of Values is not correct.\n" + hashy + "\n" + hashy.values(), size, hashy.values().size());

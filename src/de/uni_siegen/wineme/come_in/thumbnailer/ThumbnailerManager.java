@@ -29,7 +29,7 @@ import java.util.Queue;
 import org.apache.log4j.Logger;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.Thumbnailer;
-import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashtable;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.ChainedHashMap;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.StringUtil;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
@@ -69,7 +69,7 @@ public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 	/**
 	 * Thumbnailers per MIME-Type they accept (ALL_MIME_WILDCARD for all)
 	 */
-	private ChainedHashtable<String, Thumbnailer> thumbnailers;
+	private ChainedHashMap<String, Thumbnailer> thumbnailers;
 	
 	/**
 	 * All Thumbnailers.
@@ -92,7 +92,7 @@ public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 		    public void run() { IOUtil.quietlyClose(self); }
 		});
 		
-		thumbnailers = new ChainedHashtable<String, Thumbnailer>(DEFAULT_NB_MIME_TYPES, DEFAULT_NB_THUMBNAILERS_PER_MIME);
+		thumbnailers = new ChainedHashMap<String, Thumbnailer>(DEFAULT_NB_MIME_TYPES, DEFAULT_NB_THUMBNAILERS_PER_MIME);
 		allThumbnailers = new LinkedList<Thumbnailer>();
 		
 		mimeTypeDetector = new MimeTypeDetector();
