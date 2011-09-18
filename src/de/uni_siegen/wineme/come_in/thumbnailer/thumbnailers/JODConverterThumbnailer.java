@@ -43,7 +43,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.util.Platform;
  * 
  * Depends on:
  * <li>OpenOffice 3 / LibreOffice
- * <li>JODConverter 3
+ * <li>JODConverter 3 beta5 or higher
  * <li>Aperture Core (MIME Type detection)
  * <li>OpenOfficeThumbnailer
  * 
