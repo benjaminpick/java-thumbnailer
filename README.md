@@ -34,7 +34,7 @@ TODO
 
 ### Thumbnailer:
 * JODConverter 3beta
-  * Upgrade to 3beta4 when it appears
+  * Upgrade to 3beta5 when it appears
   * remove log4j info messages
   * Find a way to let him fail if he can't convert the file (sb is a binary format and really shouldn't be treated as plain text.)
 * PDFBox: Library Conflict with regain. (We need to include this in the plugin, but it is included in a maybe-loaded preparator as well.)
