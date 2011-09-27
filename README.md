@@ -7,16 +7,11 @@ This is a Java Plugin for creating Thumbnails of files during the crawling proce
 *Current Version* : 0.3 (Beta)<br>
 *Licence* : GNU GPL 2.1 or later
 
-Roadmap
--------
+Minimum Requirements
+--------------------
 
-* Creation of Thumbnails *(DONE 14.06.2011)*
-* Add capability for Crawling Plugins to regain *(DONE 29.07.2011)*
-* Integration into regain (as a Plugin) *(DONE 29.07.2011)*
-* Packaging in .jars / dynamic loading of .jars *(DONE 29.07.2011)*
-* Seperation from regain lib-wise (so that it can be used as stand-alone/library) *(DONE 28.07.2011)*
-* Show Thumbnails in results if available *(DONE 09.08.2011)*
-
+* Java JRE 1.6
+* (optional) OpenOffice 3.x/LibreOffice
 
 Supported Fileformats
 ---------------------
@@ -24,10 +19,12 @@ Supported Fileformats
 * Office files (doc, docx, xls, xlsx, ppt, pptx)
 * OpenOffice files (all of them)
 * Text files (txt, pdf, rtf)
-* Image files (jpg, png, bmp, gif, tiff?)
+* Image files (jpg, png, bmp, gif)
 * MIT Scratch files (sb)
 
 (Detection is based on MIME-Type, not filename extension. So files with an incorrect file extension will be treated correctly, not as they deserve.) 
+
+Output are always PNG files. The dimension of this Thumbnail can be configured.
 
 TODO
 ----
@@ -55,6 +52,16 @@ TODO
 * JMF / ffmpeg for video thumbnailing
 * Run optipng on all pngs (via cron)
 * Better performance for PDFBox
+
+Roadmap
+-------
+
+* Creation of Thumbnails *(DONE 14.06.2011)*
+* Add capability for Crawling Plugins to regain *(DONE 29.07.2011)*
+* Integration into regain (as a Plugin) *(DONE 29.07.2011)*
+* Packaging in .jars / dynamic loading of .jars *(DONE 29.07.2011)*
+* Seperation from regain lib-wise (so that it can be used as stand-alone/library) *(DONE 28.07.2011)*
+* Show Thumbnails in results if available *(DONE 09.08.2011)*
 
 Author
 ------
