@@ -12,6 +12,7 @@ Minimum Requirements
 
 * Java JRE 1.6
 * (optional) OpenOffice 3.x/LibreOffice
+* Tested in Windows/Linux/Mac
 
 Supported Fileformats
 ---------------------
@@ -42,7 +43,6 @@ TODO
 
 ### Test: 
 
-* MacOS hasn't been tested yet
 * MIME Tests aren't correctly working yet (MS Office files are hard to distinguish. Maybe Tika? POI?)
 
 ### Nice-to-have:

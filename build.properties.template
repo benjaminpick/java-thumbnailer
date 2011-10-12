@@ -3,7 +3,7 @@
 # The current Version
 version.prefix=0.4
 
-# Is the version a preview version (an inofficial realease)
+# Is the version a preview version (an inofficial release)
 is-preview=true
 
 # Should be compiled with the debug flag?

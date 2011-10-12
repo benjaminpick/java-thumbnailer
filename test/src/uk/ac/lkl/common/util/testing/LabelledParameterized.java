@@ -1,6 +1,7 @@
 /**
  * From http://stackoverflow.com/questions/650894/change-test-name-of-parameterized-tests/2052202#2052202
  * Licence: GPLv3
+ * Version: r3789 (Jan 2010)
  */
 
 package uk.ac.lkl.common.util.testing;
