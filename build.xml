@@ -79,9 +79,10 @@
       <include name="*.jar"/>
     </fileset>
   </path>
+
   <path id="junit" cache="true">
     <fileset dir="lib/ant">
-      <include name="junit-4*.jar"/>
+      <include name="junit-4.8.1.jar"/>
     </fileset>
   </path>
   
@@ -236,7 +237,6 @@
   <target name="make">
     <echo message="Compiling the source code using ${java.dir} ..." />
     <mkdir dir="build/classes"/>
-    <!-- old javac[executable]: ${java.dir}/bin/ -->
     <javac destdir="build/classes"
            debug="${debug}"
            deprecation="true"
@@ -290,7 +290,7 @@
     <echo message="Compiling the test source code ..." />
     <mkdir dir="build/classes"/>
     <javac destdir="build/classes"
-           debug="${debug}"
+           debug="true"
            deprecation="true"
            target="1.5"
            includeantruntime="false">
@@ -389,9 +389,9 @@
   <!--
    | Does the JUnit tests.
    |
-   | If this target does not work, copy the file "junit.jar" from the directory
+   | If this target does not work, copy the file "junit-xxx.jar" from the directory
    | "lib/ant" in your ANT_HOME/lib directory.
-   | (ANT_HOME/lib is on my machine "/usr/share/ant/lib")
+   | (ANT_HOME/lib is on my machine "/usr/share/ant/lib" or "~/.ant/lib")
    +-->
   <target name="test" depends="make-test">
     <junit haltonfailure="false" fork="true" filtertrace="on" > <!-- showoutput="true" -->
@@ -404,6 +404,7 @@
       <batchtest>
         <fileset dir="test/src">
 	  	  <include name="de/**/*Test.java" />
+	  	  <exclude name="**/slow/*Test.java" /> <!-- Sorry, these tests currently don't work with ant. Run them inside Eclipse, for example. -->
         </fileset>
       </batchtest>
     </junit>
@@ -414,9 +415,9 @@
    | Number of failed tests are logged to build/tests.
    | These can be used to generate a nice report with test-generate-history
    |
-   | If this target does not work, copy the file "junit.jar" from the directory
+   | If this target does not work, copy the file "junit-xxx.jar" from the directory
    | "lib/ant" in your ANT_HOME/lib directory.
-   | (ANT_HOME/lib is on my machine "/usr/share/ant/lib")
+   | (ANT_HOME/lib is on my machine "/usr/share/ant/lib" or "~/.ant/lib")
    +-->  
   <target name="test-overview" depends="make-test">
   	<delete dir="${test.reports}"/>

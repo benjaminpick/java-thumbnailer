@@ -21,6 +21,7 @@ import static org.junit.Assert.*;
 
 // Foreach Filename in TestFileDirectory : combine extensions.
 @RunWith(LabelledParameterized.class)
+// Strange as it sounds, these tests only run inside Eclipse. In Ant, the @RunWith-Annotation seems to go ignored. I'd really like to know why!
 public class MIMEDectectionExtensiveTest implements TestConfiguration
 {
 	private MimeTypeDetector mimeType;

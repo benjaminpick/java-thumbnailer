@@ -18,6 +18,7 @@ import uk.ac.lkl.common.util.testing.LabelledParameterized;
 
 // Foreach Filename in TestFileDirectory : try to create a thumbnail. assertNoException.
 @RunWith(LabelledParameterized.class)
+// Strange as it sounds, these tests only run inside Eclipse. In Ant, the @RunWith-Annotation seems to go ignored. I'd really like to know why!
 public class ThumbnailImageStrangeFilesTest extends ThumbnailerFileTestDummy implements TestConfiguration
 {
 	public ThumbnailImageStrangeFilesTest(String name, File input)

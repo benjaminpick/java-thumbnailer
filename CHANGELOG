@@ -2,9 +2,13 @@
 * Bugfix
 # Enhance Feature
 
+v0.4
+----
+(not published yet)
+
 v0.3
 ----
-()
+(9. August 2011)
 
 * Make Lucene Value "filelocation" relative to thumnailFolder
 * Changed Lucene Value "no thumbnailer found" to "nothumbnailerfound" (to avoid tokenizing)
