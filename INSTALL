@@ -19,6 +19,7 @@ There are two versions of JavaThumbnailer:
 
 ## Regain Plugin Version
 
+0. Get the recent version of [regain](http://regain.sourceforge.net/download.php).
 1. Get the recent version of JavaThumbnailer at the [Download Page](https://github.com/benjamin4ruby/java-thumbnailer/archives/master) (or [build it from source](Building from Source).)
 
 ### Crawler Plugin
@@ -54,7 +55,7 @@ There are two versions of JavaThumbnailer:
 ### Search
 
 4. Extract `web/` to your web/-Folder (Server: deployed folder). It contains:
-  * `search_example.jsp` : Modified version of `regain/web/common/search.jsp` . If you didn't modify it, you can overwrite the regain version of `search.jsp`
+  * `search_example.jsp` : Modified version of `regain/web/common/search.jsp` . If you didn't modify it, you can overwrite the regain version of `search.jsp`.
   * `img/image_missing.png` : Example of an image that is shown instead of the thumbnail when thumbnail generation failed
   * `taglib/regain-thumbnailer.tld` : Tag declarations. Used only by the server version.
   * `taglib/thumbnailer.jar`: Tag implementations. Used by server & desktop version.
@@ -72,10 +73,13 @@ There are two versions of JavaThumbnailer:
 		  <namespace name="status">net.sf.regain.ui.desktop.status.sharedlib</namespace>
 		  
 		  <!-- For thumbnailer Plugin -->
-		  <namespace name="thumbnailer">de.uni_siegen.wineme.come_in.thumbnailer.sharedlib</namespace>
+		  <namespace name="thumbnailer">de.uni_siegen.wineme.come_in.thumbnailer.plugin.sharedlib</namespace>
 		</simple_register_namespace>
   
 #### Server Search
 *(If you don't use the tomcat server search, you can skip this section.)*
 
-6. Copy thumbnailer.jar into the deployed application folder `WEB-INF/lib`.
+6. Copy `web/taglib/thumbnailer.jar` into the deployed application folder `WEB-INF/lib`.
+7. Make sure you added `<%@taglib uri="taglib/regain-thumbnailer.tld" prefix="thumbnailer" %>` at the top of your jsp where you use the tag `<thumbnailer:img/>`.
+8. Restart Tomcat or the regain-application.
+

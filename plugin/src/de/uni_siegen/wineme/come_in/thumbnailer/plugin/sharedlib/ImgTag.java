@@ -43,10 +43,9 @@ import de.uni_siegen.wineme.come_in.thumbnailer.plugin.ThumbnailerLuceneConstant
  * <p>
  * Tag Parameters:
  * <ul>
- * <li><code>field</code>: The name of the index field to write the value of.</li>
  * </ul>
  *
- * @author Til Schneider, www.murfman.de
+ * @author b
  */
 public class ImgTag extends AbstractHitTag implements ThumbnailerLuceneConstants, ThumbnailerConstants {
 

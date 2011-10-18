@@ -39,6 +39,13 @@
       <name>missing</name>
       <required>false</required>
     </attribute>
+    <attribute>
+      <description>
+        Escape output (xml, html, none) (Default: none)
+      </description>
+      <name>escape</name>
+      <required>false</required>
+    </attribute>
   </tag>
   
 
