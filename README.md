@@ -7,8 +7,8 @@ This is a Java Plugin for creating Thumbnails of files during the crawling proce
 *Current Version* : 0.3 (Beta)<br>
 *Licence* : GNU GPL 2.1 or later
 
-Minimum Requirements
---------------------
+Requirements
+------------
 
 * Java JRE 1.6
 * (optional) OpenOffice 3.x/LibreOffice
@@ -44,6 +44,7 @@ TODO
 ### Test: 
 
 * MIME Tests aren't correctly working yet (MS Office files are hard to distinguish. Maybe Tika? POI?)
+* Java 1.7
 
 ### Nice-to-have:
 
@@ -52,16 +53,6 @@ TODO
 * JMF / ffmpeg for video thumbnailing
 * Run optipng on all pngs (via cron)
 * Better performance for PDFBox
-
-Roadmap
--------
-
-* Creation of Thumbnails *(DONE 14.06.2011)*
-* Add capability for Crawling Plugins to regain *(DONE 29.07.2011)*
-* Integration into regain (as a Plugin) *(DONE 29.07.2011)*
-* Packaging in .jars / dynamic loading of .jars *(DONE 29.07.2011)*
-* Seperation from regain lib-wise (so that it can be used as stand-alone/library) *(DONE 28.07.2011)*
-* Show Thumbnails in results if available *(DONE 09.08.2011)*
 
 Author
 ------
