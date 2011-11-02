@@ -26,6 +26,17 @@
    +-->
   <property file="build.properties"/>
   <property environment="env"/>
+  <!-- set if java.dir not set in build.properties -->
+  <property name="java.dir" value="${env.JAVA_HOME}" />
+  <condition property="java_dir_empty">
+  	<or>
+  		<length string="${java.dir}" length="0" />
+  		<equals arg1="${java.dir}" arg2="$${env.JAVA_HOME}" />
+  		<not>
+  		  <isset property="java.dir" />
+  		</not>
+  	</or>
+  </condition>
   <tstamp>
     <format property="timestamp" pattern="yyMMdd-HHmm"/>
   </tstamp>
@@ -132,6 +143,7 @@
    | Dump some information.
    +-->
   <target name="dump-info">
+    <echo message="java.dir=${java.dir}" />
     <echo message="JAVA_HOME=${env.JAVA_HOME}" />
     <echo message="java.vm.info=${java.vm.info}" />
     <echo message="java.vm.name=${java.vm.name}" />
@@ -236,6 +248,9 @@
    +-->
   <target name="make">
     <echo message="Compiling the source code using ${java.dir} ..." />
+    <fail if="java_dir_empty">
+  		Neither 'java.dir' nor JAVA_HOME is set, so no compiling is possible. Please copy build.properties.sample to build.properties and edit its values.
+  	</fail>
     <mkdir dir="build/classes"/>
     <javac destdir="build/classes"
            debug="${debug}"
@@ -263,6 +278,9 @@
   		<target name="make"/>
   	</ant>
   	<echo message="Compiling regain plugin ... (Regain is in ${regain-location})" />
+  	<fail if="java_dir_empty">
+  		Neither 'java.dir' nor JAVA_HOME is set, so no compiling is possible. Please copy build.properties.sample to build.properties and edit its values.
+  	</fail>
   	<javac destdir="build/classes"
            debug="${debug}"
            deprecation="true"
