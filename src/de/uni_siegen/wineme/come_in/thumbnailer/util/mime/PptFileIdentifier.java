@@ -59,7 +59,7 @@ public class PptFileIdentifier extends OfficeFileIdentifier
 	                if (presentation.getSlides().length != 0) {
 	                    return PPT_MIME_TYPE;
 	                }
-	            } catch (Exception e) {
+	            } catch (Throwable e) {
 	            	
 	            }
 	        } catch (IOException e) {

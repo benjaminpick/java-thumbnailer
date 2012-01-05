@@ -57,7 +57,7 @@ public class XlsFileIdentifier extends OfficeFileIdentifier
 	                if (workbook.getNumberOfSheets() != 0) {
 	                    return XLS_MIME_TYPE;
 	                }
-	            } catch (Exception e) {
+	            } catch (Throwable e) {
 	            	
 	            }
 	        } catch (IOException e) {

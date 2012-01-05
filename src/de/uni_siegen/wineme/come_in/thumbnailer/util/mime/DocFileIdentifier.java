@@ -56,7 +56,7 @@ public class DocFileIdentifier extends OfficeFileIdentifier
 	                if (document.getRange().getEndOffset() > 0) {
 	                    return DOC_MIME_TYPE;
 	                }
-	            } catch (Exception e) {
+	            } catch (Throwable e) {
 	            	
 	            }
 	        } catch (IOException e) {
