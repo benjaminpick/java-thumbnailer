@@ -8,7 +8,6 @@
 	<classpathentry kind="lib" path="lib/ScratchApplet.jar"/>
 	<classpathentry kind="lib" path="lib/jodconverter3/commons-cli-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/jodconverter3/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="lib/jodconverter3/jodconverter-core-3.0-beta-3-svn.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/aperture-core-1.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/rdf2go.api-4.6.2-for-aperture.jar"/>
@@ -24,5 +23,10 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/regain-svn"/>
 	<classpathentry kind="lib" path="lib/ant/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="lib/jodconverter3/jodconverter-core-3.0-beta-3_r220.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-3.7-20101029.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-3.7-20101029.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-schemas-3.7-20101029.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-scratchpad-3.7-20101029.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
