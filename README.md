@@ -44,7 +44,6 @@ TODO
 
 ### Test: 
 
-* MIME Tests aren't correctly working yet (MS Office files are hard to distinguish. Maybe Tika? POI?)
 * Java 1.7
 
 ### Nice-to-have:

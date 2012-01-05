@@ -80,6 +80,9 @@
     <fileset dir="lib/jodconverter3">
       <include name="*.jar"/>
     </fileset>
+    <fileset dir="lib/shared-with-regain-preperators">
+      <include name="*.jar"/>
+    </fileset>
   </path>
   <path id="classpath-regain" cache="true">
   	<pathelement location="${regain-location}/build/classes"/>
@@ -185,6 +188,9 @@
         <include name="*.jar"/>
       </fileset>
       <fileset dir="lib/jodconverter3">
+        <include name="*.jar"/>
+      </fileset>
+      <fileset dir="lib/shared-with-regain-preperators">
         <include name="*.jar"/>
       </fileset>
     </unjar>
@@ -337,7 +343,11 @@
     <fileset id="classes" dir="build/classes">
       <exclude name="de/uni_siegen/wineme/come_in/thumbnailer/plugin/ThumbnailerPlugin*"/>
     </fileset>
-    <jar jarfile="build/${programname.file}-standalone-${version.file}.jar"
+    
+    <property name="package.file" value="${programname.file}-standalone-${version.file}.jar"/>
+    
+    
+    <jar jarfile="build/${package.file}"
          compress="false"
          index="true">
       <manifest>
@@ -348,6 +358,17 @@
       <fileset refid="lib-jars-shared"/>
       <fileset refid="ressources" />
     </jar>
+    
+    <zip destfile="build/${programname.file}-standalone-${version.file}.zip" whenempty="fail">
+      <zipfileset prefix="${programname.file}" dir="build" includes="${package.file}" />
+      <zipfileset prefix="${programname.file}" dir=".">
+        <include name="CHANGELOG" />
+        <include name="INSTALL" />
+        <include name="README.md" />
+        <include name="LICENSE.TXT" />
+      </zipfileset>
+    </zip>
+    
   </target>
   
   <!--
