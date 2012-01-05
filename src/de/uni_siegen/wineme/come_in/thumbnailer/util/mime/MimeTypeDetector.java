@@ -59,8 +59,12 @@ public class MimeTypeDetector {
 		mimeTypeIdentifier = (MagicMimeTypeIdentifier) mimeTypeFactory.get();
 		
 		extraIdentifiers = new ArrayList<MimeTypeIdentifier>();
+		
 		addMimeTypeIdentifier(new ScratchFileIdentifier());
 		addMimeTypeIdentifier(new Office2007FileIdentifier());
+		addMimeTypeIdentifier(new PptFileIdentifier());
+		addMimeTypeIdentifier(new XlsFileIdentifier());
+		addMimeTypeIdentifier(new DocFileIdentifier());
 	}
 
 	/**
