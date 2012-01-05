@@ -63,8 +63,8 @@ public class JODWordConverterThumbnailer extends JODConverterThumbnailer {
 				"application/vnd.openxmlformats-officedocument.wordprocessingml",
 				"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 				"application/wordperfect",
-				"application/vnd.ms-office", // doc?
-				"application/zip" // docx?
+		/*		"application/vnd.ms-office", // doc?
+				"application/zip" // docx? */
 		};
 	}
 	

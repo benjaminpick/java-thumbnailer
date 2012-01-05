@@ -1,13 +1,21 @@
+CHANGELOG of java-thumbnailer
+-----------------------------
+
 + Add Feature
 * Bugfix
 # Enhance Feature
 
+
+v0.5
+----
+(not released yet)
+
 v0.4
 ----
-(not published yet)
+(5. January 2012)
 
 + Add Apache POI 3.7
-+ Old Office Files are now detected via MIME
++ Old Office Files are now detected via MIME => Performance improvement: Zip files can quicker be detected as non-office file
 
 Failing Tests:
 - ChainedHashtable: testBacking                 (not important, as currently not used)
