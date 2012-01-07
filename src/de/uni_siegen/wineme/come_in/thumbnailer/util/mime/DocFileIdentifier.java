@@ -61,9 +61,7 @@ public class DocFileIdentifier extends OfficeFileIdentifier
 	            }
 	        } catch (IOException e) {
 	        } finally {
-	            if (destFile != null) {
-	                destFile.delete();
-	            }
+	        	FileUtils.deleteQuietly(destFile);
 	        }	
 		}
 		

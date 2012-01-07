@@ -31,7 +31,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.hslf.HSLFSlideShow;
 import org.apache.poi.hslf.usermodel.SlideShow;
 
 public class PptFileIdentifier extends OfficeFileIdentifier 
@@ -64,9 +63,7 @@ public class PptFileIdentifier extends OfficeFileIdentifier
 	            }
 	        } catch (IOException e) {
 	        } finally {
-	            if (destFile != null) {
-	                destFile.delete();
-	            }
+	        	FileUtils.deleteQuietly(destFile);
 	        }	
 		}
 		

@@ -9,12 +9,14 @@ CHANGELOG of java-thumbnailer
 v0.5
 ----
 (not released yet)
+* Catch all errors of POI (no idea in which edge case this could change something)
 
 v0.4
 ----
 (5. January 2012)
 
 + Add Apache POI 3.7
+* Update JODConverter to latest version in SVN
 + Old Office Files are now detected via MIME => Performance improvement: Zip files can quicker be detected as non-office file
 
 Failing Tests:

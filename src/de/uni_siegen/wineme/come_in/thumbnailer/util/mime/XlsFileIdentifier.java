@@ -62,9 +62,7 @@ public class XlsFileIdentifier extends OfficeFileIdentifier
 	            }
 	        } catch (IOException e) {
 	        } finally {
-	            if (destFile != null) {
-	                destFile.delete();
-	            }
+	        	FileUtils.deleteQuietly(destFile);
 	        }	
 		}
 		
