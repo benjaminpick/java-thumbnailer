@@ -34,6 +34,7 @@ import org.artofsolving.jodconverter.office.OfficeManager;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.Platform;
 
 /**
@@ -116,6 +117,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	
 	/**
 	 * Start OpenOffice-Service and connect to it.
+	 * (Does not reconnect if already connected.)
 	 */
 	public static void connect() { 	connect(false); }
 	
@@ -196,7 +198,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	 */
 	@Override
 	public void generateThumbnail(File input, File output) throws IOException, ThumbnailerException {
-		// Lazy connect
+		// Connect on first use
 		if (!isConnected())
 			connect();
 
@@ -220,15 +222,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 
 			ooo_thumbnailer.generateThumbnail(outputTmp, output);
 		} finally {
-			// Delete output Temp file
-			if (outputTmp != null)
-			{
-				if(!outputTmp.delete())
-				{
-					if (outputTmp.exists())
-						outputTmp.deleteOnExit();
-				}
-			}
+			IOUtil.deleteQuietlyForce(outputTmp);
 		}
 	}
 
@@ -245,6 +239,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	public void generateThumbnail(File input, File output, String mimeType) throws IOException, ThumbnailerException {
 		String ext = FilenameUtils.getExtension(input.getName());
 		File input2 = input;
+		File tempfile = null;
 		if (!mimeTypeDetector.doesExtensionMatchMimeType(ext, mimeType))
 		{
 			String newExt;
@@ -255,7 +250,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 			else
 				newExt = mimeTypeDetector.getStandardExtensionForMimeType(mimeType);
 			
-			input2 = File.createTempFile("jodinput", "." + newExt);
+			tempfile = input2 = File.createTempFile("jodinput", "." + newExt);
 			mLog.debug("input temp file: " + input2.getAbsolutePath());
 			
 			FileUtils.copyFile(input, input2);
@@ -264,11 +259,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 		try {
 			generateThumbnail(input2, output);
 		} finally {
-			if (!input2.equals(input))
-			{
-				if(!input2.delete())
-					input2.deleteOnExit();
-			}
+			IOUtil.deleteQuietlyForce(tempfile);
 		}
 	}
 	

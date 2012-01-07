@@ -147,6 +147,7 @@ public class MimeTypeDetector {
 
 	Map<String, List<String>> extensionsCache = new HashMap<String, List<String>>(); 
 	
+	@SuppressWarnings("unchecked")
 	protected List<String> getExtensionsCached(String mimeType) {
 		List<String> extensions = extensionsCache.get(mimeType);
 		if (extensions != null)

@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
@@ -51,6 +52,7 @@ public class PDFBoxThumbnailer extends AbstractThumbnailer {
 		FileDoesNotExistException.check(input);
 		if (input.length() == 0)
 			throw new FileDoesNotExistException("File is empty");
+		FileUtils.deleteQuietly(output);
 
 		PDDocument document = null;
 		try
@@ -62,11 +64,6 @@ public class PDFBoxThumbnailer extends AbstractThumbnailer {
 			}
 
 			BufferedImage tmpImage = writeImageFirstPage(document, BufferedImage.TYPE_INT_RGB, thumbWidth);
-
-			if (output.exists())
-			try {
-				output.delete();
-			} catch(SecurityException e) {}
 
 			ResizeImage resizer = new ResizeImage(thumbWidth, thumbHeight);
 			resizer.resizeMethod = ResizeImage.NO_RESIZE_ONLY_CROP;
