@@ -44,7 +44,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.UnsupportedInputFileFormatExcept
 public class ResizeImage {
 
 	/** The logger for this class */
-	private static Logger mLog = Logger.getLogger(ResizeImage.class);
+	private static final Logger mLog = Logger.getLogger(ResizeImage.class);
 
 	
 	BufferedImage inputImage;

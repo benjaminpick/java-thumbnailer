@@ -47,7 +47,7 @@ public class ThumbnailerManagerTest extends MyTestCase {
 			fail("The chosen thumbnail File " + first.getAbsolutePath() + " cannot be written.");
 		}
 		File second = thumbnailer.chooseThumbnailFilename(new File("abc.png"), true);
-		assertTrue("The filenames are not unique (second thumbnail would overwrite first).", first.getAbsolutePath() != second.getAbsolutePath());
+		assertTrue("The filenames are not unique (second thumbnail would overwrite first).", !first.getAbsolutePath().equals(second.getAbsolutePath()));
 		first.delete();
 		second.delete();
 	}

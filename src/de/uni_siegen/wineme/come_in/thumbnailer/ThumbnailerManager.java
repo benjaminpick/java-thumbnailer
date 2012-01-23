@@ -131,7 +131,7 @@ public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 			if (tries > 0)
 			{
 				int suffix_length = tries / 4 + 1; // Simple (i.e. guessed) heuristic to add randomness if many files have the same name
-				suffix = "-" + StringUtil.random_string(suffix_length);
+				suffix = "-" + StringUtil.randomString(suffix_length);
 			}
 			
 			String name = prefix + hash + suffix + ".png";	

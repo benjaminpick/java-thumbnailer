@@ -81,8 +81,11 @@ public class MIMEDectectionExtensiveTest implements TestConfiguration
 			
 			for (String otherExt : extensions)
 			{
+				/* 
+				// Only test files where extension is wrong:
 				if (otherExt.equals(myExt))
-					continue;
+					continue; 
+				*/
 				
 				File output = new File(tmpDir.getAbsolutePath() + File.separator + myName + "- " + myExt + "." + otherExt);
 				try {

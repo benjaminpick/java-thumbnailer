@@ -33,13 +33,13 @@ public class StringUtil {
 	/**
 	 * Create a random ASCII-String consisting of a certain number of chars.
 	 * 
-	 * @param num_chars	How many chars should the string have
+	 * @param numChars	How many chars should the string have
 	 * @return	Random String
 	 */
-	public static String random_string(int num_chars)
+	public static String randomString(int numChars)
 	{
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < num_chars; i++) {
+		for (int i = 0; i < numChars; i++) {
 			sb.append(alphabet.charAt(rand.nextInt(alphabet.length())));
 		}
 		return sb.toString();
@@ -50,7 +50,7 @@ public class StringUtil {
 	 * @param str	String of a Base-16-Number (e.g., MD5-Hash)
 	 * @return	Equivalent of it as 36-Base-Number (less characters)
 	 */
-	public static String transpose_string(String str)
+	public static String transposeString(String str)
 	{
 		BigInteger bi = new BigInteger(str, 16);
 		return bi.toString(Character.MAX_RADIX);
