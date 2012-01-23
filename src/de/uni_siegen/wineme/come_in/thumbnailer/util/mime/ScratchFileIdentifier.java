@@ -40,10 +40,7 @@ public class ScratchFileIdentifier implements MimeTypeIdentifier {
 	@Override
 	public String identify(String mimeType, byte[] bytes, File file) {
 		if (mimeType == null && SCRATCH_EXTENSION.equals(FilenameUtils.getExtension(file.getName())))
-		{
-			System.out.println(mimeType);
 			return SCRATCH_MIME_TYPE;
-		}
 
 		if (startWith(bytes, MAGIC_SCRATCH_HEADER))
 			return SCRATCH_MIME_TYPE;
