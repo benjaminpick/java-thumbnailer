@@ -7,12 +7,7 @@
 	<classpathentry kind="lib" path="lib/ScratchApplet.jar"/>
 	<classpathentry kind="lib" path="lib/jodconverter3/commons-cli-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/jodconverter3/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/aperture-core-1.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/log4j-1.2.13.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/rdf2go.api-4.6.2-for-aperture.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-api-1.3.0-for-aperture.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-jdk14-1.3.0-for-aperture.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-simple-1.3.0-for-aperture.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/lucene-analyzers-3.1.0.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/lucene-core-3.1.0.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/lucene-highlighter-3.1.0.jar"/>
@@ -28,5 +23,13 @@
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/commons-logging-1.1-for-pdfbox.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/fontbox-1.6.0-for-pdfbox.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/pdfbox-1.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/aperture-core-1.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/rdf2go.api-4.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-api-1.6.2.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-jdk14-1.6.2.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-simple-1.3.0-for-aperture.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/tika-core-1.1-r1221686.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/tika-parsers-1.1-r1221686.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain/commons-compress-1.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

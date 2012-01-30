@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
 import org.ontoware.rdf2go.model.node.impl.URIImpl;
 import org.semanticdesktop.aperture.mime.identifier.magic.MagicMimeTypeIdentifier;
 import org.semanticdesktop.aperture.mime.identifier.magic.MagicMimeTypeIdentifierFactory;
+import org.semanticdesktop.aperture.tika.TikaMimeTypeIdentifier;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 
@@ -44,7 +45,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
  */
 public class MimeTypeDetector {
 
-	private MagicMimeTypeIdentifier mimeTypeIdentifier;
+	private TikaMimeTypeIdentifier mimeTypeIdentifier;
 
 	private List<MimeTypeIdentifier> extraIdentifiers;
 	
@@ -55,16 +56,18 @@ public class MimeTypeDetector {
 	 */
 	public MimeTypeDetector()
 	{
-		MagicMimeTypeIdentifierFactory mimeTypeFactory = new MagicMimeTypeIdentifierFactory();
-		mimeTypeIdentifier = (MagicMimeTypeIdentifier) mimeTypeFactory.get();
+		//MagicMimeTypeIdentifierFactory mimeTypeFactory = new MagicMimeTypeIdentifierFactory();
+		//mimeTypeIdentifier = (MagicMimeTypeIdentifier) mimeTypeFactory.get();
+		
+		mimeTypeIdentifier = new TikaMimeTypeIdentifier();
 		
 		extraIdentifiers = new ArrayList<MimeTypeIdentifier>();
 		
 		addMimeTypeIdentifier(new ScratchFileIdentifier());
 		addMimeTypeIdentifier(new Office2007FileIdentifier());
-		addMimeTypeIdentifier(new PptFileIdentifier());
-		addMimeTypeIdentifier(new XlsFileIdentifier());
-		addMimeTypeIdentifier(new DocFileIdentifier());
+		//addMimeTypeIdentifier(new PptFileIdentifier());
+		//addMimeTypeIdentifier(new XlsFileIdentifier());
+		//addMimeTypeIdentifier(new DocFileIdentifier());
 	}
 
 	/**
