@@ -45,6 +45,7 @@ TODO
 ### Test: 
 
 * Java 1.7
+* MIME: Cannot detect accurately text/plain. Tika (see branch) would perform better, but slower (38 sec vs. 6 sec) 
 
 ### Nice-to-have:
 
