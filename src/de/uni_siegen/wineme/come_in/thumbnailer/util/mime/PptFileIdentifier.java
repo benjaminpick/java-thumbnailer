@@ -28,9 +28,7 @@ package de.uni_siegen.wineme.come_in.thumbnailer.util.mime;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.poi.hslf.usermodel.SlideShow;
 
 public class PptFileIdentifier extends OfficeFileIdentifier 
@@ -47,10 +45,6 @@ public class PptFileIdentifier extends OfficeFileIdentifier
 
 		if (isOfficeFile(mimeType) && !PPT_MIME_TYPE.equals(mimeType))
 		{
-			File destFile = null;
-	        try {
-	            destFile = File.createTempFile("fileidentifier", ".ppt");
-	            FileUtils.copyFile(file, destFile);
 	            try {
 	                FileInputStream stream = new FileInputStream(file);
 	                SlideShow presentation = new SlideShow(stream);
@@ -59,12 +53,7 @@ public class PptFileIdentifier extends OfficeFileIdentifier
 	                    return PPT_MIME_TYPE;
 	                }
 	            } catch (Throwable e) {
-	            	
 	            }
-	        } catch (IOException e) {
-	        } finally {
-	        	FileUtils.deleteQuietly(destFile);
-	        }	
 		}
 		
 		return mimeType;

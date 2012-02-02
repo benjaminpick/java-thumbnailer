@@ -27,9 +27,7 @@ package de.uni_siegen.wineme.come_in.thumbnailer.util.mime;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.poi.hwpf.HWPFDocument;
 
 public class DocFileIdentifier extends OfficeFileIdentifier 
@@ -45,24 +43,15 @@ public class DocFileIdentifier extends OfficeFileIdentifier
 
 		if (isOfficeFile(mimeType) && !DOC_MIME_TYPE.equals(mimeType))
 		{
-			File destFile = null;
-	        try {
-	            destFile = File.createTempFile("fileidentifier", ".doc");
-	            FileUtils.copyFile(file, destFile);
-	            try {
-	                FileInputStream stream = new FileInputStream(file);
-	                HWPFDocument document = new HWPFDocument(stream);
+			try {
+                FileInputStream stream = new FileInputStream(file);
+                HWPFDocument document = new HWPFDocument(stream);
 
-	                if (document.getRange().getEndOffset() > 0) {
-	                    return DOC_MIME_TYPE;
-	                }
-	            } catch (Throwable e) {
-	            	
-	            }
-	        } catch (IOException e) {
-	        } finally {
-	        	FileUtils.deleteQuietly(destFile);
-	        }	
+                if (document.getRange().getEndOffset() > 0) {
+                    return DOC_MIME_TYPE;
+                }
+            } catch (Throwable e) {
+            }
 		}
 		
 		return mimeType;

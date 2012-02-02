@@ -28,9 +28,7 @@ package de.uni_siegen.wineme.come_in.thumbnailer.util.mime;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class XlsFileIdentifier extends OfficeFileIdentifier 
@@ -46,24 +44,16 @@ public class XlsFileIdentifier extends OfficeFileIdentifier
 
 		if (isOfficeFile(mimeType) && !XLS_MIME_TYPE.equals(mimeType))
 		{
-			File destFile = null;
-	        try {
-	            destFile = File.createTempFile("fileidentifier", ".xls");
-	            FileUtils.copyFile(file, destFile);
-	            try {
-	                FileInputStream stream = new FileInputStream(file);
-	                HSSFWorkbook workbook = new HSSFWorkbook(stream);
+            try {
+                FileInputStream stream = new FileInputStream(file);
+                HSSFWorkbook workbook = new HSSFWorkbook(stream);
 
-	                if (workbook.getNumberOfSheets() != 0) {
-	                    return XLS_MIME_TYPE;
-	                }
-	            } catch (Throwable e) {
-	            	
-	            }
-	        } catch (IOException e) {
-	        } finally {
-	        	FileUtils.deleteQuietly(destFile);
-	        }	
+                if (workbook.getNumberOfSheets() != 0) {
+                    return XLS_MIME_TYPE;
+                }
+            } catch (Throwable e) {
+            	
+            }
 		}
 		
 		return mimeType;
