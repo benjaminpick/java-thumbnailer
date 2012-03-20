@@ -39,21 +39,10 @@ TODO
 * PDFBox: Library Conflict with regain. (We need to include this in the plugin, but it is included in a maybe-loaded preparator as well.)
   * That means that both should be updated at the same time!
 
-### Bugs:
-* Remove hardcoding: The thumbnail-Folder must be reachable at the server under /thumbs/ currently. 
-
 ### Test: 
 
 * Java 1.7
 * MIME: Cannot detect accurately text/plain. Tika (see branch) would perform better, but slower (38 sec vs. 6 sec) 
-
-### Nice-to-have:
-
-* .tiff-Support (via ImageMagick?)
-* IFilterThumbnailer for Windows
-* JMF / ffmpeg for video thumbnailing
-* Run optipng on all pngs (via cron)
-* Better performance for PDFBox
 
 Author
 ------
