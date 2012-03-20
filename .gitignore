@@ -8,4 +8,4 @@ junitvmwatcher*
 test/reports
 /.settings
 /.fbprefs
-
+/reports/
