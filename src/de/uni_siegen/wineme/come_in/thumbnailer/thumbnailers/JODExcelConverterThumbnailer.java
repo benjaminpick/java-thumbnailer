@@ -21,7 +21,6 @@
 
 package de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -32,8 +31,8 @@ public class JODExcelConverterThumbnailer extends JODConverterThumbnailer {
 
 	public JODExcelConverterThumbnailer() throws IOException { super(); }
 
-	protected File createTempfile(String prefix) throws IOException {
-		return File.createTempFile(prefix, ".ods");
+	protected String getStandardOpenOfficeExtension() {
+		return "ods";
 	}
 
 	protected String getStandardZipExtension() {
@@ -60,5 +59,7 @@ public class JODExcelConverterThumbnailer extends JODConverterThumbnailer {
 				"application/zip" // xlsx? */
 		};
 	}
+
+
 	
 }

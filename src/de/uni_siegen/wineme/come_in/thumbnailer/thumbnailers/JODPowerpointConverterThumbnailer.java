@@ -21,7 +21,6 @@
 
 package de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -32,8 +31,8 @@ public class JODPowerpointConverterThumbnailer extends JODConverterThumbnailer {
 
 	public JODPowerpointConverterThumbnailer() throws IOException { super(); }
 
-	protected File createTempfile(String prefix) throws IOException {
-		return File.createTempFile(prefix, ".odp");
+	protected String getStandardOpenOfficeExtension() {
+		return ".odp";
 	}
 	
 	protected String getStandardZipExtension() {

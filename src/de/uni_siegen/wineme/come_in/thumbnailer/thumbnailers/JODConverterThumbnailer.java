@@ -24,7 +24,6 @@ package de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.artofsolving.jodconverter.OfficeDocumentConverter;
@@ -36,6 +35,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.Platform;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.TemporaryFilesManager;
 
 /**
  * This generates a thumbnail of Office-Files by converting them into the OpenOffice-Format first.
@@ -79,6 +79,8 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	 */
 	protected MimeTypeDetector mimeTypeDetector = null;
 
+	private TemporaryFilesManager temporaryFilesManager = null;
+
 	/**
 	 * OpenOffice Home Folder (Configurable)
 	 */
@@ -110,6 +112,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	{
 		ooo_thumbnailer = new OpenOfficeThumbnailer();
 		mimeTypeDetector = new MimeTypeDetector();
+		temporaryFilesManager = new TemporaryFilesManager();
 	}
 	
 	protected static File openOfficeTemplateProfileDir = null;
@@ -177,6 +180,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	{
 		try {
 			try {
+				temporaryFilesManager.deleteAllTempfiles();
 				ooo_thumbnailer.close();
 			} finally {
 				disconnect();
@@ -204,7 +208,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 
 		File outputTmp = null;
 		try {
-			outputTmp = createTempfile("jodtemp");
+			outputTmp = File.createTempFile("jodtemp", "." + getStandardOpenOfficeExtension());
 
 			// Naughty hack to circumvent invalid URLs under windows (C:\\ ...)
 			if (Platform.isWindows())
@@ -238,8 +242,6 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	 */
 	public void generateThumbnail(File input, File output, String mimeType) throws IOException, ThumbnailerException {
 		String ext = FilenameUtils.getExtension(input.getName());
-		File input2 = input;
-		File tempfile = null;
 		if (!mimeTypeDetector.doesExtensionMatchMimeType(ext, mimeType))
 		{
 			String newExt;
@@ -250,24 +252,16 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 			else
 				newExt = mimeTypeDetector.getStandardExtensionForMimeType(mimeType);
 			
-			tempfile = input2 = File.createTempFile("jodinput", "." + newExt);
-			mLog.debug("input temp file: " + input2.getAbsolutePath());
-			
-			FileUtils.copyFile(input, input2);
+			input = temporaryFilesManager .createTempfileCopy(input, newExt);
 		}
 
-		try {
-			generateThumbnail(input2, output);
-		} finally {
-			IOUtil.deleteQuietlyForce(tempfile);
-		}
+		generateThumbnail(input, output);
 	}
 	
 	protected abstract String getStandardZipExtension();
 	protected abstract String getStandardOfficeExtension();
+	protected abstract String getStandardOpenOfficeExtension();
 
-	abstract protected File createTempfile(String prefix) throws IOException;
-	
 	public void setImageSize(int thumbWidth, int thumbHeight, int imageResizeOptions) {
 		super.setImageSize(thumbWidth, thumbHeight, imageResizeOptions);
 		ooo_thumbnailer.setImageSize(thumbWidth, thumbHeight, imageResizeOptions);

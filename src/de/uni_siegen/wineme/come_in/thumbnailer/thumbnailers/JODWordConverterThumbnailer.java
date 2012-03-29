@@ -21,7 +21,6 @@
 
 package de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -34,8 +33,8 @@ public class JODWordConverterThumbnailer extends JODConverterThumbnailer {
 
 	public JODWordConverterThumbnailer() throws IOException { super(); }
 
-	protected File createTempfile(String prefix) throws IOException {
-		return File.createTempFile(prefix, ".odt");
+	protected String getStandardOpenOfficeExtension() {
+		return ".odt";
 	}
 
 	protected String getStandardZipExtension() {

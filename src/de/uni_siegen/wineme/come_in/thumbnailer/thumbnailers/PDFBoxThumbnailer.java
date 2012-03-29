@@ -24,7 +24,6 @@ package de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.geom.Dimension2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImagingOpException;
 import java.io.File;
