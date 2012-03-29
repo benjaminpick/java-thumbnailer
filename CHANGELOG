@@ -11,6 +11,8 @@ v0.5
 (not released yet)
 * Catch all errors of POI (no idea in which edge case this could change something)
 * MS-Office-FileIdentifiers does not need temporary files anymore.
+* Improve Perfomance of PDFBox a little bit
+* Centralise handling of temporary files
 
 v0.4
 ----
