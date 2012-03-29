@@ -51,6 +51,8 @@ public class ResizeImage {
 	private boolean isProcessed = false;
 	BufferedImage outputImage;
 	
+	private int imageWidth;
+	private int imageHeight;
 	private int thumbWidth;
 	private int thumbHeight;
 	private double resizeRatio = 1.0;
@@ -89,6 +91,8 @@ public class ResizeImage {
 	private int scaledHeight;
 	private int offsetX;
 	private int offsetY;
+
+
 	
 	public ResizeImage(int thumbWidth, int thumbHeight)
 	{
@@ -115,6 +119,8 @@ public class ResizeImage {
 		
 		this.inputImage = input;
 		isProcessed = false;
+		imageWidth    = inputImage.getWidth(null);
+		imageHeight   = inputImage.getHeight(null);
 	}
 	
 	public void writeOutput(File output) throws IOException
@@ -132,21 +138,19 @@ public class ResizeImage {
 	
 	private void process()
 	{		
-		calcDimensions(resizeMethod);
-		
-		if (resizeRatio == 1.0 && offsetX == 0 && offsetY == 0)
+		if (imageWidth == thumbWidth && imageHeight == thumbHeight)
 			outputImage = inputImage;
 		else
+		{
+			calcDimensions(resizeMethod);
 			paint();
+		}
 		
 		isProcessed = true;	
 	}
 	
 	private void calcDimensions(int resizeMethod)
 	{
-		int imageWidth    = inputImage.getWidth(null);
-		int imageHeight   = inputImage.getHeight(null);
-		
 		switch (resizeMethod)
 		{
 			case RESIZE_FIT_BOTH_DIMENSIONS:
