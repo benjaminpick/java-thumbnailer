@@ -111,12 +111,12 @@ public class PDFBoxThumbnailer extends AbstractThumbnailer {
 
     	PDPage page = (PDPage)pages.get(0);
 
-    	
-
     	// resolution: Unfortunately, the resolution is in integer in the call ... so we approximate by taking slightly less (rounding down).
-    	//PDRectangle rect = page.getMediaBox();
-    	//float resolution = (thumb_width / rect.getWidth() * 72);
-    	//page.convertToImage(imageType, (int) resolution);
+    	/* Before:
+    	PDRectangle rect = page.getMediaBox();
+    	float resolution = (thumb_width / rect.getWidth() * 72);
+    	page.convertToImage(imageType, (int) resolution);
+    	*/
 
     	// Here is the main work:
     	BufferedImage image = convertToImage(page, imageType, thumbWidth, thumbHeight); 

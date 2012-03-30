@@ -20,7 +20,7 @@ Supported Fileformats
 
 * Office files (doc, docx, xls, xlsx, ppt, pptx)
 * OpenOffice files (all of them)
-* Text files (txt, pdf, rtf)
+* Text files (txt, pdf, rtf, html)
 * Image files (jpg, png, bmp, gif)
 * MIT Scratch files (sb)
 

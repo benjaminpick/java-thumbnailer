@@ -32,6 +32,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODExcelConverterThumbnailer;
+import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODHtmlConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODPowerpointConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODWordConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.NativeImageThumbnailer;
@@ -99,6 +100,7 @@ public class Main {
 			thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer());
 			thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer());
 			thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer());
+			thumbnailer.registerThumbnailer(new JODHtmlConverterThumbnailer());
 		} catch (IOException e) {
 			mLog.error("Could not initialize JODConverter:", e);
 		}

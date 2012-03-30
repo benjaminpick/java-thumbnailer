@@ -13,6 +13,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerManager;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODExcelConverterThumbnailer;
+import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODHtmlConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODPowerpointConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODWordConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.NativeImageThumbnailer;
@@ -56,6 +57,7 @@ public class ThumbnailerFileTestDummy extends MyTestCase {
 			thumbnailer.registerThumbnailer(new JODWordConverterThumbnailer());
 			thumbnailer.registerThumbnailer(new JODExcelConverterThumbnailer());
 			thumbnailer.registerThumbnailer(new JODPowerpointConverterThumbnailer());
+			thumbnailer.registerThumbnailer(new JODHtmlConverterThumbnailer());
 		} catch (IOException e) {
 			mLog.error("Could not initialize JODConverter:", e);
 		}

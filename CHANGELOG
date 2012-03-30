@@ -13,6 +13,7 @@ v0.5
 * MS-Office-FileIdentifiers does not need temporary files anymore.
 * Improve Perfomance of PDFBox a little bit
 * Centralise handling of temporary files
+* Add HTML thumnailing (rudimentary)
 
 v0.4
 ----
