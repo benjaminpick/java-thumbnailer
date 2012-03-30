@@ -24,6 +24,8 @@ package de.uni_siegen.wineme.come_in.thumbnailer;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FilenameUtils;
+
  
 
 public class FileDoesNotExistException extends IOException {
@@ -91,9 +93,13 @@ public class FileDoesNotExistException extends IOException {
 			}
 			else
 			{
-				ret = f.getParentFile().mkdirs();
-				if (!ret && !f.getParentFile().exists())
-					throw new FileDoesNotExistException("Not all parent directories could be created: " + f.getAbsolutePath());
+				File parent = f.getParentFile();
+				if (parent != null) // No idea why it returns null sometimes
+				{
+					ret = parent.mkdirs();
+					if (!ret && !parent.exists())
+						throw new FileDoesNotExistException("Not all parent directories could be created: " + f.getAbsolutePath());
+				}
 			}
 		}
 			
