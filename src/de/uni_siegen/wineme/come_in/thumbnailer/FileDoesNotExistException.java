@@ -24,10 +24,6 @@ package de.uni_siegen.wineme.come_in.thumbnailer;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FilenameUtils;
-
- 
-
 public class FileDoesNotExistException extends IOException {
 
 	private static final long serialVersionUID = -8622959058435621680L;
