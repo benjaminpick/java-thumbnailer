@@ -21,6 +21,8 @@
  +-->
 <project name="javathumbnailer" default="targets" basedir=".">
 
+  <taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" classpath="lib/ant/xmltask.jar" />
+  
   <!--
    | The properties and paths
    +-->
@@ -60,15 +62,14 @@
   <property name="pluginname.file" value="${programname.file}-crawlerplugin-${version.file}.jar"/>
   <property name="pluginname-taglib.file" value="${programname.file}-plugin-taglib-${version.file}.jar"/>
 
-  <!-- Autodetect the platform
+  <!-- Autodetect the platform -->
   <condition property="platform" value="linux">
     <os family="unix"/>
   </condition>
   <condition property="platform" value="win">
     <os family="windows"/>
   </condition>
-   -->
-   
+
   <path id="sourcepath">
     <pathelement location="src"/>
   </path>
@@ -547,5 +548,50 @@
    | (Todo: throw warning when ${is-preview}==false)
    +-->
    <target name="public" depends="clean-all, prepare, make, test-overview, package, package-plugin">
+   </target>
+   
+   <!-- 
+    | Install to regain desktop version 
+   -->
+   <target name="deploy-desktop"> <!-- depends="package-plugin" -->
+   	  <property name="desktop-install" value="${regain-location}/build/runtime/desktop/${platform}" />
+   	  <available property="desktop-install.available" file="${desktop-install}/regain.jar" />
+   	  <fail unless="desktop-install.available" message="Regain is not yet compiled. Call ant runtime-desktop." />
+   	  
+   	  <delete quiet="true">
+   	  	<fileset dir="${desktop-install}/plugins" includes="javathumbnailer-crawlerplugin-*.jar"/>
+   	  </delete>
+   	  <copy file="build/${package.file}" preservelastmodified="true" todir="${desktop-install}/plugins" />
+
+		<!-- TODO: Copy web, taglib -->
+
+		<!-- TODO: If file not exist, copy from default -->
+   	  <xmltask source="${desktop-install}/conf/CrawlerConfiguration.xml" dest="${desktop-install}/conf/CrawlerConfiguration.xml">
+   	  <!-- todo: if not inserted yet. -->
+   	  	<insert path="configuration/crawlerPluginList">
+   	  	 <![CDATA[
+	<crawlerPlugin enabled="true">
+  	  <class>de.uni_siegen.wineme.come_in.thumbnailer.plugin.ThumbnailerPlugin</class>
+  	  <config>
+  	    <section name="thumbnailing">
+   	      <param name="thumbnailFolder">web/thumbs/</param>
+  	      <param name="imageWidth">160</param>
+  	      <param name="imageHeight">120</param>
+  	    </section>
+  	  </config>
+  	</crawlerPlugin>
+  	   	  	 ]]>
+   	  	</insert>	
+	  </xmltask>
+   	  
+   	  <xmltask source="${desktop-install}/conf/DesktopConfiguration.xml" dest="${desktop-install}/conf/DesktopConfiguration.xml">
+   		<remove path="configuration/simple_register_namespace/namespace[@name='thumbnailer']" />
+   	  	<insert path="configuration/simple_register_namespace">
+   	  	 <![CDATA[
+   	  	 	<namespace name="thumbnailer">de.uni_siegen.wineme.come_in.thumbnailer.plugin.sharedlib</namespace>
+   	  	 ]]>
+   	  	</insert>
+   	  </xmltask>
+   	  
    </target>
 </project>
