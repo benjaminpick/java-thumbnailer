@@ -107,7 +107,8 @@
   <path id="test-classpath" cache="true">
     <fileset dir="test/lib">
       <include name="*.jar" />
-    </fileset>  
+    </fileset>
+    <pathelement location="build/classes-test"/>
   </path>
 
   <path id="docpath">
@@ -175,6 +176,7 @@
    +-->
   <target name="clean">
     <delete dir="build/classes"/>
+    <delete dir="build/classes-test"/>
   </target>
 
   <!--
@@ -322,8 +324,8 @@
    +-->
   <target name="make-test" depends="make">
     <echo message="Compiling the test source code ..." />
-    <mkdir dir="build/classes"/>
-    <javac destdir="build/classes"
+    <mkdir dir="build/classes-test"/>
+    <javac destdir="build/classes-test"
            debug="true"
            deprecation="true"
            target="1.5"
@@ -468,10 +470,9 @@
   
     <junit haltonfailure="true" fork="true" filtertrace="on" > <!-- showoutput="true" -->
       <classpath>
-        <path refid="classpath"/>
-        <path refid="classpath-shared"/>
         <path refid="junit"/>
         <path refid="test-classpath" />
+        <path location="test/build/javathumbnailer-standalone.jar" /> <!-- TODO: Remove depencies in test -->
       </classpath>
       <formatter type="plain" usefile="false"/>
       <batchtest>
