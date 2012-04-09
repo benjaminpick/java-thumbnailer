@@ -21,14 +21,15 @@
 	<classpathentry kind="lib" path="lib/ant/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="lib/jodconverter3/jodconverter-core-3.0-beta-3_r220.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-3.7-20101029.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-3.7-20101029.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-schemas-3.7-20101029.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-scratchpad-3.7-20101029.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/commons-logging-1.1-for-pdfbox.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/fontbox-1.6.0-for-pdfbox.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/pdfbox-1.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/cobra-js.jar"/>
 	<classpathentry kind="lib" path="lib/cobra.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-3.8-20120326.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-3.8-20120326.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-schemas-3.8-20120326.jar"/>
+	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-scratchpad-3.8-20120326.jar"/>
+	<classpathentry kind="lib" path="test/lib/commons-exec-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

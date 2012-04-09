@@ -27,3 +27,7 @@ Das ist ein Testsatz und so weiter.Das ist ein Testsatz und so weiter.Das ist ei
 
 
 Das ist ein Testsatz und so weiter.
+
+
+Special chars:
+!"§$%&/()=?'*#+<>|{[]}\'`áß

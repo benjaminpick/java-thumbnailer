@@ -8,8 +8,6 @@ import java.util.Collection;
 
 import org.junit.Before;
 
-import de.uni_siegen.wineme.come_in.thumbnailer.FileDoesNotExistException;
-import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerManager;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODConverterThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.JODExcelConverterThumbnailer;
@@ -23,6 +21,8 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
 
 public class ThumbnailerFileTestDummy extends MyTestCase {
 	protected File inputFile;
+	protected int height = 120;
+	protected int width = 160;
 
 	public ThumbnailerFileTestDummy(File inputFile) {
 		super();
@@ -66,25 +66,34 @@ public class ThumbnailerFileTestDummy extends MyTestCase {
 
 	}
 	
-	public void create_thumbnail(File file) throws FileDoesNotExistException, IOException, ThumbnailerException {
+	public void create_thumbnail(File file) throws Exception
+	{
 		create_thumbnail(file, thumbnailer.chooseThumbnailFilename(file, false));
 	}
 	
-	public void create_thumbnail(File input, File output) throws FileDoesNotExistException, IOException, ThumbnailerException
+	public void create_thumbnail(File input, File output) throws Exception
 	{
 		assertFileExists("Input file does not exist", input);
 		if (output != null && output.exists())
 			output.delete();
 
-		thumbnailer.generateThumbnail(input, output);
+		_create_thumbnail(input, output);
+		
 		assertFileExists("Output could not be generated", output);
 		assertFalse("Output file is empty", 0 == output.length());
-		assertPictureFormat(output, thumbnailer.getCurrentImageWidth(), thumbnailer.getCurrentImageHeight());
+		assertPictureFormat(output, width, height);
+	}
+	
+	public void _create_thumbnail(File input, File output) throws Exception
+	{
+		thumbnailer.generateThumbnail(input, output);
 	}
 	
 	public void setImageSize(int height, int width, int opt)
 	{
-		thumbnailer.setImageSize(height, width, opt);
+		thumbnailer.setImageSize(width, height, opt);
+		this.height = height;
+		this.width = width;
 	}
 	
 	

@@ -26,6 +26,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.OptionBuilder;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -44,10 +51,14 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
  * Little Command-line Application to illustrate the usage of this library.
  * 
  * @author Benjamin
- *
+ * @needs Commons-cli (included in jodconverter)
  */
 public class Main {
 	protected static Logger mLog = Logger.getLogger(Main.class);
+	private static Options options;
+	private static ThumbnailerManager thumbnailer;
+	private static File outFile;
+	private static File inFile;
 	private static final String LOG4J_CONFIG_FILE = "conf/javathumbnailer.log4j.properties";
 	
 	public static void main(String[] params) throws Exception
@@ -59,37 +70,68 @@ public class Main {
 		}
 		initLogging();
 		
-		ThumbnailerManager thumbnailer = new ThumbnailerManager();
+		thumbnailer = new ThumbnailerManager();
 	
-		loadExistingThumbnailers(thumbnailer);
+		loadExistingThumbnailers();
 		
+		// Set Default Values
 		thumbnailer.setImageSize(160, 120, 0);
 		thumbnailer.setThumbnailFolder("thumbs/");
 		
-		File in = new File(params[0]);
-		File out = null;
-		if (params.length > 1)
-			out = new File(params[1]);
+		initParams();
+		parseParams(params);
 		
-		if (out == null)
-			out = thumbnailer.createThumbnail(in);
+		if (outFile == null)
+			outFile = thumbnailer.createThumbnail(inFile);
 		else
-			thumbnailer.generateThumbnail(in, out);
+			thumbnailer.generateThumbnail(inFile, outFile);
 		
-		System.out.println("SUCCESS: Thumbnail created:\n" + out.getAbsolutePath());
+		System.out.println("SUCCESS: Thumbnail created:\n" + outFile.getAbsolutePath());
+	}
+
+	private static void initParams() {
+		options = new Options();
+		options.addOption(OptionBuilder.withArgName("WIDTHxHEIGHT").hasArg().withDescription("Size of the new thumbnail (default: 160x120)").create("size"));
+	}
+
+	private static void parseParams(String[] params) {
+		CommandLineParser parser = new GnuParser();
+		CommandLine line = null;
+		try {
+			line = parser.parse(options, params);
+		} catch ( ParseException e ) {
+			System.err.println("Invalid command line: " + e.getMessage());
+			explainUsage();
+			System.exit(1);			
+		}
+		
+		if (line.hasOption("size"))
+		{
+			// TODO Set
+		}
+		
+		String[] files = line.getArgs();
+		if (files.length == 0 || files.length > 2)
+		{
+			explainUsage();
+			System.exit(1);
+		}
+		inFile = new File(files[0]);
+		if (files.length > 1)
+			outFile = new File(files[1]);
 	}
 
 	private static void explainUsage() {
 		System.out.println("JavaThumbnailer");
 		System.out.println("===============");
 		System.out.println("");
-		System.out.println("Usage: java -jar javathumbnailer-standalone.jar inputfile [outputfile]");
+		System.out.println("Usage: java -jar javathumbnailer-standalone.jar [-size 160x120] inputfile [outputfile]");
 		
+		HelpFormatter formatter = new HelpFormatter();
+		formatter.printHelp( "java -jar javathumbnailer-standalone.jar", options );		
 	}
 
-	protected static void loadExistingThumbnailers(
-			ThumbnailerManager thumbnailer) {
-
+	protected static void loadExistingThumbnailers() {
 		if (classExists("de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.NativeImageThumbnailer"))
 			thumbnailer.registerThumbnailer(new NativeImageThumbnailer());
 
