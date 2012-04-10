@@ -558,24 +558,36 @@
    	  <available property="desktop-install.available" file="${desktop-install}/regain.jar" />
    	  <fail unless="desktop-install.available" message="Regain is not yet compiled. Call ant runtime-desktop." />
    	  
+	  <echo message="Copy Crawler plugin..." />
    	  <delete quiet="true">
    	  	<fileset dir="${desktop-install}/plugins" includes="javathumbnailer-crawlerplugin-*.jar"/>
    	  </delete>
    	  <copy file="build/${pluginname.file}" preservelastmodified="true" todir="${desktop-install}/plugins" />
 
+	  <echo message="Copy Taglib..." />
    	  <copy preservelastmodified="true" todir="${desktop-install}/web">
    	  	<fileset dir="web" />
    	  </copy>
    	  <copy file="build/${pluginname-taglib.file}" preservelastmodified="true" tofile="${desktop-install}/web/taglib/thumbnailer.jar" />
 
    	  <available property="conf.available" file="${desktop-install}/conf/DesktopConfiguration.xml" />
-   	  <copy unless="conf.available" todir="${desktop-install}/conf">
+   	  <!-- <copy unless="conf.available" todir="${desktop-install}/conf">
    	  	<fileset dir="${desktop-install}/conf/default" />   	  
    	  </copy>
-   	  
+   	  -->
+
+	  <echo message="Add to CrawlerConfiguration.xml..." />
    	  <xmltask source="${desktop-install}/conf/CrawlerConfiguration.xml" dest="${desktop-install}/conf/CrawlerConfiguration.xml">
-   	  <!-- todo: if not inserted yet. -->
-   	  	<insert path="configuration/crawlerPluginList">
+ 		<call path="configuration/crawlerPluginList/crawlerPlugin/class">
+ 			<param name="class" path="text()" default="none" />
+ 			<actions>
+ 				<condition property="thumbnailer-present">
+ 					<equals arg1="@{class}" arg2="de.uni_siegen.wineme.come_in.thumbnailer.plugin.ThumbnailerPlugin" />
+ 				</condition>
+ 				<!-- <echo> Found crawler plugin config: @{class}</echo> -->
+ 			</actions>
+ 		</call>
+   	  	<insert path="configuration/crawlerPluginList" unless="thumbnailer-present">
    	  	 <![CDATA[
 	<crawlerPlugin enabled="true">
   	  <class>de.uni_siegen.wineme.come_in.thumbnailer.plugin.ThumbnailerPlugin</class>
@@ -591,6 +603,7 @@
    	  	</insert>	
 	  </xmltask>
    	  
+	  <echo message="Add to DesktopConfiguration.xml..." />   	  
    	  <xmltask source="${desktop-install}/conf/DesktopConfiguration.xml" dest="${desktop-install}/conf/DesktopConfiguration.xml">
    		<remove path="configuration/simple_register_namespace/namespace[@name='thumbnailer']" />
    	  	<insert path="configuration/simple_register_namespace">
