@@ -561,11 +561,18 @@
    	  <delete quiet="true">
    	  	<fileset dir="${desktop-install}/plugins" includes="javathumbnailer-crawlerplugin-*.jar"/>
    	  </delete>
-   	  <copy file="build/${package.file}" preservelastmodified="true" todir="${desktop-install}/plugins" />
+   	  <copy file="build/${pluginname.file}" preservelastmodified="true" todir="${desktop-install}/plugins" />
 
-		<!-- TODO: Copy web, taglib -->
+   	  <copy preservelastmodified="true" todir="${desktop-install}/web">
+   	  	<fileset dir="web" />
+   	  </copy>
+   	  <copy file="build/${pluginname-taglib.file}" preservelastmodified="true" tofile="${desktop-install}/web/taglib/thumbnailer.jar" />
 
-		<!-- TODO: If file not exist, copy from default -->
+   	  <available property="conf.available" file="${desktop-install}/conf/DesktopConfiguration.xml" />
+   	  <copy unless="conf.available" todir="${desktop-install}/conf">
+   	  	<fileset dir="${desktop-install}/conf/default" />   	  
+   	  </copy>
+   	  
    	  <xmltask source="${desktop-install}/conf/CrawlerConfiguration.xml" dest="${desktop-install}/conf/CrawlerConfiguration.xml">
    	  <!-- todo: if not inserted yet. -->
    	  	<insert path="configuration/crawlerPluginList">
