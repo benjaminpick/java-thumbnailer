@@ -571,10 +571,9 @@
    	  <copy file="build/${pluginname-taglib.file}" preservelastmodified="true" tofile="${desktop-install}/web/taglib/thumbnailer.jar" />
 
    	  <available property="conf.available" file="${desktop-install}/conf/DesktopConfiguration.xml" />
-   	  <!-- <copy unless="conf.available" todir="${desktop-install}/conf">
+   	  <copy todir="${desktop-install}/conf" overwrite="false" granularity="5256000000">
    	  	<fileset dir="${desktop-install}/conf/default" />   	  
    	  </copy>
-   	  -->
 
 	  <echo message="Add to CrawlerConfiguration.xml..." />
    	  <xmltask source="${desktop-install}/conf/CrawlerConfiguration.xml" dest="${desktop-install}/conf/CrawlerConfiguration.xml">
