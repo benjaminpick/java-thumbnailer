@@ -18,3 +18,7 @@ java.dir=C:/Programme/Java/jdk1.6.0_12
 # If package-plugin: where the regain installation is located
 # We need to have access to its build.xml in order to build their classes (linkage)
 regain-location=C:/Programme/Regain
+
+# The directory where the tomcat server is located
+# For targets: deploy-server,deploy-tomcat
+deploy-target.dir=/home/b/bin/apache-tomcat/webapps

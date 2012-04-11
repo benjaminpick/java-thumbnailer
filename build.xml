@@ -550,33 +550,24 @@
    <target name="public" depends="clean-all, prepare, make, test-overview, package, package-plugin">
    </target>
    
-   <!-- 
-    | Install to regain desktop version 
+   <!--
+    | Deploy crawler related changes 
+    | Params:
+    ${install} - Path to main folder
+    ${install-conf} - Path to conf folder
    -->
-   <target name="deploy-desktop"> <!-- depends="package-plugin" -->
-   	  <property name="desktop-install" value="${regain-location}/build/runtime/desktop/${platform}" />
-   	  <available property="desktop-install.available" file="${desktop-install}/regain.jar" />
-   	  <fail unless="desktop-install.available" message="Regain is not yet compiled. Call ant runtime-desktop." />
+   <target name="-deploy-crawler">
+   	  <available property="install.available" file="${install-conf}/CrawlerConfiguration.xml" />
+   	  <fail unless="install.available" message="Regain is not yet compiled / ${install-conf}/CrawlerConfiguration.xml is missing." />
    	  
 	  <echo message="Copy Crawler plugin..." />
    	  <delete quiet="true">
-   	  	<fileset dir="${desktop-install}/plugins" includes="javathumbnailer-crawlerplugin-*.jar"/>
+   	  	<fileset dir="${install}/plugins" includes="javathumbnailer-crawlerplugin-*.jar"/>
    	  </delete>
-   	  <copy file="build/${pluginname.file}" preservelastmodified="true" todir="${desktop-install}/plugins" />
-
-	  <echo message="Copy Taglib..." />
-   	  <copy preservelastmodified="true" todir="${desktop-install}/web">
-   	  	<fileset dir="web" />
-   	  </copy>
-   	  <copy file="build/${pluginname-taglib.file}" preservelastmodified="true" tofile="${desktop-install}/web/taglib/thumbnailer.jar" />
-
-   	  <available property="conf.available" file="${desktop-install}/conf/DesktopConfiguration.xml" />
-   	  <copy todir="${desktop-install}/conf" overwrite="false" granularity="5256000000">
-   	  	<fileset dir="${desktop-install}/conf/default" />   	  
-   	  </copy>
-
-	  <echo message="Add to CrawlerConfiguration.xml..." />
-   	  <xmltask source="${desktop-install}/conf/CrawlerConfiguration.xml" dest="${desktop-install}/conf/CrawlerConfiguration.xml">
+   	  <copy file="build/${pluginname.file}" preservelastmodified="true" todir="${install}/plugins" />
+   	  
+   	  <echo message="Add to CrawlerConfiguration.xml..." />
+   	  <xmltask source="${install-conf}/CrawlerConfiguration.xml" dest="${install-conf}/CrawlerConfiguration.xml">
  		<call path="configuration/crawlerPluginList/crawlerPlugin/class">
  			<param name="class" path="text()" default="none" />
  			<actions>
@@ -601,7 +592,55 @@
   	   	  	 ]]>
    	  	</insert>	
 	  </xmltask>
+	  
+	  <antcall target="-clean-index">
+	  	<param name="index" value="${install}/searchindex" />
+	  	<param name="unless-cond" value="thumbnailer-present" />
+	  </antcall>
+   </target>
+   
+   <target name="-clean-index" unless="unless-cond">
+   	  <echo message="Delete searchindex to force re-indexing." />
+	  <delete failonerror="false" dir="${index}" />
+   </target>
+   
+   
+   <!--
+    | Deploy search related changes 
+    | Params:
+    ${install} - Path to main folder
+    ${install-conf} - Path to conf folder
+   -->
+   <target name="-deploy-search">
+   	  <available property="install.available" file="${install-web}/index.jsp" />
+   	  <fail unless="install.available" message="Regain is not yet compiled / ${install-web}/index.jsp is missing." />
+   	  <echo message="Copy Taglib..." />
    	  
+   	  <copy preservelastmodified="true" todir="${install-web}">
+   	  	<fileset dir="web" />
+   	  </copy>
+   	  
+   	  <copy file="build/${pluginname-taglib.file}" preservelastmodified="true" tofile="${install-web}/taglib/thumbnailer.jar" />
+   </target>
+   <!-- 
+    | Install to regain desktop version 
+   -->
+   <target name="deploy-desktop"> <!-- depends="package-plugin" -->
+      <echo message="Deploying desktop version changes ..." /> 
+   	  <property name="desktop-install" value="${regain-location}/build/runtime/desktop/${platform}" />
+   	  <available property="conf.available" file="${desktop-install}/conf/DesktopConfiguration.xml" />
+   	  <copy todir="${desktop-install}/conf" overwrite="false" granularity="5256000000">
+   	  	<fileset dir="${desktop-install}/conf/default" />   	  
+   	  </copy>
+
+   	  <antcall target="-deploy-crawler">
+   	  	<param name="install" value="${desktop-install}" />
+   	  	<param name="install-conf" value="${desktop-install}/conf" />
+   	  </antcall>
+   	  <antcall target="-deploy-search">
+   	  	<param name="install-web" value="${desktop-install}/web" />   	  
+   	  </antcall>
+   	     	  
 	  <echo message="Add to DesktopConfiguration.xml..." />   	  
    	  <xmltask source="${desktop-install}/conf/DesktopConfiguration.xml" dest="${desktop-install}/conf/DesktopConfiguration.xml">
    		<remove path="configuration/simple_register_namespace/namespace[@name='thumbnailer']" />
@@ -611,6 +650,31 @@
    	  	 ]]>
    	  	</insert>
    	  </xmltask>
+   </target>
+   
+   <target name="deploy-crawler">
+     <echo message="Deploying server version changes (Crawler) ..." />
+      
+   	 <property name="crawler-install" value="${regain-location}/build/runtime/crawler" />
+      <antcall target="-deploy-crawler">
+   	  	<param name="install" value="${crawler-install}" />
+   	  	<param name="install-conf" value="${crawler-install}" />
+   	  </antcall>
+   	  <echo message="You may need to adjust the thumbnail Folder so that it is /thumbs/ inside the tomcat/regain app-folder." />
+   	
+   </target>
+   
+   <target name="deploy-tomcat">
+      <echo message="Deploying server version changes (Search) ..." />
+      <property name="tomcat-install" value="${deploy-target.dir}/regain" />
+   	  <antcall target="-deploy-search">
+   	  	<param name="install-web" value="${tomcat-install}" />   	  
+   	  </antcall>
+   	  <copy file="${tomcat-install}/taglib/thumbnailer.jar" preservelastmodified="true" todir="${tomcat-install}/WEB-INF/lib" />
    	  
+   	  <echo message="You may need to restart tomcat in order to see the changes." />
+   </target>   
+   
+   <target name="deploy-server" depends="deploy-crawler, deploy-tomcat">
    </target>
 </project>
