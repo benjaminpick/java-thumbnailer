@@ -5,7 +5,7 @@ This is a Java Plugin for creating Thumbnails of files during the crawling proce
 It can also be used as a standalone library to create thumbnails of different file types (image, text).<br>
 (Regain is a Lucene-based desktop search engine.)
 
-*Current Version* : 0.5 (Beta)<br>
+*Current Version* : 0.5 (Beta) (Go to the (main repo)[https://github.com/benjaminpick/java-thumbnailer/] to get the latest version)<br>
 *Licence* : GNU GPL 2.1 or later
 
 Requirements
