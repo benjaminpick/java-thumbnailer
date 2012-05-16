@@ -257,7 +257,7 @@ public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 
 		boolean generated = false;
 		
-
+		// MIME might be known already (in case of recursive thumbnail managers)
 		if (mimeType == null)
 		{
 			mimeType = mimeTypeDetector.getMimeType(input);
@@ -267,11 +267,12 @@ public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 		if (mimeType != null)
 			generated = executeThumbnailers(mimeType, input, output, mimeType);
 		
+		// Try again using wildcard thumbnailers
 		if (!generated)
 			generated = executeThumbnailers(ALL_MIME_WILDCARD, input, output, mimeType);
 		
 		if (!generated)
-			throw new ThumbnailerException("No suitable Thumbnailer has been found.");
+			throw new ThumbnailerException("No suitable Thumbnailer has been found. (File: " + input.getName() + " ; Detected MIME: " + mimeType + ")");
 	}
 
 	/**
