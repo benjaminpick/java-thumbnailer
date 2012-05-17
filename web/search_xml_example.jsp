@@ -31,6 +31,8 @@
 			<filesize><search:hit_field field="size" escape="xml"/></filesize>
 			<filesize_human><search:hit_size escape="xml"/></filesize_human>
 			<lastModified><search:hit_field field="last-modified" escape="xml"/></lastModified>
+			<thumbnail><search:hit_field field="thumbnailer_filelocation" escape="xml"/></thumbnail>
+			<thumbnail_status><search:hit_field field="thumbnailer_status" escape="xml"/></thumbnail_status>
 			<thumbnail_img><thumbnailer:img missing="img/image_missing.png" escape="xml"/></thumbnail_img>
 		</result>
 </search:list>
