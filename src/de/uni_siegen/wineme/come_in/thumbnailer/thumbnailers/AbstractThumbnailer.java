@@ -38,18 +38,42 @@ import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
  */
 public abstract class AbstractThumbnailer implements Thumbnailer, ThumbnailerConstants {
 
+	/**
+	 * @var Height of thumbnail picture to create (in Pixel)
+	 */
 	protected int thumbHeight;
+
+	/**
+	 * @var Width of thumbnail picture to create (in Pixel)
+	 */
 	protected int thumbWidth;
+	
+	/**
+	 * @var Options for image resizer (currently unused)
+	 */
 	protected int imageResizeOptions = 0;
 	
+	/**
+	 * @var Keep memory if this thumbnailer was closed before.
+	 */
 	protected boolean closed = false;
 	
+	/**
+	 * Initialize the thumbnail size from default constants.
+	 */
 	public AbstractThumbnailer()
 	{
 		thumbHeight = THUMBNAIL_DEFAULT_HEIGHT; 
 		thumbWidth  = THUMBNAIL_DEFAULT_WIDTH; 
 	}
 	
+	/**
+	 * Set a new Thumbnail size. All following thumbnails will be generated in this size.
+	 * 
+	 * @param width					Width in Pixel
+	 * @param height				Height in Pixel
+	 * @param imageResizeOptions	Options for ResizeImage (currently ignored)
+	 */
 	@Override
 	public void setImageSize(int thumbWidth, int thumbHeight, int imageResizeOptions) {
 		this.thumbHeight = thumbHeight;
@@ -75,6 +99,13 @@ public abstract class AbstractThumbnailer implements Thumbnailer, ThumbnailerCon
 		return thumbHeight;
 	}
 	
+	/**
+	 * This function will be called after all Thumbnails are generated.
+	 * Note: This acts as a Deconstructor. Do not expect this object to work
+	 * after calling this method.
+	 * 
+	 * @throws IOException	If some errors occured during finalising
+	 */
 	@Override
 	public void close() throws IOException {
 		// Do nothing for now - other Thumbnailer may need cleanup code here.

@@ -7,7 +7,7 @@ version.prefix=0.5
 is-preview=true
 
 # Should be compiled with the debug flag?
-debug=false
+debug=true
 
 # The location of the Java API
 java-api-location=http://java.sun.com/javase/6/docs/api/

@@ -29,9 +29,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerException;
 
 /**
  * This interface is implemented by any method suitable to create a thumbnail of a given File.
- * 
  * @author Benjamin
- *
  */
 public interface Thumbnailer extends Closeable {
 

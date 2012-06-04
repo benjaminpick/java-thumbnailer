@@ -81,7 +81,9 @@ public class ImgTag extends AbstractHitTag implements ThumbnailerLuceneConstants
     
     // New For Thumbnail Tag
     if (location != null) {
-        response.print("<img src=\"" + rewrite(location) + "\" " + size + " />");
+        response.print("<img src=\"");
+        response.printNoHtml(rewrite(location));
+        response.print("\" " + size + " />");
     }
     else {
       String img_missing = getParameter("missing", false);
