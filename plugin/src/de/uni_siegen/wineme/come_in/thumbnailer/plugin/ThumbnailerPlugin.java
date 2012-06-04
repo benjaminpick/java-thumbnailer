@@ -57,22 +57,23 @@ import net.sf.regain.crawler.plugin.AbstractCrawlerPlugin;
  * Integration of Thumbnailer into Regain
  * 
  * In order to save ressources, the Thumbnail Library remains loaded only until the end of the crawling process.
+ * 
  * @author Benjamin
  */
 public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements ThumbnailerLuceneConstants, ThumbnailerConstants
 {
 	/**
-	 * Logger instance
+	 * @var Logger instance
 	 */
 	private static Logger mLog = Logger.getLogger(ThumbnailerPlugin.class);
 
 	/**
-	 * Thumbnailer Manager (can be null if deactivated)
+	 * @var Thumbnailer Manager (can be null if deactivated)
 	 */
 	private ThumbnailerManager thumbnailer;
 	
 	/**
-	 * If thumbnails should be generated.
+	 * @var If thumbnails should be generated.
 	 * This can be deactivated due to initialization errors, or via config.
 	 */
 	private boolean thumbnailGenerationDeactivated = false;
@@ -84,10 +85,14 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	private int paramThumbnailHeight;
 	private File paramThumbnailFolder;
 	private String paramOpenOfficeHome;
-
 	private String paramOpenOfficeProfile;
 		
-	
+	/**
+	 * Initializes the plugin.
+	 *
+	 * @param 	config 	The configuration for this plugin.
+	 * @throws RegainException When the configuration has an error.
+	 */
 	@Override
 	public void init(PreparatorConfig config) throws RegainException {
 		Map<String, String> thumbnailConfig = config.getSectionWithName("thumbnailing");
@@ -141,8 +146,14 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	}
 	
 	/**
+	 * Called before the crawling process starts (Crawler::run()).
 	 * Initialize Thumbnail Generation:
 	 * load Config and configure Thumbnailer
+	 * 
+	 * This may be called multiple times during the lifetime of a plugin instance,
+	 * but CrawlerPlugin::onFinishCrawling() is always called in between.
+	 * 
+	 * @param crawler 		The crawler instance that is about to begin crawling
 	 */
 	public void onStartCrawling(Crawler crawler) {
 		if (thumbnailGenerationDeactivated)
@@ -185,7 +196,12 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	}
 
 	/**
+	 * Called after the crawling process has finished or aborted (because of an exception):
 	 * Close the Thumbnail Generator.
+	 * 
+	 * This may be called multiple times during the lifetime of a plugin instance.
+	 * 
+	 * @param crawler 		The crawler instance that is about to finish crawling
 	 */
 	public void onFinishCrawling(Crawler crawler) {
 		if (thumbnailer == null)
@@ -197,10 +213,14 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	}
 
 	/**
-	 * Called when a document is dropped from lucene index.
+	 * Called when a document is deleted from the index:
+	 * Delete the created thumbnail
 	 * 
-	 * We will need to:
-	 * <li>Delete the created thumbnail
+	 * Note that when being replaced by another document ("update index"),
+	 * the old document is added to index first, deleting is part of the cleaning-up-at-the-end-Phase.
+	 * 
+	 * @param doc			  Document to read
+	 * @param index			Luce Index Reader
 	 */
 	public void onDeleteIndexEntry(Document doc, IndexReader index) {
 		String location = getLuceneField(doc, LUCENE_FIELD_NAME_FILE_LOCATION);
@@ -244,8 +264,11 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	}
 
 	/**
-	 * After the document was prepared, let's add a thumbnail.
-	 * (Create the thumbnail and add the information about its creation to the lucene entry.)
+	 * Called after a document is being prepared to be added to the index:
+	 * Create the thumbnail and add the information about its creation to the lucene entry.
+	 * 
+	 * @param document		Regain document that was analysed
+	 * @param preparator	Preparator that has analysed this document
 	 */
 	public void onAfterPrepare(RawDocument document, WriteablePreparator preparator) {
 		String thumbnailerStatus = "";
@@ -284,10 +307,4 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 		preparator.addAdditionalField(LUCENE_FIELD_NAME_STATUS, thumbnailerStatus);
 		preparator.addAdditionalField(LUCENE_FIELD_NAME_FILE_LOCATION, thumbnailLocation);
 	}
-
-
-
-
-
-
 }

@@ -43,6 +43,9 @@ import de.uni_siegen.wineme.come_in.thumbnailer.plugin.ThumbnailerLuceneConstant
  * <p>
  * Tag Parameters:
  * <ul>
+ * <li>width: Width of the image (px)
+ * <li>height: Height of the image (px)
+ * <li>missing: Name of image to show when no image was generated
  * </ul>
  *
  * @author b
@@ -58,42 +61,42 @@ public class ImgTag extends AbstractHitTag implements ThumbnailerLuceneConstants
    * @param hitIndex The index of the hit.
    * @throws RegainException If there was an exception.
    */
-  protected void printEndTag(PageRequest request, PageResponse response,
-          Document hit, int hitIndex)
-          throws RegainException {
-    //SearchResults results = SearchToolkit.getSearchResults(request);
+	protected void printEndTag(PageRequest request, PageResponse response,
+			Document hit, int hitIndex)
+	throws RegainException {
+		//SearchResults results = SearchToolkit.getSearchResults(request);
 
-    int width = getParameterAsInt("width", THUMBNAIL_DEFAULT_WIDTH);
-    if (width < 0)
-      width = THUMBNAIL_DEFAULT_WIDTH;
-    
-    int height = getParameterAsInt("height", THUMBNAIL_DEFAULT_HEIGHT);
-    if (height < 0)
-      height = THUMBNAIL_DEFAULT_HEIGHT;
-    
-    String size = "width=\"" + width + "\" height=\"" + height + "\"";
+		int width = getParameterAsInt("width", THUMBNAIL_DEFAULT_WIDTH);
+		if (width < 0)
+			width = THUMBNAIL_DEFAULT_WIDTH;
 
-    String status = SearchToolkit.getCompressedFieldValue(hit, LUCENE_FIELD_NAME_STATUS);
-    
-    String location = null;
-    if (LUCENE_FIELD_VALUE_STATUS_OK.equals(status))
-      location = SearchToolkit.getCompressedFieldValue(hit, LUCENE_FIELD_NAME_FILE_LOCATION);
-    
-    // New For Thumbnail Tag
-    if (location != null) {
-        response.print("<img src=\"");
-        response.printNoHtml(rewrite(location));
-        response.print("\" " + size + " />");
-    }
-    else {
-      String img_missing = getParameter("missing", false);
-      if (img_missing != null && !img_missing.isEmpty())
-        response.print("<img src=\"" +img_missing + "\" " + size + " />");
-    }
-  }
+		int height = getParameterAsInt("height", THUMBNAIL_DEFAULT_HEIGHT);
+		if (height < 0)
+			height = THUMBNAIL_DEFAULT_HEIGHT;
 
-private String rewrite(String value) {
-  // TODO: Config Rewrite Rule / Thumbnail Base Path
-	return "thumbs/" + value;
-}
+		String size = "width=\"" + width + "\" height=\"" + height + "\"";
+
+		String status = SearchToolkit.getCompressedFieldValue(hit, LUCENE_FIELD_NAME_STATUS);
+
+		String location = null;
+		if (LUCENE_FIELD_VALUE_STATUS_OK.equals(status))
+			location = SearchToolkit.getCompressedFieldValue(hit, LUCENE_FIELD_NAME_FILE_LOCATION);
+
+		// New For Thumbnail Tag
+		if (location != null) {
+			response.print("<img src=\"");
+			response.printNoHtml(rewrite(location));
+			response.print("\" " + size + " />");
+		}
+		else {
+			String img_missing = getParameter("missing", false);
+			if (img_missing != null && !img_missing.isEmpty())
+				response.print("<img src=\"" +img_missing + "\" " + size + " />");
+		}
+	}
+
+	private String rewrite(String value) {
+		// TODO: Config Rewrite Rule / Thumbnail Base Path
+		return "thumbs/" + value;
+	}
 }

@@ -36,7 +36,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
 /**
  * This class manages all available Thumbnailers.
- * It's purpose is to delegate a File to the appropriate Thumbnailer in order to get a Thumbnail of it.
+ * Its purpose is to delegate a File to the appropriate Thumbnailer in order to get a Thumbnail of it.
  * This is done in a fall-through manner: If several Thumbnailer can handle a specific filetype,
  * all are tried until a Thumbnail could be created.
  * 
@@ -44,19 +44,36 @@ import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
  * Then call generateThumbnail().
  * 
  * @author Benjamin
- * 
-
  */
 public class ThumbnailerManager implements Thumbnailer, ThumbnailerConstants {
 
+	/**
+	 * @var Starting estimate of the number of mime types that the thumbnailer can manager
+	 */
 	private static final int DEFAULT_NB_MIME_TYPES = 40;
+	/**
+	 * @var Starting estimate of the number of thumbnailers per mime type
+	 */
 	private static final int DEFAULT_NB_THUMBNAILERS_PER_MIME = 5;
 	
-	/** MIME Type for "all MIME" within thumbnailers Hash */
+	/** 
+	 * @var MIME Type for "all MIME" within thumbnailers Hash
+	 */
 	private static final String ALL_MIME_WILDCARD = "*/*";
 	
+	/**
+	 * @var Width of thumbnail picture to create (in Pixel)
+	 */
 	private int thumbWidth;
+	
+	/**
+	 * @var Height of thumbnail picture to create (in Pixel)
+	 */
 	private int thumbHeight;
+
+	/**
+	 * @var Options for image resizer (currently unused)
+	 */
 	private int thumbOptions = 0;
 	
 	/** Folder under which new thumbnails should be filed */
