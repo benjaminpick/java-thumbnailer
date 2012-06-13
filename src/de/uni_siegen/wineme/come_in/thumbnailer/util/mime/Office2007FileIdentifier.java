@@ -41,7 +41,7 @@ public class Office2007FileIdentifier implements MimeTypeIdentifier {
 	
 	@Override
 	public String identify(String mimeType, byte[] bytes, File file) {
-		if (mimeType.equals("application/zip") || mimeType.startsWith("application/vnd."))
+		if (mimeType != null && (mimeType.equals("application/zip") || mimeType.startsWith("application/vnd.")))
 		{
 			ZipFile zipFile = null;
 			ZipEntry entry = null;
