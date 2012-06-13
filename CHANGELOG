@@ -6,9 +6,14 @@ CHANGELOG of java-thumbnailer
 # Enhance Feature
 
 
-v0.5
+v0.6
 ----
 (not released yet)
++ Automatic regain installation via ant (see https://github.com/benjaminpick/java-thumbnailer/wiki/Building-from-source)
+
+v0.5
+----
+(30. March 2012)
 * Catch all errors of POI (no idea in which edge case this could change something)
 * MS-Office-FileIdentifiers does not need temporary files anymore.
 * Improve Perfomance of PDFBox a little bit
