@@ -68,6 +68,7 @@ public class MIMEDectectionExtensiveTest implements TestConfiguration
 			
 			extensions.add(FilenameUtils.getExtension(input.getName()));
 		}
+		extensions.add("");
 		
 		Collection<Object[]> param = new ArrayList<Object[]>();
 		for (File input : testfiles)
@@ -81,13 +82,11 @@ public class MIMEDectectionExtensiveTest implements TestConfiguration
 			
 			for (String otherExt : extensions)
 			{
-				/* 
-				// Only test files where extension is wrong:
-				if (otherExt.equals(myExt))
-					continue; 
-				*/
+				String newFilename = tmpDir.getAbsolutePath() + File.separator + myName + "-" + myExt;
+				if (!otherExt.isEmpty())
+					newFilename += "." + otherExt;
 				
-				File output = new File(tmpDir.getAbsolutePath() + File.separator + myName + "- " + myExt + "." + otherExt);
+				File output = new File(newFilename);
 				try {
 					FileUtils.copyFile(input, output);
 					
