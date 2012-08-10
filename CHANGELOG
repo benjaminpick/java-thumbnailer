@@ -11,6 +11,7 @@ v0.6
 (not released yet)
 + Automatic regain installation via ant (see https://github.com/benjaminpick/java-thumbnailer/wiki/Building-from-source)
 * Fix NullPointerException for Office2007FileIdentifier
++ Change Mime Type in regain database to detected one (our mime type detector is more accurate than regain's)
 
 v0.5
 ----

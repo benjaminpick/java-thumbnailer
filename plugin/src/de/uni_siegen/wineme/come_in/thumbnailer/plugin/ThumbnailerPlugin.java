@@ -45,6 +45,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.OpenOfficeThumbnail
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.PDFBoxThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
+import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
 import net.sf.regain.RegainException;
 import net.sf.regain.crawler.Crawler;
@@ -86,6 +87,8 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	private File paramThumbnailFolder;
 	private String paramOpenOfficeHome;
 	private String paramOpenOfficeProfile;
+
+	private MimeTypeDetector mimeTypeDetector;
 		
 	/**
 	 * Initializes the plugin.
@@ -143,6 +146,8 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 		
 		JODConverterThumbnailer.setOpenOfficeHomeFolder(paramOpenOfficeHome);
 		JODConverterThumbnailer.setOpenOfficeProfileFolder(paramOpenOfficeProfile);
+		
+		mimeTypeDetector = new MimeTypeDetector();
 	}
 	
 	/**
@@ -284,12 +289,16 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 				mLog.error("File could not be thumbnailed: input file could not be retrieved from Regain", e);
 				return;
 			}
+			// Get Mime
+			String mimeType = mimeTypeDetector.getMimeType(input);
+			mLog.debug("Detected Mime-Typ: " + mimeType);
+			document.setMimeType(mimeType);
 			
 			// Generate Thumbnail
 			File output = thumbnailer.chooseThumbnailFilename(input, true);
 
 			try {
-				thumbnailer.generateThumbnail(input, output);
+				thumbnailer.generateThumbnail(input, output, mimeType);
 
 				thumbnailLocation = IOUtil.getRelativeFilename(paramThumbnailFolder, output);
 				mLog.info("Generated Thumbnail at " + thumbnailLocation);
