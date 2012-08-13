@@ -60,9 +60,9 @@ public class OpenOfficeThumbnailer extends AbstractThumbnailer {
 			
 			in = new BufferedInputStream(zipFile.getInputStream(entry));				
 
-			ResizeImage resizer = new ResizeImage(thumbWidth, thumbHeight);
-			resizer.setInputImage(in);
-			resizer.writeOutput(output);
+			new ResizeImage(thumbWidth, thumbHeight)
+				.setInputImage(in)
+				.writeOutput(output);
 			
 			in.close();
 		}
@@ -78,6 +78,7 @@ public class OpenOfficeThumbnailer extends AbstractThumbnailer {
      * 
      * @return MIME-Types
      */
+	@Override
 	public String[] getAcceptedMIMETypes()
 	{
 		return new String[] {

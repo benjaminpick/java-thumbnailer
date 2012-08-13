@@ -39,7 +39,6 @@ import de.uni_siegen.wineme.come_in.thumbnailer.UnsupportedInputFileFormatExcept
  * Resize an image.
  * 
  * @author Benjamin
- * @TODO Comment. Refactor?? (3 lines of code per generation)
  */
 public class ResizeImage {
 
@@ -100,19 +99,41 @@ public class ResizeImage {
 		this.thumbHeight = thumbHeight;
 	}
 	
-	public void setInputImage(File input) throws IOException
+	/**
+	 * Set the input image
+	 * @param input	File that should be resized
+	 * @return A reference to this (to allow chaining of function calls)
+	 * @throws IOException	If file cannot be read
+	 */
+	public ResizeImage setInputImage(File input) throws IOException
 	{
 		BufferedImage image = ImageIO.read(input);
 		setInputImage(image);
+		
+		return this;
 	}
 	
-	public void setInputImage(InputStream input) throws IOException
+	/**
+	 * Set the input image
+	 * @param input	File that should be resized
+	 * @return A reference to this (to allow chaining of function calls)
+	 * @throws IOException	If file cannot be read
+	 */
+	public ResizeImage setInputImage(InputStream input) throws IOException
 	{
 		BufferedImage image = ImageIO.read(input);
 		setInputImage(image);
+		
+		return this;
 	}
 	
-	public void setInputImage(BufferedImage input) throws UnsupportedInputFileFormatException
+	/**
+	 * Set the input image
+	 * @param input	Image that should be resized
+	 * @return A reference to this (to allow chaining of function calls)
+	 * @throws IOException	If file cannot be read
+	 */
+	public ResizeImage setInputImage(BufferedImage input) throws UnsupportedInputFileFormatException
 	{
 		if (input == null)
 			throw new UnsupportedInputFileFormatException("The image reader could not open the file.");
@@ -121,6 +142,8 @@ public class ResizeImage {
 		isProcessed = false;
 		imageWidth    = inputImage.getWidth(null);
 		imageHeight   = inputImage.getHeight(null);
+		
+		return this;
 	}
 	
 	public void writeOutput(File output) throws IOException

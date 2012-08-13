@@ -35,5 +35,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/regain-svn/lib/lucene-highlighter-3.6.0.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/lucene-memory-3.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/xuggler/xuggle-xuggler-5.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
