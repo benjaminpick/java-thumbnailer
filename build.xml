@@ -85,6 +85,9 @@
     <fileset dir="lib/jodconverter3">
       <include name="*.jar"/>
     </fileset>
+    <fileset dir="lib/xuggler">
+      <include name="*.jar"/>
+    </fileset>
     <fileset dir="lib/shared-with-regain-preperators">
       <include name="*.jar"/>
     </fileset>

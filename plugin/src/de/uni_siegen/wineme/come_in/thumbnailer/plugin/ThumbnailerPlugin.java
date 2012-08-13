@@ -44,6 +44,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.NativeImageThumbnai
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.OpenOfficeThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.PDFBoxThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
+import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.XugglerVideoThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.IOUtil;
 import de.uni_siegen.wineme.come_in.thumbnailer.util.mime.MimeTypeDetector;
 
@@ -195,6 +196,8 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 			}
 	
 			thumbnailer.registerThumbnailer(new ScratchThumbnailer());
+			
+			thumbnailer.registerThumbnailer(new XugglerVideoThumbnailer());
 		} catch (RuntimeException e) {
 			mLog.error("Not all thumbnailers could be registered:", e);
 		}

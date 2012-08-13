@@ -18,6 +18,7 @@ import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.NativeImageThumbnai
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.OpenOfficeThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.PDFBoxThumbnailer;
 import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.ScratchThumbnailer;
+import de.uni_siegen.wineme.come_in.thumbnailer.thumbnailers.XugglerVideoThumbnailer;
 
 public class ThumbnailerFileTestDummy extends MyTestCase {
 	protected File inputFile;
@@ -63,6 +64,8 @@ public class ThumbnailerFileTestDummy extends MyTestCase {
 		}
 
 		thumbnailer.registerThumbnailer(new ScratchThumbnailer());
+		
+		thumbnailer.registerThumbnailer(new XugglerVideoThumbnailer());
 
 	}
 	

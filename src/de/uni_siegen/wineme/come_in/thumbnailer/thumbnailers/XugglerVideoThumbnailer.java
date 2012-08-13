@@ -44,11 +44,21 @@ public class XugglerVideoThumbnailer extends AbstractThumbnailer {
 
 	protected IMediaReader videoReader;
 	
-	public XugglerVideoThumbnailer()
-	{
+	/**
+	 * Generate a Thumbnail of the input file.
+	 * 
+	 * @param input		Input file that should be processed
+	 * @param output	File in which should be written
+	 * @param mimeType	MIME-Type of input file (null if unknown)
+	 * @throws IOException			If file cannot be read/written
+	 * @throws ThumbnailerException If the thumbnailing process failed.
+	 */
+	public void generateThumbnail(File input, File output, String mimeType) throws IOException, ThumbnailerException {
+		if (mimeType != null && !mimeType.startsWith("video/") && !mimeType.startsWith("application/x-"))
+			throw new ThumbnailerException("Not a video file!");
 		
-	}
-	
+		generateThumbnail(input, output);
+	}	
 	/**
 	 * Generate a Thumbnail of the input file.
 	 * 
@@ -82,20 +92,6 @@ public class XugglerVideoThumbnailer extends AbstractThumbnailer {
 		new ResizeImage(thumbWidth, thumbHeight)
 			.setInputImage(thumbnailImage)
 			.writeOutput(output);
-	}
-
-    /**
-     * Get a List of accepted File Types.
-     * All OpenOffice Formats are accepted.
-     * 
-     * @return MIME-Types
-     */
-	@Override
-	public String[] getAcceptedMIMETypes()
-	{
-		return new String[] {
-			      "video/*"
-		};
 	}
 	
 	private class DecodeAndCaptureFrames extends MediaListenerAdapter
@@ -169,7 +165,7 @@ public class XugglerVideoThumbnailer extends AbstractThumbnailer {
 		    }
 		    catch (Exception e)
 		    {
-		      e.printStackTrace();
+		      // Nothing to do here ...
 		    }
 		  }
 	}

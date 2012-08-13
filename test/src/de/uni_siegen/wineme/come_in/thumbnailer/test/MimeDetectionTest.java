@@ -131,7 +131,7 @@ public class MimeDetectionTest extends MyTestCase {
 		assertTrue("doesExtensionMatchMimeType of Scratch didn't return true", mimeType.doesExtensionMatchMimeType("sb", "application/x-mit-scratch"));
 		assertMime("application/x-mit-scratch", "test2-sb.sbx");
 	}
-	
+
 	public void assertMime(String expectedMime, String filename)
 	{
 		String mime = mimeType.getMimeType(new File(parent, filename));
