@@ -44,7 +44,7 @@ public class DummyThumbnailer extends AbstractThumbnailer {
 	 */
 	@Override
 	public void generateThumbnail(File input, File output) throws IOException, ThumbnailerException {
-		if (input.getName() != "hello-world.txt")
+		if (! "hello-world.txt".equals(input.getName()))
 			throw new ThumbnailerException("This is not a suitable file format!");
 		
 		// For testing purpose, just create an empty image.
