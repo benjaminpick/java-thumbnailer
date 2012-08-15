@@ -17,8 +17,6 @@
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/commons-logging-1.1-for-pdfbox.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/fontbox-1.6.0-for-pdfbox.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/pdfbox-1.6.0.jar"/>
-	<classpathentry kind="lib" path="lib/cobra-js.jar"/>
-	<classpathentry kind="lib" path="lib/cobra.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain-preperators/poi-ooxml-schemas-3.8-20120326.jar"/>
