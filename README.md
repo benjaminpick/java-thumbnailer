@@ -6,7 +6,7 @@ It can also be used as a standalone library to create thumbnails of different fi
 (Regain is a Lucene-based desktop search engine.)
 
 *Current Version* : 0.5 (Beta)<br>
-*Licence* : GNU GPL 3 or later
+*Licence* : GNU GPL 2.1 or later
 
 Requirements
 ------------
@@ -23,7 +23,6 @@ Supported Fileformats
 * Text files (txt, pdf, rtf, html)
 * Image files (jpg, png, bmp, gif)
 * MIT Scratch files (sb)
-* Video files
 
 (Detection is based on MIME-Type, not filename extension. So files with an incorrect file extension will be treated correctly, not as they deserve.) 
 
