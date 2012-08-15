@@ -10,9 +10,6 @@
 	<classpathentry kind="lib" path="lib/shared-with-regain/aperture-core-1.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="lib/shared-with-regain/rdf2go.api-4.6.2-for-aperture.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-api-1.3.0-for-aperture.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-jdk14-1.3.0-for-aperture.jar"/>
-	<classpathentry kind="lib" path="lib/shared-with-regain/slf4j-simple-1.3.0-for-aperture.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/regain-svn"/>
 	<classpathentry kind="lib" path="lib/ant/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/jsp-api.jar"/>
@@ -36,5 +33,6 @@
 	<classpathentry kind="lib" path="/regain-svn/lib/lucene-highlighter-3.6.0.jar"/>
 	<classpathentry kind="lib" path="/regain-svn/lib/lucene-memory-3.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/xuggler/xuggle-xuggler-5.4.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.6.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
