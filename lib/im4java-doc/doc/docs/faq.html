@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>im4java Frequently Asked Questions</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://im4java.sourceforge.net">im4java</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://im4java.sourceforge.net"><img class="logoImage" alt="im4java" src="../images/project-logo.gif" title="A pure Java wrapper for ImageMagick and other
+    commandline-tools"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Overview</a>
+</li>
+<li>
+<a class="unselected" href="../install/index.html">Installation</a>
+</li>
+<li class="current">
+<a class="selected" href="../docs/index.html">Documentation</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools</a>
+</li>
+<li>
+<a class="unselected" href="http://im4java.sf.net/api/">API</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Documentation</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../docs/index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="../docs/dev-guide.html">Developer's-Guide</a>
+</div>
+<div class="menuitem">
+<a href="../docs/tests.html">Tests</a>
+</div>
+<div class="menuitem">
+<a href="../docs/reference.html">Reference</a>
+</div>
+<div class="menuitem">
+<a href="../docs/new-tools.html">Adding new Tools</a>
+</div>
+<div class="menuitem">
+<a href="../docs/howtos.html">Howtos</a>
+</div>
+<div class="menuitem">
+<a href="../docs/howto-template.html"></a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">FAQs</div>
+</div>
+<div class="menuitem">
+<a href="http://im4java.sourceforge.net/api/">API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="faq.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>im4java Frequently Asked Questions</h1>
+<a name="N10008"></a><a name="Questions"></a>
+<h2 class="boxed">Questions</h2>
+<div class="section">
+<a name="N1000C"></a><a name="general"></a>
+<h3 class="boxed">1. General Questions</h3>
+<a name="N10010"></a><a name="jni"></a>
+<h4 class="faq">1.1. 
+	What exactly do you mean with JNI-hazard?
+      </h4>
+<div align="right">
+<a href="#jni-menu">^</a>
+</div>
+<div style="margin-left: 15px">
+<p>
+	  Running native code using JNI from within java always
+	  imposes additional risks. The JVM is no longer sandboxed, so
+	  there 
+	  might be some security issues. In addition, there could be
+	  errors like memory leaks or memory corruption within the
+	  JNI-layer (JMagick) or within the native code (ImageMagick).
+	</p>
+<p>
+	  This is especially dangerous for long running processes
+	  (typically web-application-servers). Memory corruption or a
+	  segmentation fault (maybe triggered by a intentionally
+	  manipulated image) might bring down the whole server.
+	</p>
+<p>
+	  On the other side, in reality the situation is not as bad as
+	  it sounds above. JMagick is well tested, and for standard
+	  use-cases it prooves to be very stable.
+	</p>
+<p>
+	  Some additional information is available on the
+	  JMagick-users mailing list where <a href="https://sourceforge.net/mailarchive/message.php?msg_name=20cf28cd1002231148s33c99843q875f59906dd32b8b%40mail.gmail.com">this
+	    topic</a> has been discussed to some detail.
+	</p>
+</div>
+<a name="N10028"></a><a name="winconvert"></a>
+<h4 class="faq">1.2. 
+        The library does not use ImageMagicks convert
+	command, but the one supplied by Microsoft. What can I do?
+      </h4>
+<div align="right">
+<a href="#winconvert-menu">^</a>
+</div>
+<div style="margin-left: 15px">
+<p>
+	  Read the Developer's Guide, section <a href="dev-guide.html#environment">Setting up the
+	    Environment</a>. 
+        </p>
+</div>
+<a name="N10037"></a><a name="cmdoption"></a>
+<h4 class="faq">1.3. 
+	The program xxx supports option -foo, but im4java
+	does not. Why? And what can I do about it?
+      </h4>
+<div align="right">
+<a href="#cmdoption-menu">^</a>
+</div>
+<div style="margin-left: 15px">
+<p>
+	  Keeping up with actively devolped tools is not easy, im4java
+	  will always lag behind in the support of new commandline
+	  options. But adding support for a new option is
+	  straightforward: 
+	</p>
+<ol>
+	    
+<li>Download the source-distribution of im4java.</li>
+	    
+<li>Edit the file <span class="codefrag">input/XXXinterface.txt</span> and
+	      add your new option. The syntax of the file should be
+	      clear.
+	    </li>
+	    
+<li>Run <span class="codefrag">make src jar</span>. That's it!</li>
+	    
+<li>Post the diff of <span class="codefrag">input/XXXinterface.txt</span>
+	      on the jmagick-users mailing-list. I will add it to the
+	      next version of im4java.
+	    </li>
+	  
+</ol>
+</div>
+<a name="N1005A"></a><a name="exception"></a>
+<h4 class="faq">1.4. 
+	Running my code just throws a
+	CommandException. What can I do?
+      </h4>
+<div align="right">
+<a href="#exception-menu">^</a>
+</div>
+<div style="margin-left: 15px">
+<p>
+	  In case there is a CommandException, you should always print
+	  the associated error-text:
+	</p>
+<pre class="code">
+	  try {
+            ...
+      &nbsp; &nbsp; } catch (CommandException ce) {
+&nbsp; &nbsp; &nbsp;       ce.printStackTrace();
+&nbsp; &nbsp; &nbsp;       ArrayList&lt;String&gt; cmdError = ce.getErrorText();
+&nbsp; &nbsp; &nbsp;       for (String line:cmdError) {
+&nbsp; &nbsp; &nbsp; &nbsp;       System.err.println(line);
+      &nbsp; &nbsp; &nbsp; }
+      &nbsp; &nbsp; } catch (Exception e) {
+&nbsp; &nbsp; &nbsp;       e.printStackTrace();
+        &nbsp; }
+	</pre>
+<p>The error-text ist the stderr of the used
+	  command. Hopefully it tells you why it failed.
+	</p>
+</div>
+<a name="N1006C"></a><a name="implementation"></a>
+<h3 class="boxed">2. Implementation related</h3>
+<a name="N10070"></a><a name="meta"></a>
+<h4 class="faq">2.1. 
+        To be asked.
+      </h4>
+<div align="right">
+<a href="#meta-menu">^</a>
+</div>
+<div style="margin-left: 15px">
+<p>To be answered.
+        </p>
+</div>
+</div>
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2008-2010 Bernhard Bablok</div>
+<div class="host">
+<a href="http://sourceforge.net/projects/im4java"><img class="logoImage" alt="" src="http://sflogo.sourceforge.net/sflogo.php?group_id=251357&type=14"></a>
+</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:bablokb . at . users.sf.net?subject=Feedback%C2%A0docs/faq.html">bablokb . at . users.sf.net</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

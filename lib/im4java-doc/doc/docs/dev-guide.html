@@ -1,0 +1,1191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Developer's Guide</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://im4java.sourceforge.net">im4java</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://im4java.sourceforge.net"><img class="logoImage" alt="im4java" src="../images/project-logo.gif" title="A pure Java wrapper for ImageMagick and other
+    commandline-tools"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Overview</a>
+</li>
+<li>
+<a class="unselected" href="../install/index.html">Installation</a>
+</li>
+<li class="current">
+<a class="selected" href="../docs/index.html">Documentation</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools</a>
+</li>
+<li>
+<a class="unselected" href="http://im4java.sf.net/api/">API</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Documentation</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../docs/index.html">Overview</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Developer's-Guide</div>
+<div class="menupageitemgroup">
+<div class="menupageitem">
+<a href="#intro">Introduction</a>
+</div>
+<div class="menupageitem">
+<a title="Before you begin: Setting up the Environment" href="#environment">Before you begin: S...</a>
+</div>
+<div class="menupageitem">
+<a href="#simpleUse">Simple Use</a>
+</div>
+<div class="menupageitem">
+<a title="About ImageCommand" href="#imageCommands">About ImageCommand...</a>
+</div>
+<div class="menupageitem">
+<a title="Using GraphicsMagick" href="#graphicsMagick">Using GraphicsMagic...</a>
+</div>
+<div class="menupageitem">
+<a title="Reusing Operations" href="#reusingOperations">Reusing Operations...</a>
+</div>
+<div class="menupageitem">
+<a title="Adding Operations to Operations" href="#AddingOperations">Adding Operations t...</a>
+</div>
+<div class="menupageitem">
+<a title="Dynamic Operations" href="#dynamicOperations">Dynamic Operations...</a>
+</div>
+<div class="menupageitem">
+<a title="Capturing Output" href="#capturingOutput">Capturing Output...</a>
+</div>
+<div class="menupageitem">
+<a href="#piping">Piping</a>
+</div>
+<div class="menupageitem">
+<a title="Using BufferedImages" href="#bufferedImages">Using BufferedImage...</a>
+</div>
+<div class="menupageitem">
+<a title="Asynchronous Execution" href="#asynchronousExecution">Asynchronous Execut...</a>
+</div>
+<div class="menupageitem">
+<a title="Parallel Processing" href="#parallelProcessing">Parallel Processing...</a>
+</div>
+<div class="menupageitem">
+<a href="#utils">Utilities</a>
+</div>
+<div class="menupageitem">
+<a href="#debug">Debugging</a>
+</div>
+</div>
+</div>
+<div class="menuitem">
+<a href="../docs/tests.html">Tests</a>
+</div>
+<div class="menuitem">
+<a href="../docs/reference.html">Reference</a>
+</div>
+<div class="menuitem">
+<a href="../docs/new-tools.html">Adding new Tools</a>
+</div>
+<div class="menuitem">
+<a href="../docs/howtos.html">Howtos</a>
+</div>
+<div class="menuitem">
+<a href="../docs/howto-template.html"></a>
+</div>
+<div class="menuitem">
+<a href="../docs/faq.html">FAQs</a>
+</div>
+<div class="menuitem">
+<a href="http://im4java.sourceforge.net/api/">API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="dev-guide.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>Developer's Guide</h1>
+    
+<a name="N1000E"></a><a name="intro"></a>
+<h2 class="boxed">Introduction</h2>
+<div class="section">
+<p>
+	This guide is an introduction to the im4java-library. You
+	should be familiar with java-programming and should know how
+	to read the <a href="http://im4java.sourceforge.net/api/">API
+	  documentation</a>. Also, this is no guide for the usage of
+	the underlying tools (<a href="http://www.imagemagick.org">ImageMagick</a>, <a href="http://www.graphicsmagick.org/">GraphicsMagick</a> and so on). You
+	should be familiar with them and know how to read the
+	respective documentation.
+      </p>
+<p>
+	The basic architecture of im4java is quite simple. It boils
+	down to calling all underlying tools simply by using a
+	<span class="codefrag">ProcessBuilder</span>-object. All the magic of im4java ist
+	to hide the complexities. If you have just one simple call of
+	an external tool in your program, you might be better of by
+	hardcoding the <span class="codefrag">ProcessBuilder</span>-call yourself. If you
+	don't need the simplicity or the advanced features of the
+	im4java-library, your code will certainly be faster and more
+	efficient.
+      </p>
+</div>
+
+    
+<a name="N1002D"></a><a name="environment"></a>
+<h2 class="boxed">Before you begin: Setting up the Environment</h2>
+<div class="section">
+<p>
+	To use the im4java-library, you should add the im4java-jarfile
+	to you classpath. This is the first part of the setup. The
+	second part is optional and only necessary, if the <a href="../tools/index.html">tools</a> you want to use
+	(e.g. <span class="codefrag">convert</span> or <span class="codefrag">exiftool</span>) are not
+	on your <em>PATH</em>. This is typically a problem on
+	Windows-systems. 
+      </p>
+<p>
+	To setup your searchpath for the tools you have three options:
+      </p>
+<ul>
+	  
+<li>
+	    Set the environment-variable
+	    <em>IM4JAVA_TOOLPATH</em>. This variable should contain a
+	    list of directories to search for your tools separated by
+	    your platform-pathdelemiter (on *NIX typically ":", on
+	    Windows ";").
+	  </li>
+	  
+<li>
+	    Globally set the searchpath from within your java-progam:
+	    <pre class="code">
+String myPath="C:\\Programs\\ImageMagick;C:\\Programs\\exiftool";
+ProcessStarter.setGlobalSearchPath(myPath);
+	    </pre>
+	    This will override any values set with
+	    <em>IM4JAVA_TOOLPATH</em>. 
+	  </li>
+	  
+<li>
+	    Set the search path for an individual command:
+	    <pre class="code">
+String imPath="C:\\Programs\\ImageMagick";
+ConvertCmd cmd = new ConvertCmd();
+cmd.setSearchPath(imPath);
+	    </pre>
+	    This will override any values set with
+	    <em>IM4JAVA_TOOLPATH</em> or with
+	    <span class="codefrag">ProcessStarter.setGlobalSearchPath()</span>.
+	  </li>
+	
+</ul>
+<div class="warning">
+<div class="label">Warning</div>
+<div class="content">
+	Note that I also encountered a problem using OpenJDK with a
+	language-setting of <em>LANG=de_DE.UTF-8</em>. With
+	<em>LANG=C</em> everything worked fine. With SUN's JDK, there
+	were no problems regardless of the language-setting.
+      </div>
+</div>
+</div>
+
+    
+<a name="N10070"></a><a name="simpleUse"></a>
+<h2 class="boxed">Simple Use</h2>
+<div class="section">
+<p>
+	Basically, to use im4java, you need objects of two classes: an
+	<span class="codefrag">ImageCommand</span> like <span class="codefrag">ConvertCmd</span>, and an
+	<span class="codefrag">Operation</span> like <span class="codefrag">IMOperation</span>. The
+	<span class="codefrag">ImageCommand</span> is more or less static, you would
+	create an instance once and reuse it for the lifetime of your
+	program. Exceptions to this rule are more advanced use
+	cases, see the section below about parallel processing. In
+	contrast, the <em>Operation</em> is the object 
+	wrapping all the commandline options you intend to pass to the
+	given command. So you would typically create one
+	<span class="codefrag">Operation</span> for every action (resizing, conversion)
+	you intend to do.
+      </p>
+<p>
+	As an example, consider resizing an image:
+      </p>
+<pre class="code">
+// create command
+ConvertCmd cmd = new ConvertCmd();
+
+// create the operation, add images and operators/options
+IMOperation op = new IMOperation();
+op.addImage("myimage.jpg");
+op.resize(800,600);
+op.addImage("myimage_small.jpg");
+
+// execute the operation
+cmd.run(op);
+      </pre>
+</div>
+
+    
+<a name="N10096"></a><a name="imageCommands"></a>
+<h2 class="boxed">About ImageCommand</h2>
+<div class="section">
+<p>
+	All command-classes subclass <span class="codefrag">ImageCommand</span>, which
+	itself subclasses
+	<span class="codefrag">org.im4java.process.ProcessStarter</span>. The latter
+	class wraps <span class="codefrag">java.lang.ProcessBuilder</span>, handles
+	input and output streams and supports <a href="#asynchronousExecution">asynchronous execution</a>.  
+      </p>
+<p>
+	The <span class="codefrag">ImageCommand</span> class adds methods useful for
+	all command-classes, things like support for <a href="#reusingOperations">reusing operations</a> or for <a href="#dynamicOperations">dynamic operations</a>. 
+      </p>
+<p>
+	Note that <span class="codefrag">ImageCommand</span> is not stateless. In the
+	default setting, it captures everything written to stderr. It
+	also holds an internal <em>process ID</em> (unrelated to any
+	operating system PID) via
+	<span class="codefrag">ProcessStarter</span>. Nevertheless, if you only use the
+	<span class="codefrag">ImageCommand</span> in synchronous mode, you can reuse
+	the instance.
+      </p>
+</div>
+
+    
+<a name="N100CA"></a><a name="graphicsMagick"></a>
+<h2 class="boxed">Using GraphicsMagick</h2>
+<div class="section">
+<p>
+	
+<a href="http://www.graphicsmagick.org/">GraphicsMagick</a> is a fork of
+	<a href="http://www.imagemagick.org">ImageMagick</a>. GraphicsMagick has
+	a number of advantages compared to ImageMagick, the most
+	prominent is it's superior performance. Since the fork
+	ImageMagick has improved the expressive power of it's
+	command-line syntax, therefore, an ImageMagick commandline is
+	not necessarely compatible with GraphicsMagick. But for most
+	single-operation conversions it still is.
+      </p>
+<p>
+	With im4java, you have three options if you want to use
+	GraphicsMagick: 
+      </p>
+<ul>
+	
+<li>
+	  use GraphicsMagick explicitely, passing the command at
+	  object-creation: <span class="codefrag">GraphicsMagickCmd cmd = new
+	    GraphicsMagickCmd("convert");</span>. 
+	</li>
+	
+<li>
+	  use GraphicsMagick explicitely, using wrapper classes:
+	  <span class="codefrag">ConvertCmd cmd = new ConvertCmd(true);</span>.
+	</li>
+	
+<li>
+	  decide at runtime: setting the system-property
+	  <em>im4java.useGM</em> to true will select GraphicsMagick
+	  at runtime. You can use this feature to compare the
+	  results and timings of both toolsets, provided that the
+	  commandline is compatible.
+	</li>
+      
+</ul>
+</div>
+
+    
+<a name="N100F4"></a><a name="reusingOperations"></a>
+<h2 class="boxed">Reusing Operations</h2>
+<div class="section">
+<p>
+	In the example <a href="#simpleUse">above</a>, image-names
+	were hard-coded. The 
+	im4java-library supports an alternative use. Instead of
+	hard-coding the image-names, you just add placeholders and
+	resolve the image-names at execution time. This allows the
+	reuse of operations for example within a loop.
+      </p>
+<p>
+	The following example extends the example of the first section
+	and loops over all images passed as method parameters:
+      </p>
+<pre class="code">
+public void resizeImages(String... pImageNames) {
+  // create command
+  ConvertCmd cmd = new ConvertCmd();
+
+  // create the operation, add images and operators/options
+  IMOperation op = new IMOperation();
+  op.addImage();
+  op.resize(800,600);
+  op.addImage();
+
+  for (String srcImage:pImageNames) {
+    int lastDot = srcImage.lastIndexOf('.');
+    String dstImage = 
+       srcImage.substring(1,lastDot-1)+"_small.jpg";
+    cmd.run(op,srcImage,dstImage);
+  }
+}
+      </pre>
+<p>
+	You can pass an arbitrary
+	number of image-names to <span class="codefrag">cmd.run()</span>, you can even
+	pass an array of image-names. In the latter case you have to
+	cast the array to <span class="codefrag">Object[]</span>,
+	e.g. <span class="codefrag">cmd.run(op,(Object[]) imgNames)</span>.
+      </p>
+<p>
+	Note that <span class="codefrag">op.addImage()</span> is actually a short form
+	for <span class="codefrag">op.addImage(Operation.IMG_PLACEHOLDER)</span>. You
+	can also add more than one placeholder at the same time with
+	<span class="codefrag">op.addImage(int count)</span>. 
+      </p>
+<p>
+	The <span class="codefrag">op.addImage(String... images)</span>-method also
+	supports ImageMagick's <em>read-modifiers</em>. Adding a
+	read-modifier for hard-coded images is of course
+	straightforward (you just add it to the argument string). For
+	placeholders, you add only the read-modifier. The following
+	two lines of code therefore have the same effect:
+      </p>
+<pre class="code">
+op.addImage("[300x200]");
+op.addImage(Operation.IMG_PLACEHOLDER+"[300x200]");
+      </pre>
+<p>
+	The test-case class <span class="codefrag">org.im4java.test.TestCase7</span>
+	uses read-modifiers to crop the source-images prior to
+	composing them:
+      </p>
+<pre class="code">
+IMOperation op = new IMOperation();
+op.blend(50);
+op.addImage("[300x200+0+0]");  // read and crop first image
+op.addImage("[300x200+0+0]");  // read and crop second image
+op.addImage();                 // output image
+
+CompositeCmd composite = new CompositeCmd();
+composite.run(op,"rose1.jpg","rose2.jpg",outfile);
+      </pre>
+</div>
+
+    
+<a name="N10138"></a><a name="AddingOperations"></a>
+<h2 class="boxed">Adding Operations to Operations</h2>
+<div class="section">
+<p>
+	Im4java supports a second variant of operation-reuse. You can
+	define one <span class="codefrag">Operation</span> and just add it to another
+	one. The following snippet defines a
+	<em>rotate-resize-frame</em>-operation and adds it to another
+	operation: 
+      </p>
+<pre class="code">
+IMOperation frame = new IMOperation();
+frame.rotate("90");
+frame.resize(640);
+frame.border(10,10);
+
+IMOperation row = new IMOperation();
+row.addImages(3);
+row.add(frame);
+row.p_append();
+	</pre>
+<p>
+	Adding operations as just described is valid for all
+	supported im4java-tools. <a href="http://www.imagemagick.org">ImageMagick</a> additionally supports
+	options and operations within parenthesis thus limiting the
+	effect of settings and operators on everything within the
+	parenthesis. You add parenthesis with the methods
+	<span class="codefrag">op.openOperation()</span> and
+	<span class="codefrag">op.closeOperation()</span>:  
+      </p>
+<pre class="code">
+IMOperation frame = new IMOperation();
+frame.openOperation();
+frame.rotate("90");
+frame.resize(640);
+frame.border(10,10);
+frame.closeOperation();
+	</pre>
+<p>
+	An alternatative way of coding this is:
+      </p>
+<pre class="code">
+IMOperation frame = new IMOperation();
+frame.rotate("90");
+frame.resize(640);
+frame.border(10,10);
+
+IMOperation row = new IMOperation();
+row.addImages(3);
+row.addSubOperation(frame);
+row.p_append();
+	</pre>
+<p>
+	The <span class="codefrag">op.addSubOperation()</span>-method just adds the
+	surrounding parenthesis.
+      </p>
+</div>
+
+    
+<a name="N1016A"></a><a name="dynamicOperations"></a>
+<h2 class="boxed">Dynamic Operations</h2>
+<div class="section">
+<p>
+	
+<em>Dynamic Operations</em> are an advanced
+	technique. Sometimes you only want to apply some operations to
+	images fulfilling some requirements. <a href="http://www.imagemagick.org">ImageMagick</a> itself has some
+	special option-flags for this purpose, e.g. an image is only
+	scaled (down) if it has a larger size than the
+	target-size. For special cases not directly supported by
+	ImageMagick, you can make use of im4java's <em>Dynamic
+	  Operations</em>. Basically, you implement the interface
+	<span class="codefrag">org.im4java.core.DynamicOperation</span>, which has
+	exactly one method <em>resolveOperation()</em>. At execution
+	time, this method gets all argument images passed as
+	parameters, and it must return an <span class="codefrag">Operation</span>. The
+	returned object could also be <em>null</em>, in this case no
+	<span class="codefrag">Operation</span> is added.
+      </p>
+<p>
+	The test-case class <span class="codefrag">org.im4java.test.TestCase11</span>
+	shows an example of dynamic operations. In this case, the
+	<span class="codefrag">despeckle()</span> method is only added for images with
+	a high iso-noise level.
+      </p>
+</div>
+
+    
+<a name="N10196"></a><a name="capturingOutput"></a>
+<h2 class="boxed">Capturing Output</h2>
+<div class="section">
+<p>
+	The default behaviour of all <span class="codefrag">ImageCommand</span>s is to
+	pass all output of the wrapped commands to stdout, and to
+	capture everything from stderr in an
+	<span class="codefrag">CommandException</span>-object. You can change this
+	behaviour with the methods
+	<span class="codefrag">ImageCommand.setOutputConsumer(OutputConsumer oc)</span>
+	and <span class="codefrag">ImageCommand.setErrorConsumer(ErrorConsumer
+	  ec)</span>. Both <span class="codefrag">OutputConsumer</span> and
+	<span class="codefrag">ErrorConsumer</span> are interfaces in the
+	<span class="codefrag">org.im4java.process</span>-package with single methods
+	(<span class="codefrag">consumeOutput()</span> and
+	<span class="codefrag">consumeError()</span>). These methods just read
+	everything from the argument <span class="codefrag">InputStream</span>.
+      </p>
+<p>
+	In the process-package there is an utility-class called
+	<span class="codefrag">ArrayListOutputConsumer</span> which collects all lines
+	of output in a String-array.
+      </p>
+</div>
+
+    
+<a name="N101C4"></a><a name="piping"></a>
+<h2 class="boxed">Piping</h2>
+<div class="section">
+<p>
+	Most commandline tools allow piping of input or output. With
+	the im4java-library you can create instances of
+	<span class="codefrag">org.im4java.process.Pipe</span> to mimic this
+	behaviour. This class implements the
+	<span class="codefrag">OutputConsumer</span> and
+	<span class="codefrag">ErrorConsumer</span>-interfaces mentioned above and are
+	useful for 
+	piping the output of a commandline tool to an
+	<span class="codefrag">OutputStream</span> (e.g. a network-socket). To use the
+	pipe, instantiate it with an <span class="codefrag">OutputStream</span> and use
+	the method <span class="codefrag">ImageCommand.setOutputConsumer(pipe)</span>.
+      </p>
+<p>
+	If you want to provide input to stdin of a commandline tool,
+	you have to create a pipe-object initialized with an
+	<span class="codefrag">InputStream</span> and use the method
+	<span class="codefrag">ImageCommand.setInputProvider(pipe)</span>. The pipe
+	will read from the <span class="codefrag">InputStream</span> and write to the
+	stdin of the respective <span class="codefrag">ImageCommand</span>.
+      </p>
+<p>
+	The test-case <span class="codefrag">org.im4java.test.TestCase10</span>
+	features pipes, reading from one image and writing to
+	another. In real-life, you would of course process the files
+	directly, but the example just wants to demonstrate what to do:
+      </p>
+<pre class="code">
+ IMOperation op = new IMOperation();
+ op.addImage("-");                   // read from stdin
+ op.addImage("tif:-");               // write to stdout in tif-format
+
+// set up pipe(s): you can use one or two pipe objects
+FileInputStream fis = new FileInputStream(iImageDir+"ipomoea.jpg");
+FileOutputStream fos = new FileOutputStream(iImageDir+"ipomoea.tif");
+// Pipe pipe = new Pipe(fis,fos);
+Pipe pipeIn  = new Pipe(fis,null);
+Pipe pipeOut = new Pipe(null,fos);
+
+// set up command
+ConvertCmd convert = new ConvertCmd();
+convert.setInputProvider(pipeIn);
+convert.setOutputConsumer(pipeOut);
+convert.run(op);
+fis.close();
+fos.close();
+      </pre>
+</div>
+
+    
+<a name="N101F9"></a><a name="bufferedImages"></a>
+<h2 class="boxed">Using BufferedImages</h2>
+<div class="section">
+<p>
+	A <span class="codefrag">BufferedImage</span> is in a way the <em>java
+	  native</em> representation of an image-object. No
+	commandline tool can deal directly with a
+	<span class="codefrag">BufferedImage</span>. The good news is that im4java uses
+	objects of type <span class="codefrag">BufferedImage</span> transparently, if
+	you use pass these objects at invocation time:
+      </p>
+<pre class="code">
+IMOperation op = new IMOperation();
+op.addImage();                        // input
+op.blur(2.0).paint(10.0);
+op.addImage();                        // output
+
+ConvertCmd convert = new ConvertCmd();
+BufferedImage img = ...;
+String outfile = ...;
+...
+convert.run(op,img,outfile);
+      </pre>
+<p>
+	Note that the above use of <span class="codefrag">BufferedImage</span>s
+	works fine for input-images.
+	If you need to write to a <span class="codefrag">BufferedImage</span>, you must
+	pipe the output of the commandline-tool to stdout,
+	create an instance of the class 
+	<span class="codefrag">org.im4java.core.Stream2BufferedImage</span> and set it
+	as the <span class="codefrag">OutputConsumer</span> of the command:
+      </p>
+<pre class="code">
+IMOperation op = new IMOperation();
+op.addImage();                        // input
+....
+op.addImage("png:-");                 // output: stdout
+...
+images = ...;	
+	
+// set up command
+ConvertCmd convert = new ConvertCmd();
+Stream2BufferedImage s2b = new Stream2BufferedImage();
+convert.setOutputConsumer(s2b);
+
+// run command and extract BufferedImage from OutputConsumer
+convert.run(op,(Object[]) images);
+BufferedImage img = s2b.getImage();
+      </pre>
+</div>
+
+    
+<a name="N10226"></a><a name="asynchronousExecution"></a>
+<h2 class="boxed">Asynchronous Execution</h2>
+<div class="section">
+<p>
+	Long running operations belong into a seperate thread,
+	especially in graphical applications. The im4java-library
+	supports asynchronous execution with and without callbacks.
+      </p>
+<p>
+	The latter case is simple (fire-and-forget). Befor you start the
+	command, you just set the aynchronous-mode to true:
+      </p>
+<pre class="code">
+ConvertCmd cmd = new ConvertCmd();
+cmd.setAsyncMode(true);
+...
+cmd.run(op);
+      </pre>
+<p>
+	In this case, you will know nothing about success or
+	failure. If you need feedback (e.g. because you want to
+	asynchronously convert a file and load the result into a
+	window), you must write a class implementing the interface
+	<span class="codefrag">org.im4java.process.ProcessEventListener</span>. This
+	interface defines three methods:
+	<span class="codefrag">processInitiated()</span>, <span class="codefrag">processStarted()</span>
+	and <span class="codefrag">processTerminated()</span>. The first method is
+	called synchronously from the original thread calling the
+	run-method, the latter two methods are callbacks from the
+	asynchronous thread. See
+	<span class="codefrag">org.im4java.test.TestCase16</span> for a complete example.
+      </p>
+<p>
+	With <span class="codefrag">cmd.setAsyncMode(true)</span> you only need minimal
+	code-changes for asynchronous execution. If you prefer to
+	control the flow of execution yourself, you could use some
+	standard methods from <span class="codefrag">java.util.concurrent</span> to
+	control execution:
+      </p>
+<pre class="code">
+ProcessTask pt = cmd.getProcessTask(op);
+ExecutorService exec = Executors.newSingleThreadExecutor();
+exec.execute(pt);
+exec.shutdown();
+      </pre>
+<p>
+	The test-case 16a will give you a complete example. The third
+	variant, test-case 16b replaces the standard executor returned
+	by <span class="codefrag">Executors.newSingleThreadExecutor()</span> with an
+	instance of class
+	<span class="codefrag">org.im4java.process.ProcessExecutor</span>. For a
+	discussion of this class, proceed to the next section.
+      </p>
+</div>
+
+    
+<a name="N1025F"></a><a name="parallelProcessing"></a>
+<h2 class="boxed">Parallel Processing</h2>
+<div class="section">
+<p>
+	The use case described above is fine for typical graphical
+	applications with one asynchronous thread. In contrast, if you
+	want to convert a number of files asynchronously, additional
+	problems arise. Consider the following piece of code:
+      </p>
+<pre class="code">
+// load images into an array, e.g. from a directoy
+ArrayList&lt;String&gt; images = load(myDir);
+
+// convert all images
+ConvertCmd cmd = new ConvertCmd();
+cmd.setAsyncMode(true);
+Operation op = ...;
+for (String img:images) {
+  String outfile = ...;
+  cmd.run(op,img,outfile);
+}
+      </pre>
+<p>
+	Although this will run perfectly fine, this code will flood
+	your system with parallel convert-processes, making your
+	system unusable for a while. So one of the issues is
+	<em>ressource management</em>. Another issue is that you don't
+	know when you are finished. In addition, you don't know which
+	of your conversions succeeded and which failed.
+      </p>
+<p>
+	The following sections deal with these three issues. This is
+	advanced stuff, and you might not even need it. If you have to
+	convert multiple images, you could first try to use the class
+	<span class="codefrag">org.im4java.utils.BatchConverter</span>, which uses the
+	building blocks described below. The class
+	<span class="codefrag">BatchConverter</span> is covered <a href="#BatchConverter">here</a>. 
+      </p>
+<a name="N1027F"></a><a name="processExecutor"></a>
+<h3 class="boxed">The ProcessExecutor</h3>
+<p>
+	  The classes in <span class="codefrag">java.util.concurrent</span> address
+	  these issues. All classes returned by the factory class
+	  <span class="codefrag">java.util.concurrent.Executors</span> operate on
+	  threads. They provide methods to queue and start requests up
+	  to a given limit, and also allow you to stop the queue and
+	  destroy running threads.
+	</p>
+<p>
+	  There is one big drawback with these thread-based
+	  executors. Once an <span class="codefrag">ImageCommand</span> is running
+	  within a java-thread, the thread will not be killable due to
+	  the active process. Therefore you should not use any of the
+	  standard executors, but use an instance of the class
+	  <span class="codefrag">org.im4java.process.ProcessExecutor</span>. A basic
+	  usage is very simple, the example above then looks like
+	  this:
+	</p>
+<pre class="code">
+// load images into an array, e.g. from a directoy
+ArrayList&lt;String&gt; images = load(myDir);
+
+// convert all images
+ProcessExecutor exec = new ProcessExecutor();
+Operation op = ...;
+for (String img:images) {
+  String outfile = ...;
+  ConvertCmd cmd = new ConvertCmd();
+  ProcessTask pt = cmd.getProcessTask(op,img,outfile);
+  exec.execute(pt);
+}
+exec.shutdown();
+	</pre>
+<p>
+	  The default constructor of <span class="codefrag">ProcessExecutor</span> will
+	  query the number of processors on the system and limit the
+	  number of parallel running processes to that number. You can
+	  also pass an integer to the constructor if you want to set
+	  the limit yourself.
+	</p>
+<p>
+	  The class <span class="codefrag">ProcessTask</span> extends
+	  <span class="codefrag">java.util.concurrent.FutureTask</span>. You can use
+	  all the standard methods of this class, e.g. to query
+	  results or to wait for termination.
+	</p>
+<a name="N102AB"></a><a name="processTermination"></a>
+<h3 class="boxed">Waiting for process termination</h3>
+<p>
+	  It is usually important to know when your processes have
+	  finished, maybe to give feedback to a user by updating a
+	  progress bar or to start some follow-up activity. If the
+	  processes take too long, you might also consider killing
+	  them.
+	  </p>
+<p>
+	  Since <span class="codefrag">ProcessExecutor</span> extends
+	  <span class="codefrag">java.util.concurrent.ThreadPoolExecutor</span>, you
+	  can use the standard methods provided by this class. If you
+	  want to block until your processes terminate, you would use
+	  the following code snippet (this one extends the example above):
+	  </p>
+<pre class="code">
+ProcessExecutor exec = new ProcessExecutor();
+for (String img:images) {
+...
+}
+exec.shutdown();
+if (exec.awaitTermination(10,TimeUnit.SECONDS)) {
+  System.err.println("processes terminated on their own");
+} else {
+  System.err.println("trying to cancel all running processes ...");
+  exec.shutdownNow();
+}
+	</pre>
+<p>
+	  As an alternative to the blocking
+	  <span class="codefrag">awaitTermination()</span>-call you could also subclass
+	  <span class="codefrag">ProcessExecutor</span> and implement it's
+	  <span class="codefrag">terminated()</span>-method. Then you will receive a
+	  callback once all processes have terminated.
+	</p>
+<p>
+	  One final warning: the code implementing the parallel
+	  processing of commands is new and therefore untested in the
+	  wild. During development, a number of race-conditions came
+	  up (and were solved), but feedback on stability,
+	  functionality and implementation is highly welcome.
+	</p>
+<a name="N102D1"></a><a name="processControl"></a>
+<h3 class="boxed">Exit status of finished asynchronous processes</h3>
+<p>
+	  The last issue with asynchronous processes is the exit
+	  status. For a single asynchronous process this is quite
+	  simple, you would implement a
+	  <span class="codefrag">ProcessEventListener</span> and use it's
+	  <span class="codefrag">processTerminated()</span>-method (see the section <a href="#asynchronousExecution">Asynchronous Execution</a> above).
+	</p>
+<p>
+	  For multiple parallel process the situation is a bit more
+	  complicated. You have to link the processTerminated-event
+	  with the correct process. The class
+	  <span class="codefrag">ProcessEvent</span> implements a number of methods
+	  which help to identify the process. One is
+	  <span class="codefrag">ProcessEvent.getPID()</span>. The <em>PID</em> is an
+	  internal field of each <span class="codefrag">ImageCommand</span>. You can
+	  set this field explicitly overriding the PID set during
+	  object-creation. You can also query the
+	  <span class="codefrag">ImageCommand</span> object itself with
+	  <span class="codefrag">ProcessEvent.getProcessStarter()</span> (remenber that
+	  <span class="codefrag">ProcessStarter</span> is the base-class of
+	  <span class="codefrag">ImageCommand</span>). 
+	</p>
+<p>
+	  For a complete example using these methods, see the class
+	  <span class="codefrag">org.im4java.test.TestCase21</span>. 
+	</p>
+</div>
+
+    
+<a name="N10307"></a><a name="utils"></a>
+<h2 class="boxed">Utilities</h2>
+<div class="section">
+<p>
+	This section describes a number of utility-classes which
+	facilitate the coding.
+      </p>
+<a name="N10310"></a><a name="Info"></a>
+<h3 class="boxed">Image Information</h3>
+<p>
+	  If you only want to query image-information (e.g. width and
+	  height), you could typically use the class
+	  <span class="codefrag">IdentifyCmd</span>, wrapping ImageMagick's
+	  <em>identify</em>-command. Instead of using this class
+	  directly, you could instead use the <span class="codefrag">Info</span> class. The
+	  following code-snippet demonstrates its use:
+	</p>
+<pre class="code">
+Info imageInfo = new Info(filename,true);
+System.out.println("Format: " + imageInfo.getImageFormat());
+System.out.println("Width: " + imageInfo.getImageWidth());
+System.out.println("Height: " + imageInfo.getImageHeight());
+System.out.println("Geometry: " + imageInfo.getImageGeometry());
+System.out.println("Depth: " + imageInfo.getImageDepth());
+System.out.println("Class: " + imageInfo.getImageClass());
+	</pre>
+<p>
+	  The second parameter (<em>true</em>) in the example requests
+	  <em>basic</em>-information. This is a bit faster than
+	  requesting and parsing the
+	  complete (verbose) output of the class
+	  <span class="codefrag">IndentifyCmd</span>. See the test-case class
+	  <span class="codefrag">org.im4java.test.TestCase8</span> for a complete example.
+	</p>
+<p>
+	  Prior to version 1.3.0 the implementation of the
+	  <span class="codefrag">Info</span>-class was severely flawed. It did not take
+	  into account that there are image-formats like TIF or GIF
+	  that support multiple images (ImageMagick calls them
+	  <em>scenes</em>) within a single file. As a consequence, the
+	  method
+	</p>
+<pre class="code">
+imageInfo.getImageWidth()
+	</pre>
+<p>
+	  returns the image-width of the <em>first</em> scene (from
+	  basic-information), whereas the method
+	</p>
+<pre class="code">
+imageInfo.getProperty("Width")
+	</pre>
+<p>
+	  will return the image-width of the <em>last</em>
+	  scene (from complete information). Starting with version
+	  1.3.0, there are new methods with an additional parameter,
+	  the scene-number, e.g. 
+	</p>
+<pre class="code">
+imageInfo.getImageWidth(3)
+imageInfo.getProperty("Width",3)
+	</pre>
+<p>
+	  To query the number of scenes use the method
+	  <span class="codefrag">getSceneCount()</span>. Note that information about
+	  multiple scenes is only available with complete-information.
+	</p>
+<a name="N1035D"></a><a name="FilenameLoader"></a>
+<h3 class="boxed">FilenameLoader</h3>
+<p>
+	  The class <span class="codefrag">org.im4java.utils.FilenameLoader</span> is
+	  useful for batch-processing a number of files from a
+	  directory. The core method is <span class="codefrag"> public
+	    List&lt;String&gt; loadFilenames(String pDir)</span>. It
+	  loads all files from the given directory into a list of
+	  strings.
+	</p>
+<p>
+	  The constructor accepts an <span class="codefrag">ExtensionFilter</span>. You
+	  can instantiate your own filter as in the example below or
+	  use one of the predefined filters of the
+	  ExtensionFilter-class. 
+	</p>
+<pre class="code">
+ExtensionFilter filter = new ExtensionFilter("jpg");
+filter.setRecursion(true);
+filter.ignoreDotDirs(true);
+FilenameLoader  loader = new FilenameLoader(filter);
+List&lt;String&gt; files = loader.loadFilenames(mydir);
+	</pre>
+<p>
+	  As always, you should check the <a href="http://im4java.sourceforge.net/api/">API-documentation</a> for all the
+	  features of this class.
+	</p>
+<a name="N1037E"></a><a name="FilenamePatternResolver"></a>
+<h3 class="boxed">FilenamePatternResolver</h3>
+<p>
+	  When converting multiple files, the target filename usually
+	  depends on the source filename. For example a standard
+	  conversion from jpg to tif would keep the filename and just
+	  change the extension. Or all converted files should
+	  additionally go to a separate directory.
+	</p>
+<p>
+	  This is where the class
+	  <span class="codefrag">org.im4java.utils.FilenamePatternResolver</span> is
+	  useful. The following snippet will convert all
+	  argument-files to tif.
+	</p>
+<pre class="code">
+// define operation and command
+IMOperation op = new IMOperation();
+op.addImage();                         // input-file
+op.addImage();                         // output-file
+ConvertCmd cmd = new ConvertCmd();
+
+// load files
+ExtensionFilter filter = new ExtensionFilter("jpg");
+FilenameLoader  loader = new FilenameLoader(filter);
+List&lt;String&gt; files = loader.loadFilenames(mydir);
+
+// create the resolver
+FilenamePatternResolver resolver = 
+    new FilenamePatternResolver("%P/%f.tif");
+
+// now iterate over all files
+for (String img:files) {
+  cmd.run(op,img,resolver.createName(img));
+}
+	</pre>
+<p>
+	  The FilenamePatternResolver recognizes the following
+	  escape-sequences within it's pattern:
+	</p>
+<ul>
+	  
+<li>%P: full pathname of source-image (i.e. the directory)</li>
+	  
+<li>%p: last component of %P</li>
+	  
+<li>%F: full filename without directory part</li>
+	  
+<li>%f: filename without directory part and extension</li>
+	  
+<li>%e: only the extension</li>
+	  
+<li>%D: drive-letter (on windows systems). Not
+	    available for source-files with an UNC-name.</li>
+	
+</ul>
+<a name="N103AA"></a><a name="BatchConverter"></a>
+<h3 class="boxed">BatchConverter</h3>
+<p>
+	  The class <span class="codefrag">org.im4java.utils.BatchConverter</span> is a
+	  utility-class for client-applications. It will convert a
+	  given list of files in parallel making use of all available processors
+	  to speed up execution. It is not well suited for
+	  web-applications, since you don't want a single request to use
+	  up all of your ressources.
+	</p>
+<p>
+	  Usage of this utility-class is straightforward. First you load
+	  your files into a <span class="codefrag">List</span>. This could be from a
+	  GUI-application where a user selects multiple files. Or the
+	  list could contain all files from a given directory (see the
+	  section <a href="#FilenameLoader">FilenameLoader</a> above).
+	</p>
+<pre class="code">
+ ExtensionFilter filter = new ExtensionFilter("jpg");
+ filter.setRecursion(false);
+ FilenameLoader loader =  new FilenameLoader(filter);
+ List&lt;String&gt; images=loader.loadFilenames(dir);
+	</pre>
+<p>
+	  After you have the list, you create your
+	  <span class="codefrag">BatchConverter</span> and use it's
+	  <span class="codefrag">run()</span>-method to process the images:
+	</p>
+<pre class="code">
+// create a simple thumbnail operation
+op = new IMOperation();
+op.size(80);
+op.addImage();     // placeholder input filename
+op.thumbnail(80);
+op.addImage();     // placeholder output filename
+
+// create a template for the output-files:
+// we put them in targetDir with the same filename as the original
+// images
+String template=targetDir+"%F";
+
+// create instance of BatchConverter and convert images
+BatchConverter bc = new BatchConverter(BatchConverter.Mode.PARALLEL);
+bc.run(op,images,targetDir+"%F");
+	</pre>
+<p>
+	  Since <span class="codefrag">BatchConverter</span> extends
+	  <span class="codefrag">ProcessExecutor</span>, you can use the methods
+	  described in the section about <a href="#processTermination">process termination</a> to wait
+	  for the termination of the command (note that the
+	  <span class="codefrag">shutdown()</span>-method is called automatically).
+	</p>
+<p>
+	  The class <span class="codefrag">BatchConverter</span> knows three modes of
+	  operation: <span class="codefrag">BatchConverter.SEQUENTIAL</span>,
+	  <span class="codefrag">BatchConverter.PARALLEL</span> and
+	  <span class="codefrag">BatchConverter.BATCH</span>. The first mode is more or
+	  less for benchmarking the other two, it converts the images
+	  one after another sequentially. The second mode uses
+	  parallel processing, it runs in it's default setting on all
+	  available processors. The last mode uses convert's ability
+	  to process more than one image at the same time:
+	</p>
+<pre class="code">
+convert image1.jpg image2.jpg target_%d.tif
+mv target_1.tif image1.tif
+mv target_2.tif image2.tif
+	</pre>
+<p>
+	  On modern computers with more than one processor
+	  <span class="codefrag">BatchConverter.PARALLEL</span> should be the
+	  fastest. If only one (real) processor is available,
+	  <span class="codefrag">BatchConverter.BATCH</span> should make the game.
+	</p>
+<p>
+	  For a complete example see <span class="codefrag">TestCase22</span>. This
+	  test-case subclasses <span class="codefrag">BatchConverter</span> and uses the
+	  <span class="codefrag">terminated()</span>-method to receive a callback after
+	  termination. After termination, the callback-methods uses
+	  the <span class="codefrag">getFailedConversions()</span>-method of
+	  <span class="codefrag">BatchConverter</span> to query a list of
+	  <span class="codefrag">BatchConverter.ConvertException</span>-objects. These
+	  objects wrap the cause and the index of the image
+	  responsible of the failure. 
+	</p>
+</div>
+
+    
+<a name="N10414"></a><a name="debug"></a>
+<h2 class="boxed">Debugging</h2>
+<div class="section">
+<p>
+	Since version 1.0 im4java has a new method
+	<span class="codefrag">ImageCommand.createScript()</span> to aid in debugging:
+      </p>
+<pre class="code">
+IMOperation op = new IMOperation();
+...
+ConvertCmd cmd = new ConvertCmd();
+cmd.createScript("myscript.sh",op);
+      </pre>
+<p>
+	This will dump your command and operation to a
+	script-file. You should change the execution-permission of the
+	file and try the script to make sure that you in fact generate
+	the commandline you intend to use.
+      </p>
+<p>Note that on windows-platforms,
+	<span class="codefrag">createScript()</span>-method will automatically add the
+	extension <span class="codefrag">.cmd</span> to the filename passed to the
+	method.
+      </p>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2008-2010 Bernhard Bablok</div>
+<div class="host">
+<a href="http://sourceforge.net/projects/im4java"><img class="logoImage" alt="" src="http://sflogo.sourceforge.net/sflogo.php?group_id=251357&type=14"></a>
+</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:bablokb . at . users.sf.net?subject=Feedback%C2%A0docs/dev-guide.html">bablokb . at . users.sf.net</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

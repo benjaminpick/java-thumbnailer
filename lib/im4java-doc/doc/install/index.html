@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>im4java Installation</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://im4java.sourceforge.net">im4java</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://im4java.sourceforge.net"><img class="logoImage" alt="im4java" src="../images/project-logo.gif" title="A pure Java wrapper for ImageMagick and other
+    commandline-tools"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Overview</a>
+</li>
+<li class="current">
+<a class="selected" href="../install/index.html">Installation</a>
+</li>
+<li>
+<a class="unselected" href="../docs/index.html">Documentation</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools</a>
+</li>
+<li>
+<a class="unselected" href="http://im4java.sf.net/api/">API</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_1.1', '../skin/')" id="menu_1.1Title" class="menutitle">Installation</div>
+<div id="menu_1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="../install/index.html#install">Installation</a>
+</div>
+<div class="menuitem">
+<a href="../install/index.html#jre15">Support for JRE 1.5</a>
+</div>
+<div class="menuitem">
+<a href="../install/index.html#start">Getting Started</a>
+</div>
+</div>
+<div id="credit">
+<hr>
+<a href="http://forrest.apache.org/"><img border="0" title="Built with Apache Forrest" alt="Built with Apache Forrest - logo" src="../images/built-with-forrest-button.png" style="width: 88px;height: 31px;"></a>
+</div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="index.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>im4java Installation</h1>
+    
+<a name="N1000D"></a><a name="install"></a>
+<h2 class="boxed">Installation</h2>
+<div class="section">
+<p>
+	There is no formal installation method. If you have downloaded
+	the source-distribution and are using Linux, you should run
+      </p>
+<pre class="code">
+	$ &gt; make src jar
+      </pre>
+<p>
+	This will generate and compile all source-files and generate the im4java
+	library (the jar file <span class="codefrag">im4java-version.jar</span>). Note
+	that compiling the library requires bash and make and the java
+	development kit. If you use a different operating system, you
+	must either install a unix-environment (e.g. <em>cygwin</em>
+	for Windows), or you should download the binary distribution
+	of im4java.
+      </p>
+<p>
+	After you created the im4java library (which is also part of
+	the binary distribution), you just add it to the CLASSPATH of
+	your project.
+      </p>
+<p>
+	If you want to recreate the documentation from source, you
+	need <a href="http://forrest.apache.org">Apache Forrest</a>, version 0.8,
+	and run
+      </p>
+<pre class="code">
+	$ &gt; make doc
+      </pre>
+</div>
+
+    
+<a name="N10032"></a><a name="java15"></a>
+<h2 class="boxed">Support for JRE 1.5</h2>
+<div class="section">
+<p>
+	In case you need a version compatible with JRE 1.5, you can
+	create a 1.5-compatible version from source with
+      </p>
+<pre class="code">
+	$ &gt; make src jar-1.5
+      </pre>
+<p>
+	The binary distribution already has a 1.5-compatible version
+	named  <span class="codefrag">im4java-version-1.5.jar</span>.
+      </p>
+</div>
+
+    
+<a name="N10046"></a><a name="start"></a>
+<h2 class="boxed">Getting Started</h2>
+<div class="section">
+<p>
+	Once you have the library in place, you should read the <a href="../docs/dev-guide.html">Developer's Guide</a> (at least the
+	first section about setting up the environment for
+	im4java). You might also consider running a number of
+	tests. See <a href="../docs/tests.html">Running Tests</a> for details.
+      </p>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2008-2010 Bernhard Bablok</div>
+<div id="logos">
+<a href="http://validator.w3.org/check/referer"><img style="height: 31px; width: 88px;" title="Valid HTML 4.01!" alt="Valid HTML 4.01!" src="../skin/images/valid-html401.png" class="logoImage"></a><a href="http://jigsaw.w3.org/css-validator/check/referer"><img style="height: 31px; width: 88px;" title="Valid CSS!" alt="Valid CSS!" src="../skin/images/vcss.png" class="logoImage"></a>
+</div>
+<div class="host">
+<a href="http://sourceforge.net/projects/im4java"><img class="logoImage" alt="" src="http://sflogo.sourceforge.net/sflogo.php?group_id=251357&type=14"></a>
+</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:bablokb . at . users.sf.net?subject=Feedback%C2%A0install/index.html">bablokb . at . users.sf.net</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

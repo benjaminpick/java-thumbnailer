@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>im4java Reference</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://im4java.sourceforge.net">im4java</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://im4java.sourceforge.net"><img class="logoImage" alt="im4java" src="../images/project-logo.gif" title="A pure Java wrapper for ImageMagick and other
+    commandline-tools"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Overview</a>
+</li>
+<li>
+<a class="unselected" href="../install/index.html">Installation</a>
+</li>
+<li class="current">
+<a class="selected" href="../docs/index.html">Documentation</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools</a>
+</li>
+<li>
+<a class="unselected" href="http://im4java.sf.net/api/">API</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Documentation</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../docs/index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="../docs/dev-guide.html">Developer's-Guide</a>
+</div>
+<div class="menuitem">
+<a href="../docs/tests.html">Tests</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Reference</div>
+<div class="menupageitemgroup">
+<div class="menupageitem">
+<a href="#config">Configuration</a>
+</div>
+<div class="menupageitem">
+<a href="#tests">Test Cases</a>
+</div>
+</div>
+</div>
+<div class="menuitem">
+<a href="../docs/new-tools.html">Adding new Tools</a>
+</div>
+<div class="menuitem">
+<a href="../docs/howtos.html">Howtos</a>
+</div>
+<div class="menuitem">
+<a href="../docs/howto-template.html"></a>
+</div>
+<div class="menuitem">
+<a href="../docs/faq.html">FAQs</a>
+</div>
+<div class="menuitem">
+<a href="http://im4java.sourceforge.net/api/">API</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2"></div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<div title="Portable Document Format" class="pdflink">
+<a class="dida" href="reference.pdf"><img alt="PDF -icon" src="../skin/images/pdfdoc.gif" class="skin"><br>
+        PDF</a>
+</div>
+<h1>im4java Reference</h1>
+    
+<a name="N1000D"></a><a name="config"></a>
+<h2 class="boxed">Configuration</h2>
+<div class="section">
+<p>
+	You can configure the behaviour of the im4java-library with
+	the following environment-variables and system-properties:
+      </p>
+<dl>
+	
+<dt>IM4JAVA_TOOLPATH (environment)</dt>
+	
+<dd>Default searchpath for <a href="../tools/index.html">commandline
+	    tools</a>. Must use the platform-specific
+	  path-delimiter.
+	</dd>
+      
+</dl>
+<dl>
+	
+<dt>im4java.useGM (system-property)</dt>
+	
+<dd>If true, use <a href="http://www.graphicsmagick.org/">GraphicsMagick</a>
+	  instead of <a href="http://www.imagemagick.org">ImageMagick</a>.
+	</dd>
+      
+</dl>
+<dl>
+	
+<dt>im4java.maxProcs (system-property)</dt>
+	
+<dd>The maximum number of asynchronous processes the
+	  <span class="codefrag">org.im4java.process.ProcessExecutor</span> will run
+	  concurrently.  If unset or if the 
+	  property has the value <em>auto</em>, the number returned by
+	  <span class="codefrag">Runtime.availableProcessors()</span> is used. Note
+	  that the ProcessExecutor will at least use one process.
+	</dd>
+      
+</dl>
+</div>
+
+    
+<a name="N10047"></a><a name="tests"></a>
+<h2 class="boxed">Test Cases</h2>
+<div class="section">
+<p>
+	The package <span class="codefrag">org.im4java.test</span> contains a growing
+	number of test-cases, demonstrating the various features of
+	the im4java-library. Here is a quick overview.
+      </p>
+<dl>
+	
+<dt>TestCase1</dt>
+<dd>Simple use of convert</dd>
+	
+<dt>TestCase2</dt>
+<dd>Operation and sub-operations</dd>
+	
+<dt>TestCase3</dt>
+<dd>Using montage</dd>
+	
+<dt>TestCase4</dt>
+<dd>The ChannelMixer-class</dd>
+	
+<dt>TestCase5</dt>
+<dd>Using mogrify</dd>
+	
+<dt>TestCase6</dt>
+<dd>Using identify</dd>
+	
+<dt>TestCase7</dt>
+<dd>Using composite</dd>
+	
+<dt>TestCase8</dt>
+<dd>Using the Info-class</dd>
+	
+<dt>TestCase9</dt>
+<dd>The NoiseFilter-class</dd>
+	
+<dt>TestCase10</dt>
+<dd>Piping</dd>
+	
+<dt>TestCase11</dt>
+<dd>Dynamic operations</dd>
+	
+<dt>TestCase12</dt>
+<dd>Reading BufferedImage</dd>
+	
+<dt>TestCase13</dt>
+<dd>Writing BufferedImage</dd>
+	
+<dt>TestCase14</dt>
+<dd>GraphicsMagick</dd>
+	
+<dt>TestCase15</dt>
+<dd>Using jpegtran</dd>
+	
+<dt>TestCase16</dt>
+	
+<dd>
+	  Asynchronous execution. Basic version.
+	</dd>
+	
+<dt>TestCase16a</dt>
+	
+<dd>
+	  Asynchronous execution. This version uses
+	  <span class="codefrag">Executors.newSingleThreadExecutor()</span> to aquire a
+	  <span class="codefrag">ExecutorService</span>.
+	</dd>
+	
+<dt>TestCase16b</dt>
+	
+<dd>
+	  Asynchronous execution. This version uses a
+	  <span class="codefrag">ProcessExecutor</span> to run at most two processes in
+	  parallel.
+	</dd>
+	
+<dt>TestCase17</dt>
+<dd>Using ufraw-batch</dd>
+	
+<dt>TestCase18</dt>
+<dd>Using exiftool</dd>
+	
+<dt>TestCase19</dt>
+<dd>Using dcraw</dd>
+	
+<dt>TestCase20</dt>
+<dd>Setting search PATHs</dd>
+	
+<dt>TestCase21</dt>
+<dd>Parallel processes</dd>
+	
+<dt>TestCase22</dt>
+<dd>Using the BatchConverter-class</dd>
+      
+</dl>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2008-2010 Bernhard Bablok</div>
+<div class="host">
+<a href="http://sourceforge.net/projects/im4java"><img class="logoImage" alt="" src="http://sflogo.sourceforge.net/sflogo.php?group_id=251357&type=14"></a>
+</div>
+<div id="feedback">
+    Send feedback about the website to:
+  <a id="feedbackto" href="mailto:bablokb . at . users.sf.net?subject=Feedback%C2%A0docs/reference.html">bablokb . at . users.sf.net</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>
