@@ -86,17 +86,26 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 	 */
 	private static String openOfficeHomeFolder = null;
 	
-	
 	/**
 	 * The Port on which to connect (must be unoccupied)
 	 */
-	private final static int OOO_PORT = 8100;
+	private final static int OOO_DEFAULT_PORT = 8100;
+	
+	/**
+	 * OpenOffice Home Folder (Configurable)
+	 */
+	private static int openOfficePort = OOO_DEFAULT_PORT;
 	
 	/**
 	 * How long may a conversion take? (in ms)
 	 */
 	private static final long JOD_DOCUMENT_TIMEOUT = 12000;
 	
+	public static void setOpenOfficePort(int openOfficePort) {
+		if (openOfficePort > 0)
+			JODConverterThumbnailer.openOfficePort = openOfficePort;
+	}
+
 	public static void setOpenOfficeHomeFolder(String openOfficeHomeFolder)
 	{
 		JODConverterThumbnailer.openOfficeHomeFolder = openOfficeHomeFolder;
@@ -134,7 +143,7 @@ public abstract class JODConverterThumbnailer extends AbstractThumbnailer {
 			return;
 		
 		DefaultOfficeManagerConfiguration config = new DefaultOfficeManagerConfiguration()
-			.setPortNumber(OOO_PORT)
+			.setPortNumber(openOfficePort)
 			.setTaskExecutionTimeout(JOD_DOCUMENT_TIMEOUT);
 		
 		if (openOfficeHomeFolder != null)

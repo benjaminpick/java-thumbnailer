@@ -87,6 +87,7 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	private File paramThumbnailFolder;
 	private String paramOpenOfficeHome;
 	private String paramOpenOfficeProfile;
+	private int paramOpenOfficePort;
 
 	private MimeTypeDetector mimeTypeDetector;
 		
@@ -142,10 +143,18 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 			}
 			
 			paramOpenOfficeProfile = externalConfig.get("openOfficeProfile");
+
+			try {
+				if (externalConfig.get("openOfficePort") != null)
+					paramOpenOfficePort = Integer.parseInt(externalConfig.get("openOfficePort"));
+			} catch (NumberFormatException e) {
+				mLog.error("ERROR: OpenOfficePort is not a number");
+			}
 		}
 		
 		JODConverterThumbnailer.setOpenOfficeHomeFolder(paramOpenOfficeHome);
 		JODConverterThumbnailer.setOpenOfficeProfileFolder(paramOpenOfficeProfile);
+		JODConverterThumbnailer.setOpenOfficePort(paramOpenOfficePort);
 		
 		mimeTypeDetector = new MimeTypeDetector();
 	}

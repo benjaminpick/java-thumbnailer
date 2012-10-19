@@ -587,6 +587,13 @@
   	      <param name="imageWidth">160</param>
   	      <param name="imageHeight">120</param>
   	    </section>
+   	  	<section name="externalHelpers">
+   	  		<!--
+   	  		<param name="openOfficeHome">/path/to/open-office-binary (autodetect if not set)</param>
+   	  		<param name="openOfficeProfile">/path/to/openoffice-profile (create a temporary if not set)</param>
+   	  		-->
+   	  		<param name="openOfficePort">8100</param>
+   	  	</section>
   	  </config>
   	</crawlerPlugin>
   	   	  	 ]]>
