@@ -8,10 +8,12 @@ CHANGELOG of java-thumbnailer
 
 v0.6
 ----
-(not released yet)
+(05. December 2012)
+* Delete Thumbnails that were not saved in the index. (This can happen if crawling happens several times a day, as the document is only indexed once a day.)
++ JODConverterThumbnailer: Port can now be configured.
 + Automatic regain installation via ant (see https://github.com/benjaminpick/java-thumbnailer/wiki/Building-from-source)
-* Fix NullPointerException for Office2007FileIdentifier
-+ Change Mime Type in regain database to detected one (our mime type detector is more accurate than regain's)
+* Fix possible NullPointerException for Office2007FileIdentifier
++ Change Mime Type in regain index to detected one (our mime type detector is more accurate than regain's)
 
 v0.5
 ----

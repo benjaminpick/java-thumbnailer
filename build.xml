@@ -149,6 +149,10 @@
     <echo message="                       (including dependencies)"/>
     <echo message="  package-plugin       Packages the lib as regain plugin." />
     <echo message="                       (including depencies except those that exist in regain)"/>
+    <echo message="  deploy-desktop       Deploys the plugin to regain desktop version." />
+    <echo message="  deploy-server        Deploys the plugin to regain server version." />
+    <echo message="  deploy-crawler       Deploys the plugin to regain server version (only crawler)." />
+    <echo message="  deploy-tomcat        Deploys the plugin to regain server version (only tomcat search)." />
     <echo message="  all                  Creates all."/>
     <echo message="  public               Public release."/>
   </target>
