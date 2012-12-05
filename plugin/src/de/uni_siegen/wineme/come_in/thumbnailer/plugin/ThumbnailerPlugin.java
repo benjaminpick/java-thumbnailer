@@ -23,6 +23,8 @@ package de.uni_siegen.wineme.come_in.thumbnailer.plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.zip.DataFormatException;
 
@@ -30,6 +32,7 @@ import org.apache.log4j.Logger;
 import org.apache.lucene.document.CompressionTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexWriter;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.FileDoesNotExistException;
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerConstants;
@@ -72,6 +75,12 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	 * @var Thumbnailer Manager (can be null if deactivated)
 	 */
 	private ThumbnailerManager thumbnailer;
+	
+	/**
+	 * Keep track of all files that where generated during a crawling process,
+	 * in order to delete those which didn't reach the regain index.
+	 */
+	private Collection<String> generatedThumbnailsNotIndexed;
 	
 	/**
 	 * @var If thumbnails should be generated.
@@ -157,6 +166,8 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 		JODConverterThumbnailer.setOpenOfficePort(paramOpenOfficePort);
 		
 		mimeTypeDetector = new MimeTypeDetector();
+		
+		generatedThumbnailsNotIndexed = new HashSet<String>();
 	}
 	
 	/**
@@ -220,6 +231,16 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	public void onFinishCrawling(Crawler crawler) {
 		if (thumbnailer == null)
 			return;
+
+		if (!generatedThumbnailsNotIndexed.isEmpty())
+		{
+			mLog.info("Delete all thumbnails whose documents were not added to the index...");
+			for (String location : generatedThumbnailsNotIndexed)
+			{
+				deleteThumbnail(location);
+			}
+			generatedThumbnailsNotIndexed.clear();
+		}
 		
 		mLog.info("De-Initialize Thumbnail Generation...");
 		thumbnailer.close();
@@ -238,20 +259,32 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	 */
 	public void onDeleteIndexEntry(Document doc, IndexReader index) {
 		String location = getLuceneField(doc, LUCENE_FIELD_NAME_FILE_LOCATION);
+		deleteThumbnail(location);
+	}
+
+	/**
+	 * Delete Thumbnail
+	 * @param location	Specified thumbnail location
+	 * @return If deleted successfully.
+	 */
+	private boolean deleteThumbnail(String location) {
+		if (location == null || location.isEmpty())
+			return false;
 		
-		if (location != null && !location.isEmpty())
+		File thumbnail = new File(paramThumbnailFolder, location);
+		
+		if (thumbnail.exists())
 		{
-			File thumbnail = new File(paramThumbnailFolder, location);
-			if (thumbnail.exists())
+			mLog.info("Deleting thumbnail " + thumbnail.getName() + "...");
+			if (!thumbnail.delete())
 			{
-				mLog.info("Deleting thumbnail " + thumbnail.getName() + "...");
-				if (!thumbnail.delete())
-				{
-					mLog.warn("Couldn't delete thumbnail " + thumbnail.getName() + " - will delete it on program exit.");
-					thumbnail.deleteOnExit();
-				}
+				mLog.warn("Couldn't delete thumbnail " + thumbnail.getName() + " - will delete it on program exit.");
+				thumbnail.deleteOnExit();
+				return false;
 			}
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -278,7 +311,7 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 	}
 
 	/**
-	 * Called after a document is being prepared to be added to the index:
+	 * Called after a document is being prepared / parsed:
 	 * Create the thumbnail and add the information about its creation to the lucene entry.
 	 * 
 	 * @param document		Regain document that was analysed
@@ -310,7 +343,9 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 				thumbnailer.generateThumbnail(input, output, mimeType);
 
 				thumbnailLocation = IOUtil.getRelativeFilename(paramThumbnailFolder, output);
+				generatedThumbnailsNotIndexed.add(thumbnailLocation);
 				mLog.info("Generated Thumbnail at " + thumbnailLocation);
+				
 				thumbnailerStatus = LUCENE_FIELD_VALUE_STATUS_OK;
 			} catch (IOException e) {
 				mLog.error("File could not be thumbnailed: ", e);
@@ -325,4 +360,19 @@ public class ThumbnailerPlugin extends AbstractCrawlerPlugin implements Thumbnai
 		preparator.addAdditionalField(LUCENE_FIELD_NAME_STATUS, thumbnailerStatus);
 		preparator.addAdditionalField(LUCENE_FIELD_NAME_FILE_LOCATION, thumbnailLocation);
 	}
+	
+	/**
+	 * Called when a document as added to the index.
+	 * This may be a newly indexed document, or a document that has changed since
+	 * and, thus, is reindexed.
+	 *  
+	 * @param doc			Document to write
+	 * @param index			Lucene Index Writer
+	 */
+	public void onCreateIndexEntry(Document doc, IndexWriter index)
+	{
+		String location = getLuceneField(doc, LUCENE_FIELD_NAME_FILE_LOCATION);
+		generatedThumbnailsNotIndexed.remove(location);
+	}
+
 }
