@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import jirau.DWGThumbnailer;
+
 import org.junit.Before;
 
 import de.uni_siegen.wineme.come_in.thumbnailer.ThumbnailerManager;
@@ -63,6 +65,8 @@ public class ThumbnailerFileTestDummy extends MyTestCase {
 		}
 
 		thumbnailer.registerThumbnailer(new ScratchThumbnailer());
+		
+		thumbnailer.registerThumbnailer(new DWGThumbnailer());
 
 	}
 	

@@ -131,10 +131,20 @@ public class MimeDetectionTest extends MyTestCase {
 		assertTrue("doesExtensionMatchMimeType of Scratch didn't return true", mimeType.doesExtensionMatchMimeType("sb", "application/x-mit-scratch"));
 		assertMime("application/x-mit-scratch", "test2-sb.sbx");
 	}
+    
+    @Test
+    public void testAutoCad()
+    {
+		assertMime("image/x-dwg", "test2-dwg.doc");    	
+    }
 	
 	public void assertMime(String expectedMime, String filename)
 	{
-		String mime = mimeType.getMimeType(new File(parent, filename));
+		File file = new File(parent, filename);
+		if (!file.exists())
+			fail("File " + filename + " does not exist");
+		
+		String mime = mimeType.getMimeType(file);
 		if (!expectedMime.equalsIgnoreCase(mime))
 			fail("File " + filename + ": Mime is not equal: expected \"" + expectedMime + "\", but was \"" + mime + "\".");
 	}

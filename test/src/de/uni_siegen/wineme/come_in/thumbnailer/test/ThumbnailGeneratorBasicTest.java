@@ -28,7 +28,11 @@ public class ThumbnailGeneratorBasicTest extends ThumbnailerFileTestDummy
 	@Test
 	public void generateThumbnail() throws Exception
 	{
-		create_thumbnail(inputFile);
+		try {
+			create_thumbnail(inputFile);
+		} catch (Exception e) {
+			throw new Exception("Exception in file " + inputFile.getName() + ":", e);
+		}
 	}
 
 	@Parameters
