@@ -248,7 +248,7 @@ public class ChainedHashMap<K, V> implements Map<K, V>, Iterable<Map.Entry<K, V>
 		}
 	}
 	
-	public boolean remove(K key, V value)
+	public boolean remove(Object key, Object value)
 	{
 		List<V> list = hashtable.get(key);
 		

@@ -279,8 +279,8 @@
            debug="${debug}"
            deprecation="true"
            executable="${java.dir}/bin/javac"
-           source="1.5"
-           target="1.5"
+           source="1.8"
+           target="1.8"
            fork="true"
            includeantruntime="false">
       <compilerarg value="-Xlint"/>
@@ -308,8 +308,8 @@
            debug="${debug}"
            deprecation="true"
            executable="${java.dir}/bin/javac"
-           source="1.5"
-           target="1.5"
+           source="1.8"
+           target="1.8"
            fork="true"
            includeantruntime="false">
       <compilerarg value="-Xlint"/>
@@ -333,7 +333,8 @@
     <javac destdir="build/classes-test"
            debug="true"
            deprecation="true"
-           target="1.5"
+    	   source="1.8"
+           target="1.8"
            includeantruntime="false">
       <src>
         <pathelement location="test/src"/>
