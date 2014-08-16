@@ -15,7 +15,7 @@ Similar Project:
 Requirements
 ------------
 
-* Java JRE 1.6
+* Java JRE 1.8
 * (optional) OpenOffice 3.x/LibreOffice
 * Tested in Windows/Linux/Mac
 
@@ -27,6 +27,7 @@ Supported Fileformats
 * Text files (txt, pdf, rtf, html)
 * Image files (jpg, png, bmp, gif)
 * MIT Scratch files (sb)
+* AutoCad files (dwg)
 
 (Detection is based on MIME-Type, not filename extension. So files with an incorrect file extension will be treated correctly, not as they deserve.) 
 
