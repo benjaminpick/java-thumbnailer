@@ -94,6 +94,7 @@ public class ScratchThumbnailer extends AbstractThumbnailer {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void debugOutputObjects(Object[][] readObjects) {
 		for (int i = 0; i < readObjects.length; i++)
 		{
@@ -107,6 +108,7 @@ public class ScratchThumbnailer extends AbstractThumbnailer {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void debugOutputHashtable(Hashtable<?, ?> parsedScratchFile) {
 		for (Entry<?, ?> key : parsedScratchFile.entrySet())
 		{
