@@ -30,6 +30,9 @@ import javax.imageio.ImageIO;
 
 /**
  * Example class for new Thumbnailers.
+ * 
+ * Copy this file and rename the class.
+ * 
  * @see https://github.com/benjaminpick/java-thumbnailer/wiki/How-To-Write-A-New-Thumbnailer
  */
 public class DummyThumbnailer extends AbstractThumbnailer {
