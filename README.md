@@ -44,9 +44,6 @@ TODO
 * PDFBox: Library Conflict with regain. (We need to include this in the plugin, but it is included in a maybe-loaded preparator as well.)
   * That means that both should be updated at the same time!
 
-### Test: 
-
-* Java 1.7
 
 Author
 ------
