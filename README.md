@@ -8,6 +8,10 @@ It can also be used as a standalone library to create thumbnails of different fi
 *Current Version* : 0.6 (Beta)<br>
 *Licence* : GNU GPL 2.1 or later
 
+Similar Project:
+
+* https://code.google.com/p/thumbnailator/ only for images
+
 Requirements
 ------------
 
