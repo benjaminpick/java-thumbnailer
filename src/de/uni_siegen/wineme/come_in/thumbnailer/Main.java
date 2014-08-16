@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import jirau.DWGThumbnailer;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.GnuParser;
@@ -91,7 +93,10 @@ public class Main {
 
 	private static void initParams() {
 		options = new Options();
-		options.addOption(OptionBuilder.withArgName("WIDTHxHEIGHT").hasArg().withDescription("Size of the new thumbnail (default: 160x120)").create("size"));
+		OptionBuilder.withArgName("WIDTHxHEIGHT");
+		OptionBuilder.hasArg();
+		OptionBuilder.withDescription("Size of the new thumbnail (default: 160x120)");
+		options.addOption(OptionBuilder.create("size"));
 	}
 
 	private static void parseParams(String[] params) {
@@ -148,6 +153,8 @@ public class Main {
 		}
 
 		thumbnailer.registerThumbnailer(new ScratchThumbnailer());
+		
+		thumbnailer.registerThumbnailer(new DWGThumbnailer());
 	}
 	
 	protected static void initLogging() throws IOException

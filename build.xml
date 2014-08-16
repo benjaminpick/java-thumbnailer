@@ -450,6 +450,7 @@
     <junit haltonfailure="false" fork="true" filtertrace="on" > <!-- showoutput="true" -->
       <classpath>
         <path refid="classpath"/>
+        <path refid="test-classpath" />
         <path refid="classpath-shared"/>
         <path refid="junit"/>
       </classpath>
