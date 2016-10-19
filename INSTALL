@@ -13,14 +13,14 @@ There are two versions of JavaThumbnailer:
 
 ## Standalone Version
 
-1. Get the recent version of JavaThumbnailer at the [Download Page](https://github.com/benjamin4ruby/java-thumbnailer/archives/master) (or [build it from source](Building from Source).)
+1. Get the recent version of JavaThumbnailer at the [Download Page](https://github.com/benjaminpick/java-thumbnailer/releases) (or [build it from source](Building from Source).)
 2. To run it via the commandline: `java -jar javathumbnailer-standalone.jar input.doc [output.png]`
-3. To use it in your own project, include this `.jar` in your classpath. For an example of usage (and configuration), see the code in [Main.java](https://github.com/benjamin4ruby/java-thumbnailer/blob/master/src/de/uni_siegen/wineme/come_in/thumbnailer/Main.java).
+3. To use it in your own project, include this `.jar` in your classpath. For an example of usage (and configuration), see the code in [Main.java](https://github.com/benjaminpick/java-thumbnailer/blob/master/src/de/uni_siegen/wineme/come_in/thumbnailer/Main.java).
 
 ## Regain Plugin Version
 
 0. Get the recent version of [regain](http://regain.sourceforge.net/download.php).
-1. Get the recent version of JavaThumbnailer at the [Download Page](https://github.com/benjamin4ruby/java-thumbnailer/archives/master) (or [build it from source](Building from Source).)
+1. Get the recent version of JavaThumbnailer at the [Download Page](https://github.com/benjaminpick/java-thumbnailer/releases) (or [build it from source](Building from Source).)
 
 ### Crawler Plugin
 2. Save javathumbnailer-crawlerplugin-${version}.jar it into the `/plugins/`-Folder of regain.
